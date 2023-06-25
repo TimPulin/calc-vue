@@ -6,7 +6,7 @@
       :name="name"
       :local-value="radio"
       :model-value="modelValue"
-      @update:model-value="$emit('update:modelValue')"
+      @update:model-value="$emit('update:modelValue', $event)"
     >
       {{ radio }}
     </OptionsRadioBase>
