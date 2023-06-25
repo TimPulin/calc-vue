@@ -3,8 +3,9 @@
     <td class="tr__section tr__section--edit">
       <ButtonOptionsEdit :index="index + 1" @click="openPanelType" />
 
+      <!-- options-class-animation="options-type" -->
       <OptionsPanelType
-        options-class-animation="options-type"
+        options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"
         v-model:panel-options-open="panelTypeOpen"
         :model-value="programElement.type"
@@ -21,10 +22,16 @@
       />
     </td>
 
-    <td class="tr__section">
-      <ButtonOptions>0</ButtonOptions>
+    <td class="tr__section tr__section--goe">
+      <ButtonOptions @click="openPanelGoe">
+        {{ programElement.goe }}</ButtonOptions
+      >
       <OptionsPanelNumber
         class="options--goe"
+        options-class-animation="table-calc-options"
+        options-class-duration="--open-options-animation-duration"
+        v-model:panel-options-open="panelGoeOpen"
+        :name="`goe-${index}`"
         :listRadio="[0, 1, 2, 3, 4, 5]"
         :model-value="programElement.goe"
         @update:modelValue="updateElementProperty($event, 'goe')"
@@ -62,6 +69,7 @@ export default {
   data() {
     return {
       panelTypeOpen: false,
+      panelGoeOpen: false,
     };
   },
 
@@ -96,6 +104,10 @@ export default {
 
     openPanelType() {
       this.panelTypeOpen = true;
+    },
+
+    openPanelGoe() {
+      this.panelGoeOpen = true;
     },
   },
 };

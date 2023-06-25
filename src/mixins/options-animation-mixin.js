@@ -62,7 +62,7 @@ const optionsAnimationsMixin = {
         this.optionsOpen = true;
         this.optionsOpening = false;
         this.optionsVisible = false;
-        document.addEventListener('click', this.handleClickOnDocuments, {
+        document.addEventListener('click', this.handleClickOnDocument, {
           once: true,
           capture: true,
         });
@@ -79,7 +79,7 @@ const optionsAnimationsMixin = {
       }, animationDelay);
     },
 
-    handleClickOnDocuments(event) {
+    handleClickOnDocument(event) {
       event.stopPropagation();
 
       const animationDelay = getAnimationDelay(this.optionsClassDuration);

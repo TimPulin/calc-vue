@@ -1,5 +1,5 @@
 <template>
-  <div class="options">
+  <div class="options" :class="animationClassesObj">
     <OptionsRadioBase
       v-for="(radio, index) in listRadio"
       :key="index"
@@ -14,14 +14,21 @@
 </template>
 <script>
 import OptionsRadioBase from '@/components/options/OptionsRadioBase.vue';
+import optionsAnimationsMixin from '@/mixins/options-animation-mixin';
 export default {
   components: { OptionsRadioBase },
+
+  mixins: [optionsAnimationsMixin],
+
   props: {
     listRadio: {
       type: Array,
       required: true,
     },
-    name: String,
+    name: {
+      type: String,
+      required: true,
+    },
     modelValue: {
       required: true,
     },
