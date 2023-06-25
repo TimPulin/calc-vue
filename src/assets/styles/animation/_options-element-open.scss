@@ -1,0 +1,50 @@
+.options-element--opening {
+  animation: grow-width var(--open-options-animation-duration) ease-in-out forwards;
+}
+
+.options-element--opening::before {
+  @include background-colored;
+  border-radius: 0;
+  animation: change-opacity-in-end var(--open-options-animation-duration) ease-in-out;
+}
+
+.options-element--open {
+  display: flex;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  z-index: 100;
+}
+
+.options-element--closing {
+  animation: grow-width var(--open-options-animation-duration) ease-in-out forwards reverse;
+}
+
+.options-element--closing::before {
+  @include background-colored;
+  border-radius: 0;
+  animation: change-opacity-in-end var(--open-options-animation-duration) ease-in-out reverse;
+}
+
+@keyframes grow-width {
+  0% {
+    padding-left: 0;
+    padding-right: 0;
+    width: 0;
+  }
+
+  30% {
+    padding-left: 15px;
+    padding-right: 0;
+  }
+
+  90% {
+    padding-right: 15px;
+  }
+
+  100% {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+  }
+}

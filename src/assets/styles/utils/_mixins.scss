@@ -1,0 +1,240 @@
+@mixin reset {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin list-reset {
+  @include reset;
+  list-style: none;
+}
+
+@mixin link-reset {
+  text-decoration: none;
+  outline: none;
+}
+
+@mixin input-reset {
+  padding: 0;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+@mixin reset-number-appearance {
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; // Yeah, yeah everybody write about it
+  }
+
+  input[type='number'],
+  input[type="number"]:hover,
+  input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+  }
+}
+
+@mixin select-reset {
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@mixin title-reset {
+  margin: 0;
+}
+
+@mixin btn-reset {
+  @include reset;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+@mixin border {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+@mixin btn {
+  @include btn-reset;
+  padding: 19px 50px;
+  align-self: flex-start;
+  border-radius: 10px;
+
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+@mixin wrap-absolute {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin background {
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+@mixin transition {
+  transition-duration: .2s;
+  transition-timing-function: ease-out;
+}
+
+@mixin icon-arrow-reaction {
+
+  &:focus-visible .icon-arrow__circle {
+    fill: $color-primary_light;
+    stroke: $color-primary;
+  }
+
+  &:focus-visible .icon-arrow__arrow {
+    stroke: $color-white;
+  }
+
+  &:hover .icon-arrow__circle {
+    fill: $color-primary;
+    stroke: $color-primary;
+  }
+
+  &:hover .icon-arrow__arrow {
+    stroke: $color-white;
+  }
+
+  &:active .icon-arrow__circle {
+    fill: $color-primary_shade;
+    stroke: $color-primary_shade;
+  }
+
+  &:active .icon-arrow__arrow {
+    stroke: $color-white;
+  }
+}
+
+@mixin link-reaciton {
+
+  &:focus-visible {
+    text-decoration-color: $color-primary;
+  }
+
+  &:hover {
+    text-decoration-color: $color-primary;
+  }
+
+  &:active {
+    text-decoration-color: $color-primary_shade;
+    color: $color-primary_shade;
+  }
+}
+
+@mixin select-reaction {
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    background-color: $color-pink_light;
+  }
+
+  &:hover {
+    outline: 2px solid $color-primary;
+    background-color: $color-white;
+  }
+
+  &:active {
+    outline: 2px solid $color-primary_shade;
+  }
+}
+
+@mixin secondary-reaction {
+  transition-property: color, background-color, border-color;
+
+  &:focus-visible {
+    background-color: $color-primary-light;
+    border-color: $color-primary;
+    color: $color-white;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+
+  &:active {
+    background-color: $color-primary_shade;
+    border-color: $color-primary_shade;
+    color: $color-white;
+  }
+}
+
+@mixin ruble-sign {
+  &::after {
+    content: ' \20BD';
+  }
+}
+
+@mixin input-style {
+  width: 300px;
+  border: 1px solid #9CA3AF;
+  border-radius: 7px;
+  background-color: #fff;
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin background-colored {
+  @include wrap-absolute;
+  content: '';
+  background-color: $color-option;
+  border-radius: 5px;
+  opacity: .9;
+  z-index: 10;
+}
+
+@mixin placeholder-color {
+  $color-placeholder: $color-grey_4;
+
+  &::-webkit-input-placeholder {
+    color: $color-placeholder;
+  }
+
+  /* Edge
+   ----------------------------  */
+  &::-ms-input-placeholder {
+    color: $color-placeholder;
+  }
+
+  /* Firefox 4-18
+   ----------------------------  */
+  &:-moz-placeholder {
+    color: $color-placeholder;
+    opacity: 1;
+  }
+
+  /* Firefox 19+
+   ----------------------------  */
+  &::-moz-placeholder {
+    color: $color-placeholder;
+    opacity: 1;
+  }
+
+  /* IE 10-11
+   ----------------------------  */
+  &:-ms-input-placeholder {
+    color: $color-placeholder;
+  }
+}

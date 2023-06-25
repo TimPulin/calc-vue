@@ -1,0 +1,68 @@
+.checkbox {
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color .2s ease-in;
+
+  &::before {
+    @include wrap-absolute;
+    @include border;
+    content: '';
+  }
+
+  &__input,
+  &__input:checked {
+    position: absolute;
+    z-index: -1000;
+    opacity: 0;
+  }
+}
+
+.checkbox--content {
+  display: inline-block;
+  margin-bottom: -6px;
+  width: 39px;
+  height: 39px;
+
+  &::before {
+    background: url('../images/icons/check-mark-outline-colored.svg') no-repeat center / 20px;
+    border-color: $color-option;
+  }
+}
+
+.checkbox--option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  height: 32px;
+  width: 38px;
+  color: $color-option;
+}
+
+.checkbox--checked {
+  background-color: $color-option;
+}
+
+.checkbox--checked::before {
+  content: '';
+  background-image: url('../images/icons/check-mark-outline-white.svg');
+}
+
+.checkbox:hover,
+.checkbox:active {
+  color: #fff;
+  background-color: $color-primary_light;
+  border-color: $color-primary_light;
+}
+
+.checkbox--content:hover::before {
+  background: url("../images/icons/check-mark-outline-white.svg") no-repeat center/20px;
+}
+
+.checkbox:hover svg,
+.checkbox:active svg {
+  fill: #fff;
+}

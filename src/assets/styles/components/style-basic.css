@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'Roboto';
+  src: local('Robot-Regular'),
+    url(../fonts/Roboto-Regular.woff2) format(woff2),
+    url(../fonts/Roboto-Regular.woff) format(woff);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+*,
+*::before *::after {
+  box-sizing: inherit;
+}
+
+.wrap {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.overlay--active {
+  display: block;
+  z-index: 1;
+}
+
+.flex {
+  display: flex;
+}
+
+.font-size-0 {
+  font-size: 0;
+}
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+
+.paragraph {
+  margin: 0;
+}
+
+.section__title {
+  margin: 0;
+}
