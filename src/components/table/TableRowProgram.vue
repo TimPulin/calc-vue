@@ -1,10 +1,12 @@
 <template>
   <tr class="tr">
     <td class="tr__section tr__section--edit">
-      <ButtonOptionsEdit :index="index + 1" @click="openOptions" />
+      <ButtonOptionsEdit :index="index + 1" @click="openPanelType" />
 
       <OptionsPanelType
-        :class="[animationClassesObj]"
+        options-class-animation="options-type"
+        options-class-duration="--open-options-animation-duration"
+        v-model:panel-options-open="panelTypeOpen"
         :model-value="programElement.type"
         @update:modelValue="updateElementProperty($event, 'type')"
       />
@@ -46,8 +48,6 @@ import CheckboxSecondPart from '@/components/checkbox/CheckboxPart2.vue';
 import OptionsPanelType from '@/components/options/OptionsPanelType.vue';
 import OptionsPanelNumber from '../options/OptionsPanelNumber.vue';
 
-import optionsAnimationsMixin from '@/mixins/options-animation-mixin';
-
 export default {
   components: {
     ButtonOptions,
@@ -57,14 +57,11 @@ export default {
     OptionsPanelNumber,
   },
 
-  mixins: [optionsAnimationsMixin],
-
   props: ['programElement', 'index'],
 
   data() {
     return {
-      optionsClassAnimation: 'options-type',
-      classDuration: '--open-options-animation-duration',
+      panelTypeOpen: false,
     };
   },
 
@@ -95,6 +92,10 @@ export default {
           propertyValue: value,
         },
       });
+    },
+
+    openPanelType() {
+      this.panelTypeOpen = true;
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="options options--type">
+  <div class="options options--type" :class="[animationClassesObj]">
     <OptionsRadioBase
       name="element-type"
       local-value="jump"
@@ -35,9 +35,14 @@ import IconJump from '@/components/icons/IconJump.vue';
 import IconSpin from '@/components/icons/IconSpin.vue';
 import IconStep from '@/components/icons/IconStep.vue';
 
+import optionsAnimationsMixin from '@/mixins/options-animation-mixin';
+
 export default {
   components: { OptionsRadioBase, IconJump, IconSpin, IconStep },
-  // TODO заменить props и localValue на mixin localValueMixin
+
+  mixins: [optionsAnimationsMixin],
+
+  // TODO заменить props и localValue на mixin localValueMixin, хотя не уверен
   props: ['modelValue'],
 
   computed: {

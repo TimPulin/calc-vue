@@ -1,14 +1,35 @@
 import getAnimationDelay from '@/utils/get-animation-delay';
 
 const optionsAnimationsMixin = {
+  props: {
+    panelOptionsOpen: {
+      type: Boolean,
+      require: true,
+    },
+    optionsClassAnimation: {
+      type: String,
+      require: true,
+    },
+    optionsClassDuration: {
+      type: String,
+      require: true,
+    },
+  },
+
   data() {
     return {
-      anymationDelay: getAnimationDelay(this.optionsClassAnimation),
       optionsVisible: false,
       optionsOpening: false,
       optionsOpen: false,
       optionsClosing: false,
     };
+  },
+
+  watch: {
+    panelOptionsOpen() {
+      console.log('open');
+      if (this.panelOptionsOpen) this.openOptions();
+    },
   },
 
   computed: {
@@ -35,13 +56,13 @@ const optionsAnimationsMixin = {
     },
 
     handleAnimationsForwardEnd() {
-      const animationDelay = getAnimationDelay(this.classDuration);
+      const animationDelay = getAnimationDelay(this.optionsClassDuration);
 
       setTimeout(() => {
         this.optionsOpen = true;
         this.optionsOpening = false;
         this.optionsVisible = false;
-        document.addEventListener('click', this.handleClick, {
+        document.addEventListener('click', this.handleClickOnDocuments, {
           once: true,
           capture: true,
         });
@@ -49,18 +70,19 @@ const optionsAnimationsMixin = {
     },
 
     handleAnimationsBackwardEnd() {
-      const animationDelay = getAnimationDelay(this.classDuration);
+      const animationDelay = getAnimationDelay(this.optionsClassDuration);
 
       setTimeout(() => {
         this.optionsOpen = false;
         this.optionsClosing = false;
+        this.$emit('update:panelOptionsOpen', false);
       }, animationDelay);
     },
 
-    handleClick(event) {
+    handleClickOnDocuments(event) {
       event.stopPropagation();
 
-      const animationDelay = getAnimationDelay(this.classDuration);
+      const animationDelay = getAnimationDelay(this.optionsClassDuration);
       this.closeOptions();
       setTimeout(() => {
         event.target.dispatchEvent(new Event(event.type));
