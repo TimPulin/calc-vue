@@ -21,6 +21,12 @@
 
     <td class="tr__section">
       <ButtonOptions>0</ButtonOptions>
+      <OptionsPanelNumber
+        class="options--goe"
+        :listRadio="[0, 1, 2, 3, 4, 5]"
+        :model-value="programElement.goe"
+        @update:modelValue="updateElementProperty($event, 'goe')"
+      />
     </td>
 
     <td class="tr__section tr__section--scores">{{ formatedScores }}</td>
@@ -38,6 +44,7 @@ import ButtonOptions from '@/components/buttons/ButtonOptions.vue';
 import ButtonOptionsEdit from '@/components/buttons/ButtonOptionsEdit.vue';
 import CheckboxSecondPart from '@/components/checkbox/CheckboxPart2.vue';
 import OptionsPanelType from '@/components/options/OptionsPanelType.vue';
+import OptionsPanelNumber from '../options/OptionsPanelNumber.vue';
 
 import optionsAnimationsMixin from '@/mixins/options-animation-mixin';
 
@@ -47,6 +54,7 @@ export default {
     ButtonOptionsEdit,
     CheckboxSecondPart,
     OptionsPanelType,
+    OptionsPanelNumber,
   },
 
   mixins: [optionsAnimationsMixin],

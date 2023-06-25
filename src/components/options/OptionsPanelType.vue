@@ -37,7 +37,7 @@ import IconStep from '@/components/icons/IconStep.vue';
 
 export default {
   components: { OptionsRadioBase, IconJump, IconSpin, IconStep },
-
+  // TODO заменить props и localValue на mixin localValueMixin
   props: ['modelValue'],
 
   computed: {

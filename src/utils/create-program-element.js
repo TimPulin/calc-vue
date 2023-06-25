@@ -2,6 +2,7 @@ export default function createProgramElement() {
   return {
     name: [],
     scores: 0,
+    goe: 0,
     secondPart: 'disabled',
     _type: '',
 
