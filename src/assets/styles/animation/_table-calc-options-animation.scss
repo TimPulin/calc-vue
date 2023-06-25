@@ -1,11 +1,13 @@
 .tr__section--edit {
   --width: 138px;
-  --height: 127px
+  --height: 127px;
+  --display: flex;
 }
 
 .tr__section--goe {
-  --width: 242px;
-  --height: 32px;
+  --width: 200px;
+  --height: 116px;
+  --display: grid;
 }
 
 .table-calc-options--opening {
@@ -20,7 +22,7 @@
 
 .table-calc-options--open {
   top: 50px;
-  display: flex;
+  display: var(--display);
   padding: 0;
   width: var(--width);
   height: var(--height);

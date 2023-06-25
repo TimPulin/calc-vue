@@ -68,8 +68,10 @@
 .options--goe {
   top: 5px;
   right: 5px;
+  grid-template-columns: repeat(5, 32px);
+  grid-template-rows: repeat(3, 32px);
   flex-direction: row;
-  column-gap: 10px;
+  gap: 10px;
   width: 39px;
   height: 0;
 
@@ -77,12 +79,19 @@
     display: flex;
     justify-content: center;
     height: 32px;
-    min-width: 32px;
+    width: 32px;
+  }
+
+  .checkbox:nth-child(6) {
+    grid-column: 1 / span 5;
+    grid-row: 2/ 3;
+    justify-self: center;
   }
 }
 
 .options--visible {
-  display: flex;
+  // display: flex;
+  display: var(--display);
   z-index: 100;
 }
 

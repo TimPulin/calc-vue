@@ -3,7 +3,6 @@
     <td class="tr__section tr__section--edit">
       <ButtonOptionsEdit :index="index + 1" @click="openPanelType" />
 
-      <!-- options-class-animation="options-type" -->
       <OptionsPanelType
         options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"
@@ -26,13 +25,14 @@
       <ButtonOptions @click="openPanelGoe">
         {{ programElement.goe }}</ButtonOptions
       >
+
       <OptionsPanelNumber
         class="options--goe"
         options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"
         v-model:panel-options-open="panelGoeOpen"
         :name="`goe-${index}`"
-        :listRadio="[0, 1, 2, 3, 4, 5]"
+        :listRadio="[-1, -2, -3, -4, -5, 0, 1, 2, 3, 4, 5]"
         :model-value="programElement.goe"
         @update:modelValue="updateElementProperty($event, 'goe')"
       />
