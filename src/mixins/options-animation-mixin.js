@@ -27,7 +27,6 @@ const optionsAnimationsMixin = {
 
   watch: {
     panelOptionsOpen() {
-      console.log('open');
       if (this.panelOptionsOpen) this.openOptions();
     },
   },

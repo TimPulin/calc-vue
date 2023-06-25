@@ -9,6 +9,7 @@
         v-model:panel-options-open="panelTypeOpen"
         :model-value="programElement.type"
         @update:modelValue="updateElementProperty($event, 'type')"
+        @click="openModal"
       />
     </td>
 
@@ -16,7 +17,7 @@
 
     <td class="tr__section tr__section--bonus">
       <CheckboxSecondPart
-        :model-value="secondPart"
+        :model-value="programElement.secondPart"
         @update:modelValue="updateElementProperty($event, 'secondPart')"
       />
     </td>
@@ -55,6 +56,8 @@ import CheckboxSecondPart from '@/components/checkbox/CheckboxPart2.vue';
 import OptionsPanelType from '@/components/options/OptionsPanelType.vue';
 import OptionsPanelNumber from '../options/OptionsPanelNumber.vue';
 
+import { mapState } from 'vuex';
+
 export default {
   components: {
     ButtonOptions,
@@ -74,20 +77,10 @@ export default {
   },
 
   computed: {
+    ...mapState(['modalElementConfig']),
+
     formatedScores() {
       return formatScores(this.programElement.scores);
-    },
-
-    secondPart: {
-      get() {
-        return this.programElement.secondPart;
-      },
-      set(value) {
-        this.$store.commit('updateProgramElementProperty', {
-          index: this.index,
-          programElement: { secondPart: value },
-        });
-      },
     },
   },
 
@@ -108,6 +101,14 @@ export default {
 
     openPanelGoe() {
       this.panelGoeOpen = true;
+    },
+
+    openModal(event) {
+      if (event.target.value !== undefined) {
+        this.$store.dispatch('createEditingElement');
+        this.$store.commit('setEditingElementIndex', this.index);
+        this.modalElementConfig.show();
+      }
     },
   },
 };

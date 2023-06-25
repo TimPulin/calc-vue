@@ -1,4 +1,6 @@
 <template>
+  <ModalElementConfig />
+
   <SiteHeader />
 
   <main>
@@ -10,11 +12,23 @@
 </template>
 
 <script>
+import { Modal } from 'bootstrap';
+
+import ModalElementConfig from '@/components/modal/ModalElementConfig.vue';
 import SiteHeader from './components/site/SiteHeader.vue';
+
 export default {
-  components: { SiteHeader },
+  components: { ModalElementConfig, SiteHeader },
+
   created() {
     this.$store.dispatch('createProgram', {});
   },
+
+  mounted() {
+    const modalElementConfig = new Modal('#modal-element-config');
+    this.$store.commit('setModalElementConfig', modalElementConfig);
+  },
+
+  methods: {},
 };
 </script>
