@@ -1,0 +1,52 @@
+@keyframes options-grow {
+  0% {
+    width: 39px;
+    height: 0;
+    transform: translateY(0);
+  }
+
+  40% {
+    width: 39px;
+    height: calc(var(--height) + 40px);
+    transform: translateY(0);
+
+  }
+
+  50% {
+    width: 39px;
+    height: var(--height);
+    transform: translateY(45px);
+  }
+
+  100% {
+    width: var(--width);
+    height: var(--height);
+    transform: translateY(45px);
+  }
+}
+
+@keyframes options-shrink {
+  0% {
+    width: 39px;
+    height: 0;
+    transform: translateY(-45px);
+  }
+
+  40% {
+    width: 39px;
+    height: calc(var(--height) + 40px);
+    transform: translateY(-45px);
+  }
+
+  50% {
+    width: 39px;
+    height: var(--height);
+    transform: translateY(0);
+  }
+
+  100% {
+    width: var(--width);
+    height: var(--height);
+    transform: translateY(0);
+  }
+}

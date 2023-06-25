@@ -1,0 +1,50 @@
+.tr__section--edit {
+  --width: 138px;
+  --height: 127px
+}
+
+.tr__section--goe {
+  --width: 242px;
+  --height: 32px;
+}
+
+.table-calc-options--opening {
+  animation: options-grow var(--open-options-animation-duration) ease-in-out forwards;
+}
+
+.table-calc-options--opening::before {
+  @include background-colored;
+  z-index: 10;
+  animation: change-opacity-in-end var(--open-options-animation-duration) ease-in-out;
+}
+
+.table-calc-options--open {
+  top: 50px;
+  display: flex;
+  padding: 0;
+  width: var(--width);
+  height: var(--height);
+  border-radius: 5px;
+  box-shadow: 5px 7px 10px 1px $color-grey;
+  background-color: rgba(200, 200, 200, .7);
+
+  z-index: 10;
+
+  .checkbox {
+    background-color: #fff;
+  }
+
+  .checkbox--checked {
+    background-color: $color-option;
+    border-color: $color-option;
+  }
+}
+
+.table-calc-options--closing {
+  animation: options-shrink var(--open-options-animation-duration) ease-in-out forwards reverse;
+}
+
+.table-calc-options--closing::before {
+  @include background-colored;
+  animation: change-opacity-in-end var(--open-options-animation-duration) ease-in-out reverse;
+}

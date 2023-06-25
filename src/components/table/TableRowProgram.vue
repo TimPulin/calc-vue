@@ -1,10 +1,13 @@
 <template>
   <tr class="tr">
     <td class="tr__section tr__section--edit">
-      <ButtonOptionsEdit :index="index + 1" @click="openOptions" />
+      <ButtonOptionsEdit :index="index + 1" @click="openPanelType" />
 
+      <!-- options-class-animation="options-type" -->
       <OptionsPanelType
-        :class="[animationClassesObj]"
+        options-class-animation="table-calc-options"
+        options-class-duration="--open-options-animation-duration"
+        v-model:panel-options-open="panelTypeOpen"
         :model-value="programElement.type"
         @update:modelValue="updateElementProperty($event, 'type')"
       />
@@ -19,8 +22,20 @@
       />
     </td>
 
-    <td class="tr__section">
-      <ButtonOptions>0</ButtonOptions>
+    <td class="tr__section tr__section--goe">
+      <ButtonOptions @click="openPanelGoe">
+        {{ programElement.goe }}</ButtonOptions
+      >
+      <OptionsPanelNumber
+        class="options--goe"
+        options-class-animation="table-calc-options"
+        options-class-duration="--open-options-animation-duration"
+        v-model:panel-options-open="panelGoeOpen"
+        :name="`goe-${index}`"
+        :listRadio="[0, 1, 2, 3, 4, 5]"
+        :model-value="programElement.goe"
+        @update:modelValue="updateElementProperty($event, 'goe')"
+      />
     </td>
 
     <td class="tr__section tr__section--scores">{{ formatedScores }}</td>
@@ -38,8 +53,7 @@ import ButtonOptions from '@/components/buttons/ButtonOptions.vue';
 import ButtonOptionsEdit from '@/components/buttons/ButtonOptionsEdit.vue';
 import CheckboxSecondPart from '@/components/checkbox/CheckboxPart2.vue';
 import OptionsPanelType from '@/components/options/OptionsPanelType.vue';
-
-import optionsAnimationsMixin from '@/mixins/options-animation-mixin';
+import OptionsPanelNumber from '../options/OptionsPanelNumber.vue';
 
 export default {
   components: {
@@ -47,16 +61,15 @@ export default {
     ButtonOptionsEdit,
     CheckboxSecondPart,
     OptionsPanelType,
+    OptionsPanelNumber,
   },
-
-  mixins: [optionsAnimationsMixin],
 
   props: ['programElement', 'index'],
 
   data() {
     return {
-      optionsClassAnimation: 'options-type',
-      classDuration: '--open-options-animation-duration',
+      panelTypeOpen: false,
+      panelGoeOpen: false,
     };
   },
 
@@ -87,6 +100,14 @@ export default {
           propertyValue: value,
         },
       });
+    },
+
+    openPanelType() {
+      this.panelTypeOpen = true;
+    },
+
+    openPanelGoe() {
+      this.panelGoeOpen = true;
     },
   },
 };
