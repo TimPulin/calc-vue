@@ -1,0 +1,117 @@
+.btn-close {
+  opacity: 0.2;
+}
+
+.btn-close:focus,
+.btn-close:active {
+  box-shadow: none;
+}
+
+
+/*
+Не ставить POSITION: RELATIVE на button или другой класс кнопки,
+которая открывает выбор характеристики элемента в модальном окне
+*/
+
+.button {
+  @include btn-reset;
+  @include border;
+  @include transition;
+  padding: 5px 8px;
+  border-color: $color-primary;
+  color: $color-primary;
+  transition-property: color, background-color, background-image;
+
+  &:focus-visible {
+    box-shadow: 0 0 10px $color-primary_light;
+  }
+
+  &:hover,
+  &:active {
+    color: #fff;
+    background-color: $color-primary_light;
+  }
+}
+
+
+.button--reject {
+  border-color: $color-red_input;
+  color: $color-red_input;
+}
+
+.button--reject:hover {
+  background-color: $color-red_input;
+}
+
+.button-fill {
+  background-color: $color-primary;
+  color: #fff;
+
+  &:hover,
+  &:active {
+    background-color: $color-primary_shade;
+    border-color: $color-primary_shade;
+  }
+}
+
+.button-options {
+  position: relative;
+  width: 39px;
+  height: 39px;
+  vertical-align: middle;
+  z-index: 5;
+
+  // поставил, чтобы не мешало запускать обработчики на кнопке после перехвата для закрытия options-type
+  &::after {
+    @include wrap-absolute;
+    content: '';
+  }
+
+  &__number {
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    font-size: 12px;
+    color: $color-primary;
+  }
+
+  .svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 22px;
+    fill: $color-primary;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.button-options--active,
+.button-options:hover,
+.button-options:active {
+  background-color: $color-primary;
+  color: #fff;
+}
+
+.button-options--active .button-options__number,
+.button-options:hover .button-options__number,
+.button-options:active .button-options__number {
+  color: #fff;
+}
+
+.button-options--active .svg,
+.button-options:hover .svg,
+.button-options:active .svg {
+  fill: #fff;
+}
+
+.button-option {
+  width: 39px;
+  height: 39px;
+  border-color: $color-option;
+}
+
+.button-option--active {
+  background-color: $color-option;
+  color: #fff;
+}

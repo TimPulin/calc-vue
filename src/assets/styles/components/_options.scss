@@ -1,0 +1,80 @@
+.options {
+  position: absolute;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #fff;
+  overflow: hidden;
+
+  &__checkbox {
+    @include border;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 10px;
+    padding: 5px 8px;
+    height: 39px;
+    color: $color-option;
+
+    &::before {
+      content: none;
+    }
+
+    .svg {
+      width: 25px;
+      height: 36px;
+      fill: $color-option;
+    }
+  }
+
+  .checkbox--checked {
+    color: #fff;
+
+    .svg {
+      fill: #fff;
+    }
+
+    &::before {
+      content: none;
+    }
+  }
+}
+
+.options--element {
+  left: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 0;
+
+  background-color: $color-grey_light;
+  text-transform: capitalize;
+
+  .checkbox {
+    display: flex;
+    justify-content: center;
+    height: 32px;
+    min-width: 38px;
+  }
+}
+
+.options--type {
+  top: 5px;
+  width: 39px;
+  height: 0;
+}
+
+.options--visible {
+  display: flex;
+  z-index: 100;
+}
+
+.options--active {
+  display: flex;
+  z-index: 2;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
