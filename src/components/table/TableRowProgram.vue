@@ -1,15 +1,18 @@
 <template>
   <tr class="tr">
     <td class="tr__section tr__section--edit">
-      <ButtonOptionsEdit :index="index + 1" @click="openPanelType" />
+      <ButtonOptionsEdit
+        :index="programElement.index + 1"
+        @click="openPanelType"
+      />
 
+      <!-- TODO заменть обработчик для openModal на что-то другое -->
       <OptionsPanelType
         options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"
         v-model:panel-options-open="panelTypeOpen"
         :model-value="programElement.type"
-        @update:modelValue="updateElementProperty($event, 'type')"
-        @click="openModal"
+        @update:modelValue="openModal($event, 'type')"
       />
     </td>
 
@@ -32,7 +35,7 @@
         options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"
         v-model:panel-options-open="panelGoeOpen"
-        :name="`goe-${index}`"
+        :name="`goe-${programElement.index}`"
         :listRadio="[-1, -2, -3, -4, -5, 0, 1, 2, 3, 4, 5]"
         :model-value="programElement.goe"
         @update:modelValue="updateElementProperty($event, 'goe')"
@@ -67,7 +70,7 @@ export default {
     OptionsPanelNumber,
   },
 
-  props: ['programElement', 'index'],
+  props: ['programElement'],
 
   data() {
     return {
@@ -77,7 +80,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['modalElementConfig']),
+    ...mapState(['modalElement']),
 
     formatedScores() {
       return formatScores(this.programElement.scores);
@@ -87,7 +90,7 @@ export default {
   methods: {
     updateElementProperty(value, propertyName) {
       this.$store.commit('updateProgramElementSingleProperty', {
-        index: this.index,
+        index: this.programElement.index,
         programElement: {
           propertyName: propertyName,
           propertyValue: value,
@@ -103,11 +106,15 @@ export default {
       this.panelGoeOpen = true;
     },
 
-    openModal(event) {
-      if (event.target.value !== undefined) {
-        this.$store.dispatch('createEditingElement');
-        this.$store.commit('setEditingElementIndex', this.index);
-        this.modalElementConfig.show();
+    openModal(value) {
+      console.log('openModal');
+      if (value !== undefined) {
+        this.updateElementProperty(value, 'type');
+        this.$store.commit(
+          'copyProgramElementForEditing',
+          this.programElement.index
+        );
+        this.modalElement.show();
       }
     },
   },

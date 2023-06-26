@@ -1,5 +1,5 @@
 <template>
-  <ModalElementConfig />
+  <ModalElement />
 
   <SiteHeader />
 
@@ -14,19 +14,21 @@
 <script>
 import { Modal } from 'bootstrap';
 
-import ModalElementConfig from '@/components/modal/ModalElementConfig.vue';
+import ModalElement from '@/components/modal/ModalElement.vue';
 import SiteHeader from './components/site/SiteHeader.vue';
 
 export default {
-  components: { ModalElementConfig, SiteHeader },
+  components: { ModalElement, SiteHeader },
 
   created() {
     this.$store.dispatch('createProgram', {});
+    // TODO убрать если не понадобится
+    this.$store.dispatch('createEditingElement');
   },
 
   mounted() {
-    const modalElementConfig = new Modal('#modal-element-config');
-    this.$store.commit('setModalElementConfig', modalElementConfig);
+    const modalElement = new Modal('#modal-element');
+    this.$store.commit('setModalElement', modalElement);
   },
 
   methods: {},

@@ -1,22 +1,12 @@
 import { createStore } from 'vuex';
 import createProgramElement from '@/utils/create-program-element';
+import deepCopy from '@/utils/deep-copy';
 
 export default createStore({
   state: {
     program: [],
-    modalElementConfig: null,
+    modalElement: null,
     editingElement: {},
-    editingElementIndex: null,
-  },
-
-  getters: {
-    editingElementType(state) {
-      if (state.editingElementIndex) {
-        return state.program[state.editingElementIndex].type;
-      } else {
-        return '';
-      }
-    },
   },
 
   mutations: {
@@ -45,8 +35,8 @@ export default createStore({
 
     // MODAL OPERATIONS
 
-    setModalElementConfig(state, modal) {
-      state.modalElementConfig = modal;
+    setModalElement(state, modal) {
+      state.modalElement = modal;
     },
 
     // EDITING_ELEMENT OPERATIONS
@@ -55,8 +45,9 @@ export default createStore({
       state.editingElement = element;
     },
 
-    setEditingElementIndex(state, index) {
-      state.editingElementIndex = index;
+    copyProgramElementForEditing(state, index) {
+      state.editingElement.name = deepCopy(state.program[index].name);
+      state.editingElement.type = state.program[index].type;
     },
 
     updateEditingElementSingleProperty(state, { index, programElement }) {
@@ -70,7 +61,7 @@ export default createStore({
       context.commit('cleanupProgram');
 
       for (let i = 0; i < elementAmount; i++) {
-        const programElement = createProgramElement();
+        const programElement = createProgramElement(i);
         context.commit('setProgramElement', { index: i, programElement });
       }
     },
