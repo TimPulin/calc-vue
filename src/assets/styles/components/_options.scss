@@ -42,11 +42,13 @@
 }
 
 .options--element {
+  --display: flex;
   left: 0;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px 0;
   width: 0;
+  min-height: 52px;
 
   background-color: $color-grey_light;
   text-transform: capitalize;
@@ -90,7 +92,6 @@
 }
 
 .options--visible {
-  // display: flex;
   display: var(--display);
   z-index: 100;
 }

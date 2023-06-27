@@ -16,7 +16,6 @@
           v-for="(programElement, index) in localProgram"
           :key="index"
           :program-element="programElement"
-          :index="index"
         />
       </tbody>
 
