@@ -52,7 +52,7 @@ export default createStore({
 
     updateEditingElementSingleProperty(state, { index, programElement }) {
       const { propertyName, propertyValue } = programElement;
-      state.program[index][propertyName] = propertyValue;
+      state.editingElement.name[index][propertyName] = propertyValue;
     },
   },
 

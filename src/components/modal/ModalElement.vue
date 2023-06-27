@@ -27,7 +27,7 @@
             class="options--element"
             :listRadio="[1, 2, 3, 4]"
             name="number"
-            v-model="localNumber"
+            v-model="localRotations"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
             v-model:panel-options-open="isOptionsNumberOpen"
@@ -47,7 +47,7 @@
             class="options--element space-evenly"
             :listRadio="['<<', '<', 'q']"
             name="jump-underotation"
-            v-model="localUnderotation"
+            v-model="localUnderotated"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
             v-model:panel-options-open="isOptionsUnderotationOpen"
@@ -249,7 +249,7 @@
 import TableJump from '@/components/table/table-jump/TableJump.vue';
 import OptionsPanelBase from '@/components/options/OptionsPanelBase.vue';
 import OptionRadioThombUp from '@/components/options/OptionRadioThombUp.vue';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -273,20 +273,7 @@ export default {
       element: 'editingElement',
     }),
 
-    localName: {
-      get() {
-        if (this.element.name.length > 0) {
-          return this.element.name[this.currentElementIndex].name;
-        } else {
-          return '';
-        }
-      },
-      set(value) {
-        this.element.name[this.currentElementIndex].name = value;
-      },
-    },
-
-    localNumber: {
+    localRotations: {
       get() {
         if (this.element.name.length > 0) {
           return this.element.name[this.currentElementIndex].rotations;
@@ -298,9 +285,26 @@ export default {
         this.element.name[this.currentElementIndex].rotations = value;
       },
     },
+
+    localName: {
+      get() {
+        if (this.element.name.length > 0) {
+          return this.element.name[this.currentElementIndex].name;
+        } else {
+          return '';
+        }
+      },
+      set(value) {
+        this.updateEditingElementProperty(value, 'name');
+      },
+    },
   },
 
   methods: {
+    ...mapMutations({
+      updateElementPropert: 'updateEditingElementSingleProperty',
+    }),
+
     isTableShow(tableName) {
       return this.element.type === tableName;
     },
@@ -324,6 +328,16 @@ export default {
 
     onDeleteJump() {
       this.element.deleteJump();
+    },
+
+    updateEditingElementProperty(value, propertyName) {
+      this.$store.commit('updateEditingElementSingleProperty', {
+        index: this.currentElementIndex,
+        programElement: {
+          propertyName: propertyName,
+          propertyValue: value,
+        },
+      });
     },
   },
 };
