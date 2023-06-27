@@ -9,7 +9,7 @@
     <td class="tr__section">
       <button
         class="button options-element-caller button--freeze"
-        @click="createOpenOptionsEvent('numbers')"
+        @click="createOpenOptionsEvent('rotations')"
       >
         {{ name.rotations }}
       </button>
@@ -27,16 +27,16 @@
     <td class="tr__section">
       <button
         class="button options-element-caller"
-        @click="createOpenOptionsEvent('jump-underotation')"
+        @click="createOpenOptionsEvent('underrotate')"
       >
-        {{ name.underotation }}
+        {{ name.underrotate }}
       </button>
     </td>
 
     <td class="tr__section">
       <button
         class="button options-element-caller"
-        @click="createOpenOptionsEvent('jump-edge')"
+        @click="createOpenOptionsEvent('edge')"
       >
         {{ name.edge }}
       </button>

@@ -104,6 +104,7 @@ class Jump {
   constructor() {
     this.name = '';
     this.rotations = '';
+    // TODO проверку на null
     this.underrotate = '';
     this.edge = '';
   }

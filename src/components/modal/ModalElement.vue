@@ -26,11 +26,11 @@
           <OptionsPanelBase
             class="options--element"
             :listRadio="[1, 2, 3, 4]"
-            name="number"
+            name="rotations"
             v-model="localRotations"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsNumberOpen"
+            v-model:panel-options-open="isOptionsRotationsOpen"
           />
 
           <OptionsPanelBase
@@ -46,32 +46,34 @@
           <OptionsPanelBase
             class="options--element space-evenly"
             :listRadio="['<<', '<', 'q']"
-            name="jump-underotation"
-            v-model="localUnderotated"
+            name="underrotate"
+            v-model="localUnderrotate"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsUnderotationOpen"
+            v-model:panel-options-open="isOptionsUnderrotateOpen"
           >
+            <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
             <OptionRadioThombUp
-              name="jump-underotation"
+              name="underrotate"
               local-value="''"
-              v-model="localUnderotation"
+              v-model="localUnderrotate"
             />
           </OptionsPanelBase>
 
           <OptionsPanelBase
             class="options--element space-evenly"
             :listRadio="['e', '!']"
-            name="jump-edje"
-            v-model="localEdje"
+            name="edge"
+            v-model="localEdge"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsEdjeOpen"
+            v-model:panel-options-open="isOptionsEdgeOpen"
           >
+            <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
             <OptionRadioThombUp
-              name="jump-edje"
+              name="jump-edge"
               local-value="''"
-              v-model="localEdje"
+              v-model="localEdge"
             />
           </OptionsPanelBase>
 
@@ -264,7 +266,12 @@ export default {
       currentElementIndex: 0,
 
       isOptionsJumpNameOpen: false,
-      isOptionsNumberOpen: false,
+      isOptionsRotationsOpen: false,
+      isOptionsUnderrotateOpen: false,
+      isOptionsEdgeOpen: false,
+
+      isOptionsSpinNameOpen: false,
+      isOptionsStepNameOpen: false,
     };
   },
 
@@ -282,7 +289,7 @@ export default {
         }
       },
       set(value) {
-        this.element.name[this.currentElementIndex].rotations = value;
+        this.updateEditingElementProperty(value, 'rotations');
       },
     },
 
@@ -296,6 +303,32 @@ export default {
       },
       set(value) {
         this.updateEditingElementProperty(value, 'name');
+      },
+    },
+
+    localUnderrotate: {
+      get() {
+        if (this.element.name.length > 0) {
+          return this.element.name[this.currentElementIndex].underrotate;
+        } else {
+          return '';
+        }
+      },
+      set(value) {
+        this.updateEditingElementProperty(value, 'underrotate');
+      },
+    },
+
+    localEdge: {
+      get() {
+        if (this.element.name.length > 0) {
+          return this.element.name[this.currentElementIndex].edge;
+        } else {
+          return '';
+        }
+      },
+      set(value) {
+        this.updateEditingElementProperty(value, 'edge');
       },
     },
   },
@@ -312,13 +345,20 @@ export default {
     onOpenOptions({ optionsName, elementIndex = 0 }) {
       this.currentElementIndex = elementIndex;
       this.currentOptionsName = optionsName;
-
+      console.log(optionsName);
       switch (optionsName) {
         case 'jump-name':
           this.isOptionsJumpNameOpen = true;
           break;
-        case 'number':
-          this.isOptionsNumberOpen = true;
+        case 'rotations':
+          this.isOptionsRotationsOpen = true;
+          break;
+        case 'underrotate':
+          this.isOptionsUnderrotateOpen = true;
+          break;
+        case 'edge':
+          this.isOptionsEdgeOpen = true;
+          break;
       }
     },
 
