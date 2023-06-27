@@ -24,6 +24,7 @@
           </div>
 
           <OptionsPanelBase
+            v-if="isShow('jump')"
             class="options--element"
             :listRadio="[1, 2, 3, 4]"
             name="rotations"
@@ -34,6 +35,7 @@
           />
 
           <OptionsPanelBase
+            v-if="isShow('jump')"
             class="options--element"
             :listRadio="['A', 'T', 'S', 'Lo', 'F', 'Lz', 'Eu']"
             name="jump-name"
@@ -44,6 +46,7 @@
           />
 
           <OptionsPanelBase
+            v-if="isShow('jump')"
             class="options--element space-evenly"
             :listRadio="['<<', '<', 'q']"
             name="underrotate"
@@ -55,12 +58,13 @@
             <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
             <OptionRadioThombUp
               name="underrotate"
-              local-value="''"
+              :local-value="''"
               v-model="localUnderrotate"
             />
           </OptionsPanelBase>
 
           <OptionsPanelBase
+            v-if="isShow('jump')"
             class="options--element space-evenly"
             :listRadio="['e', '!']"
             name="edge"
@@ -72,26 +76,39 @@
             <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
             <OptionRadioThombUp
               name="jump-edge"
-              local-value="''"
+              :local-value="''"
               v-model="localEdge"
             />
           </OptionsPanelBase>
 
           <OptionsPanelBase
+            v-if="isShow('spin')"
             class="options--element"
             :listRadio="['USp', 'SSp', 'CSp', 'CoSp', 'LSp']"
             name="spin-name"
-            v-model="localSpinName"
+            v-model="localName"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
             v-model:panel-options-open="isOptionsSpinNameOpen"
           />
 
           <OptionsPanelBase
+            v-if="isShow('spin') || isShow('step')"
+            class="options--element"
+            :listRadio="['B', '1', '2', '3', '4']"
+            name="level"
+            v-model="localLevel"
+            options-class-animation="options-element"
+            options-class-duration="--open-options-animation-duration"
+            v-model:panel-options-open="isOptionsLevelOpen"
+          />
+
+          <OptionsPanelBase
+            v-if="isShow('step')"
             class="options--element space-evenly"
             :listRadio="['StSq', 'ChSq']"
             name="step-name"
-            v-model="localStepName"
+            v-model="localName"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
             v-model:panel-options-open="isOptionsStepNameOpen"
@@ -99,135 +116,27 @@
 
           <div class="modal__wrap-table">
             <TableJump
-              v-if="isTableShow('jump')"
+              v-if="isShow('jump')"
               :name-list="element.name"
               @open-options="onOpenOptions"
               @add-jump="onAddJump"
               @delete-jump="onDeleteJump"
             />
 
-            <table class="table table--element" v-if="isTableShow('spin')">
-              <thead class="thead">
-                <tr>
-                  <th class="tr__section" colspan="2"></th>
+            <TableSpin
+              v-if="isShow('spin')"
+              :name-list="element.name"
+              @update:fly="updateEditingElementProperty($event, 'fly')"
+              @update:change="updateEditingElementProperty($event, 'change')"
+              @update:v="updateEditingElementProperty($event, 'v')"
+              @open-options="onOpenOptions({ optionsName: $event })"
+            />
 
-                  <th class="tr__section">
-                    <span class="tr__text">Элемент</span>
-                  </th>
-                  <th class="tr__section">
-                    <span class="tr__text">уровень</span>
-                  </th>
-                  <th class="tr__section" colspan="2"></th>
-                </tr>
-              </thead>
-
-              <tbody class="tbody">
-                <tr class="tr">
-                  <td class="tr__section">
-                    <div class="tr__wrapper">
-                      <label class="checkbox checkbox--option">
-                        F
-                        <input
-                          value="a"
-                          type="checkbox"
-                          name="fly"
-                          class="checkbox__input"
-                        />
-                      </label>
-                    </div>
-                  </td>
-
-                  <td class="tr__section">
-                    <div class="tr__wrapper">
-                      <label class="checkbox checkbox--option">
-                        C
-                        <input
-                          value="a"
-                          type="checkbox"
-                          name="change"
-                          class="checkbox__input"
-                        />
-                      </label>
-                    </div>
-                  </td>
-
-                  <td class="tr__section">
-                    <div class="tr__wrapper">
-                      <button
-                        class="button button--editing options-element-caller"
-                        data-options-id="spin-name"
-                      >
-                        CSp
-                      </button>
-                    </div>
-                  </td>
-
-                  <td class="tr__section">
-                    <div class="tr__wrapper">
-                      <button
-                        class="button button--freeze"
-                        data-options-id="numbers"
-                      >
-                        4
-                      </button>
-                    </div>
-                  </td>
-
-                  <td class="tr__section">
-                    <div class="tr__wrapper">
-                      <label class="checkbox checkbox--option">
-                        V
-                        <input
-                          value="a"
-                          type="checkbox"
-                          name="v-error"
-                          class="checkbox__input"
-                        />
-                      </label>
-                    </div>
-                  </td>
-
-                  <td class="tr__section">1.99</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <table class="table table--element" v-if="isTableShow('step')">
-              <thead class="thead">
-                <tr>
-                  <th class="tr__section">
-                    <span class="tr__text">Элемент</span>
-                  </th>
-                  <th class="tr__section">
-                    <span class="tr__text">уровень</span>
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody class="tbody">
-                <tr class="tr">
-                  <td class="tr__section">
-                    <button
-                      class="button button--editing options-element-caller"
-                      data-options-id="spin-name"
-                    >
-                      StSq
-                    </button>
-                  </td>
-
-                  <td class="tr__section">
-                    <button
-                      class="button button--freeze"
-                      data-options-id="numbers"
-                    >
-                      4
-                    </button>
-                  </td>
-
-                  <td class="tr__section">1.99</td>
-                </tr>
-              </tbody>
-            </table>
+            <TableStep
+              v-if="isShow('step')"
+              :name-list="element.name"
+              @open-options="onOpenOptions({ optionsName: $event })"
+            />
           </div>
           <!-- wrap-table -->
         </div>
@@ -249,6 +158,8 @@
 
 <script>
 import TableJump from '@/components/table/table-jump/TableJump.vue';
+import TableSpin from '@/components/table/table-spin/TableSpin.vue';
+import TableStep from '@/components/table/table-step/TableStep.vue';
 import OptionsPanelBase from '@/components/options/OptionsPanelBase.vue';
 import OptionRadioThombUp from '@/components/options/OptionRadioThombUp.vue';
 import { mapState, mapMutations } from 'vuex';
@@ -256,6 +167,8 @@ import { mapState, mapMutations } from 'vuex';
 export default {
   components: {
     TableJump,
+    TableSpin,
+    TableStep,
     OptionsPanelBase,
     OptionRadioThombUp,
   },
@@ -272,6 +185,7 @@ export default {
 
       isOptionsSpinNameOpen: false,
       isOptionsStepNameOpen: false,
+      isOptionsLevelOpen: false,
     };
   },
 
@@ -331,6 +245,19 @@ export default {
         this.updateEditingElementProperty(value, 'edge');
       },
     },
+
+    localLevel: {
+      get() {
+        if (this.element.name.length > 0) {
+          return this.element.name[this.currentElementIndex].level;
+        } else {
+          return '';
+        }
+      },
+      set(value) {
+        this.updateEditingElementProperty(value, 'level');
+      },
+    },
   },
 
   methods: {
@@ -338,14 +265,15 @@ export default {
       updateElementPropert: 'updateEditingElementSingleProperty',
     }),
 
-    isTableShow(tableName) {
-      return this.element.type === tableName;
+    isShow(currentType) {
+      return this.element.type === currentType;
     },
 
     onOpenOptions({ optionsName, elementIndex = 0 }) {
+      console.log(optionsName);
       this.currentElementIndex = elementIndex;
       this.currentOptionsName = optionsName;
-      console.log(optionsName);
+
       switch (optionsName) {
         case 'jump-name':
           this.isOptionsJumpNameOpen = true;
@@ -358,6 +286,15 @@ export default {
           break;
         case 'edge':
           this.isOptionsEdgeOpen = true;
+          break;
+        case 'spin-name':
+          this.isOptionsSpinNameOpen = true;
+          break;
+        case 'step-name':
+          this.isOptionsStepNameOpen = true;
+          break;
+        case 'level':
+          this.isOptionsLevelOpen = true;
           break;
       }
     },

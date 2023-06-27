@@ -1,7 +1,7 @@
 <template>
   <OptionsRadioBase
     :name="name"
-    :local-value="radio"
+    :local-value="localValue"
     :model-value="modelValue"
     @update:model-value="$emit('update:modelValue', $event)"
   >
