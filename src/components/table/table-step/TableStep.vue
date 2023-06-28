@@ -16,7 +16,7 @@
         <td class="tr__section">
           <button
             class="button options-element-caller button--editing"
-            @click="createOpenOptionsEvent('step-name')"
+            @click="callOptions($event, 'step-name')"
           >
             {{ name.name }}
           </button>
@@ -24,8 +24,8 @@
 
         <td class="tr__section">
           <button
-            class="button options-element-caller button--freeze"
-            @click="createOpenOptionsEvent('level')"
+            class="button options-element-caller"
+            @click="callOptions($event, 'level')"
           >
             {{ name.level }}
           </button>
@@ -39,9 +39,10 @@
 
 <script>
 import eventOpenOptionsMixin from '@/mixins/event-open-options-mixin';
+import ThrowAnimationMixin from '@/mixins/throw-animation-mixin';
 
 export default {
-  mixins: [eventOpenOptionsMixin],
+  mixins: [eventOpenOptionsMixin, ThrowAnimationMixin],
 
   props: {
     nameList: {
@@ -51,6 +52,13 @@ export default {
   },
 
   emits: ['open-options'],
+
+  data() {
+    return {
+      functionOnAnimationsEnd: this.createOpenOptionsEvent,
+      delayCorrectionForNextAnimation: 100,
+    };
+  },
 
   computed: {
     name() {

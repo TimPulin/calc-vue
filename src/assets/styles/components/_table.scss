@@ -164,6 +164,8 @@
 
   .button--freeze {
     filter: opacity(.5);
+    cursor: not-allowed;
+    pointer-events: none;
   }
 }
 

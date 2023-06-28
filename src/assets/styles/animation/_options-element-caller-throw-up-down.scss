@@ -41,7 +41,7 @@
   }
 
   20% {
-    background-color: var(--options-color-main);
+    background-color: $color-option;
   }
 
 
@@ -54,7 +54,7 @@
   }
 
   85% {
-    background-color: var(--options-color-main);
+    background-color: $color-option;
     height: 52px;
     border-radius: 0;
   }
@@ -70,7 +70,7 @@
   100% {
     top: 0;
     left: 0;
-    background-color: var(--options-color-main);
+    background-color: $color-option;
     opacity: 0;
   }
 }

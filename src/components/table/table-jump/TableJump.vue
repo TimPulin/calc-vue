@@ -25,6 +25,7 @@
         v-for="(name, index) in nameList"
         :key="index"
         :name="name"
+        :benchmark="benchmark"
         @add-jump="$emit('add-jump')"
         @delete-jump="$emit('delete-jump')"
         @open-options="
@@ -48,6 +49,9 @@ export default {
   props: {
     nameList: {
       type: Array,
+      require: true,
+    },
+    benchmark: {
       require: true,
     },
   },

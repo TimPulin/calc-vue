@@ -8,8 +8,8 @@
     </td>
     <td class="tr__section">
       <button
-        class="button options-element-caller button--freeze"
-        @click="createOpenOptionsEvent('rotations')"
+        class="button options-element-caller"
+        @click="callOptions($event, 'rotations')"
       >
         {{ name.rotations }}
       </button>
@@ -18,7 +18,7 @@
     <td class="tr__section">
       <button
         class="button options-element-caller button--editing"
-        @click="createOpenOptionsEvent('jump-name')"
+        @click="callOptions($event, 'jump-name')"
       >
         {{ name.name }}
       </button>
@@ -27,7 +27,7 @@
     <td class="tr__section">
       <button
         class="button options-element-caller"
-        @click="createOpenOptionsEvent('underrotate')"
+        @click="callOptions($event, 'underrotate')"
       >
         {{ name.underrotate }}
       </button>
@@ -36,7 +36,7 @@
     <td class="tr__section">
       <button
         class="button options-element-caller"
-        @click="createOpenOptionsEvent('edge')"
+        @click="callOptions($event, 'edge')"
       >
         {{ name.edge }}
       </button>
@@ -50,6 +50,7 @@
 import ButtonOptionsMinus from '@/components/buttons/ButtonOptionsMinus.vue';
 import ButtonOptionsPlus from '@/components/buttons/ButtonOptionsPlus.vue';
 import eventOpenOptionsMixin from '@/mixins/event-open-options-mixin';
+import ThrowAnimationMixin from '@/mixins/throw-animation-mixin';
 
 export default {
   components: {
@@ -57,7 +58,7 @@ export default {
     ButtonOptionsPlus,
   },
   // TODO разобраться, почему не регистрируется событие 'open-options'
-  mixins: [eventOpenOptionsMixin],
+  mixins: [eventOpenOptionsMixin, ThrowAnimationMixin],
 
   props: {
     name: {
@@ -67,6 +68,13 @@ export default {
   },
 
   emits: ['add-jump', 'delete-jump'],
+
+  data() {
+    return {
+      functionOnAnimationsEnd: this.createOpenOptionsEvent,
+      delayCorrectionForNextAnimation: 100,
+    };
+  },
 
   methods: {
     addJump() {

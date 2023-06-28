@@ -17,7 +17,11 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body" id="benchmark-options-element">
+        <div
+          class="modal-body"
+          id="benchmark-options-element"
+          ref="benchmark-options-element"
+        >
           <div class="modal__display">
             <div class="modal__element-name">3T+2a+2Lo></div>
             <div class="modal__scores">12.03</div>
@@ -118,6 +122,7 @@
             <TableJump
               v-if="isShow('jump')"
               :name-list="element.name"
+              :benchmark="benchmarkOptionsElement"
               @open-options="onOpenOptions"
               @add-jump="onAddJump"
               @delete-jump="onDeleteJump"
@@ -126,6 +131,7 @@
             <TableSpin
               v-if="isShow('spin')"
               :name-list="element.name"
+              :benchmark="benchmarkOptionsElement"
               @update:fly="updateEditingElementProperty($event, 'fly')"
               @update:change="updateEditingElementProperty($event, 'change')"
               @update:v="updateEditingElementProperty($event, 'v')"
@@ -135,6 +141,7 @@
             <TableStep
               v-if="isShow('step')"
               :name-list="element.name"
+              :benchmark="benchmarkOptionsElement"
               @open-options="onOpenOptions({ optionsName: $event })"
             />
           </div>
@@ -193,6 +200,15 @@ export default {
     ...mapState({
       element: 'editingElement',
     }),
+
+    benchmarkOptionsElement() {
+      const benchmark = this.$refs['benchmark-options-element'];
+      if (benchmark === undefined) {
+        return null;
+      } else {
+        return benchmark;
+      }
+    },
 
     localRotations: {
       get() {

@@ -47,8 +47,8 @@
         <td class="tr__section">
           <div class="tr__wrapper">
             <button
-              class="button button--editing options-element-caller"
-              @click="createOpenOptionsEvent('spin-name')"
+              class="button options-element-caller button--editing"
+              @click="callOptions($event, 'spin-name')"
             >
               {{ name.name }}
             </button>
@@ -58,8 +58,8 @@
         <td class="tr__section">
           <div class="tr__wrapper">
             <button
-              class="button button--freeze"
-              @click="createOpenOptionsEvent('level')"
+              class="button options-element-caller"
+              @click="callOptions($event, 'level')"
             >
               {{ name.level }}
             </button>
@@ -88,12 +88,13 @@
 <script>
 import CheckboxBase from '@/components/checkbox/CheckboxBase.vue';
 import eventOpenOptionsMixin from '@/mixins/event-open-options-mixin';
+import ThrowAnimationMixin from '@/mixins/throw-animation-mixin';
 
 export default {
   components: {
     CheckboxBase,
   },
-  mixins: [eventOpenOptionsMixin],
+  mixins: [eventOpenOptionsMixin, ThrowAnimationMixin],
   props: {
     nameList: {
       type: Array,
@@ -102,6 +103,13 @@ export default {
   },
 
   emits: ['open-options', 'update:fly', 'update:change', 'update:v'],
+
+  data() {
+    return {
+      functionOnAnimationsEnd: this.createOpenOptionsEvent,
+      delayCorrectionForNextAnimation: 100,
+    };
+  },
 
   computed: {
     name() {
