@@ -38,32 +38,9 @@
 </template>
 
 <script>
-import eventOpenOptionsMixin from '@/mixins/event-open-options-mixin';
-import ThrowAnimationMixin from '@/mixins/throw-animation-mixin';
-
+import modalElementTableMixin from '@/mixins/modal-element-table-mixin';
 export default {
-  mixins: [eventOpenOptionsMixin, ThrowAnimationMixin],
-
-  props: {
-    nameList: {
-      type: Array,
-      require: true,
-    },
-  },
-
+  mixins: [modalElementTableMixin],
   emits: ['open-options'],
-
-  data() {
-    return {
-      functionOnAnimationsEnd: this.createOpenOptionsEvent,
-      delayCorrectionForNextAnimation: 100,
-    };
-  },
-
-  computed: {
-    name() {
-      return this.nameList[0];
-    },
-  },
 };
 </script>

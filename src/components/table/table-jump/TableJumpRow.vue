@@ -49,16 +49,14 @@
 <script>
 import ButtonOptionsMinus from '@/components/buttons/ButtonOptionsMinus.vue';
 import ButtonOptionsPlus from '@/components/buttons/ButtonOptionsPlus.vue';
-import eventOpenOptionsMixin from '@/mixins/event-open-options-mixin';
-import ThrowAnimationMixin from '@/mixins/throw-animation-mixin';
+import modalElementTableMixin from '@/mixins/modal-element-table-mixin';
 
 export default {
   components: {
     ButtonOptionsMinus,
     ButtonOptionsPlus,
   },
-  // TODO разобраться, почему не регистрируется событие 'open-options'
-  mixins: [eventOpenOptionsMixin, ThrowAnimationMixin],
+  mixins: [modalElementTableMixin],
 
   props: {
     name: {
@@ -66,15 +64,7 @@ export default {
       require: true,
     },
   },
-
-  emits: ['add-jump', 'delete-jump'],
-
-  data() {
-    return {
-      functionOnAnimationsEnd: this.createOpenOptionsEvent,
-      delayCorrectionForNextAnimation: 100,
-    };
-  },
+  emits: ['open-optons', 'add-jump', 'delete-jump'],
 
   methods: {
     addJump() {
