@@ -35,7 +35,7 @@
             v-model="localRotations"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsRotationsOpen"
+            v-model:panel-options-open="isOptionsOpen['rotations']"
           />
 
           <OptionsPanelBase
@@ -46,7 +46,7 @@
             v-model="localName"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsJumpNameOpen"
+            v-model:panel-options-open="isOptionsOpen['jump-name']"
           />
 
           <OptionsPanelBase
@@ -57,7 +57,7 @@
             v-model="localUnderrotate"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsUnderrotateOpen"
+            v-model:panel-options-open="isOptionsOpen['underrotate']"
           >
             <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
             <OptionRadioThombUp
@@ -75,7 +75,7 @@
             v-model="localEdge"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsEdgeOpen"
+            v-model:panel-options-open="isOptionsOpen['edge']"
           >
             <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
             <OptionRadioThombUp
@@ -93,7 +93,7 @@
             v-model="localName"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsSpinNameOpen"
+            v-model:panel-options-open="isOptionsOpen['spin-name']"
           />
 
           <OptionsPanelBase
@@ -104,7 +104,7 @@
             v-model="localLevel"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsLevelOpen"
+            v-model:panel-options-open="isOptionsOpen['level']"
           />
 
           <OptionsPanelBase
@@ -115,7 +115,7 @@
             v-model="localName"
             options-class-animation="options-element"
             options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsStepNameOpen"
+            v-model:panel-options-open="isOptionsOpen['step-name']"
           />
 
           <div class="modal__wrap-table">
@@ -185,14 +185,15 @@ export default {
       currentOptionsName: '',
       currentElementIndex: 0,
 
-      isOptionsJumpNameOpen: false,
-      isOptionsRotationsOpen: false,
-      isOptionsUnderrotateOpen: false,
-      isOptionsEdgeOpen: false,
-
-      isOptionsSpinNameOpen: false,
-      isOptionsStepNameOpen: false,
-      isOptionsLevelOpen: false,
+      isOptionsOpen: {
+        'jump-name': false,
+        rotations: false,
+        underrotate: false,
+        edge: false,
+        'spin-name': false,
+        'step-name': false,
+        level: false,
+      },
     };
   },
 
@@ -286,33 +287,9 @@ export default {
     },
 
     onOpenOptions({ optionsName, elementIndex = 0 }) {
-      console.log(optionsName);
       this.currentElementIndex = elementIndex;
       this.currentOptionsName = optionsName;
-
-      switch (optionsName) {
-        case 'jump-name':
-          this.isOptionsJumpNameOpen = true;
-          break;
-        case 'rotations':
-          this.isOptionsRotationsOpen = true;
-          break;
-        case 'underrotate':
-          this.isOptionsUnderrotateOpen = true;
-          break;
-        case 'edge':
-          this.isOptionsEdgeOpen = true;
-          break;
-        case 'spin-name':
-          this.isOptionsSpinNameOpen = true;
-          break;
-        case 'step-name':
-          this.isOptionsStepNameOpen = true;
-          break;
-        case 'level':
-          this.isOptionsLevelOpen = true;
-          break;
-      }
+      this.isOptionsOpen[optionsName] = true;
     },
 
     onAddJump() {
