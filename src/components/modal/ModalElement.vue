@@ -34,8 +34,10 @@
             name="rotations"
             v-model="localRotations"
             options-class-animation="options-element"
-            options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsOpen['rotations']"
+            :options-class-duration="optionsClassDuration"
+            :panel-options-open="isOptionsOpen['rotations']"
+            @options-is-opened="onOptionsIsOpened"
+            @options-is-closed="onOptionsIsClosed"
           />
 
           <OptionsPanelBase
@@ -45,8 +47,10 @@
             name="jump-name"
             v-model="localName"
             options-class-animation="options-element"
-            options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsOpen['jump-name']"
+            :options-class-duration="optionsClassDuration"
+            :panel-options-open="isOptionsOpen['jump-name']"
+            @options-is-opened="onOptionsIsOpened"
+            @options-is-closed="onOptionsIsClosed"
           />
 
           <OptionsPanelBase
@@ -56,8 +60,10 @@
             name="underrotate"
             v-model="localUnderrotate"
             options-class-animation="options-element"
-            options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsOpen['underrotate']"
+            :options-class-duration="optionsClassDuration"
+            :panel-options-open="isOptionsOpen['underrotate']"
+            @options-is-opened="onOptionsIsOpened"
+            @options-is-closed="onOptionsIsClosed"
           >
             <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
             <OptionRadioThombUp
@@ -74,8 +80,10 @@
             name="edge"
             v-model="localEdge"
             options-class-animation="options-element"
-            options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsOpen['edge']"
+            :options-class-duration="optionsClassDuration"
+            :panel-options-open="isOptionsOpen['edge']"
+            @options-is-opened="onOptionsIsOpened"
+            @options-is-closed="onOptionsIsClosed"
           >
             <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
             <OptionRadioThombUp
@@ -92,8 +100,10 @@
             name="spin-name"
             v-model="localName"
             options-class-animation="options-element"
-            options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsOpen['spin-name']"
+            :options-class-duration="optionsClassDuration"
+            :panel-options-open="isOptionsOpen['spin-name']"
+            @options-is-opened="onOptionsIsOpened"
+            @options-is-closed="onOptionsIsClosed"
           />
 
           <OptionsPanelBase
@@ -103,8 +113,10 @@
             name="level"
             v-model="localLevel"
             options-class-animation="options-element"
-            options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsOpen['level']"
+            :options-class-duration="optionsClassDuration"
+            :panel-options-open="isOptionsOpen['level']"
+            @options-is-opened="onOptionsIsOpened"
+            @options-is-closed="onOptionsIsClosed"
           />
 
           <OptionsPanelBase
@@ -114,8 +126,10 @@
             name="step-name"
             v-model="localName"
             options-class-animation="options-element"
-            options-class-duration="--open-options-animation-duration"
-            v-model:panel-options-open="isOptionsOpen['step-name']"
+            :options-class-duration="optionsClassDuration"
+            :panel-options-open="isOptionsOpen['step-name']"
+            @options-is-opened="onOptionsIsOpened"
+            @options-is-closed="onOptionsIsClosed"
           />
 
           <div class="modal__wrap-table">
@@ -142,6 +156,7 @@
               v-if="isShow('step')"
               :name-list="element.name"
               :benchmark="benchmarkOptionsElement"
+              :go-throw-down="goThrowDown"
               @open-options="onOpenOptions({ optionsName: $event })"
             />
           </div>
@@ -169,6 +184,7 @@ import TableSpin from '@/components/table/table-spin/TableSpin.vue';
 import TableStep from '@/components/table/table-step/TableStep.vue';
 import OptionsPanelBase from '@/components/options/OptionsPanelBase.vue';
 import OptionRadioThombUp from '@/components/options/OptionRadioThombUp.vue';
+import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
 import { mapState, mapMutations } from 'vuex';
 
 export default {
@@ -180,10 +196,15 @@ export default {
     OptionRadioThombUp,
   },
 
+  mixins: [clickListenerOnDocumentMixin],
+
   data() {
     return {
       currentOptionsName: '',
       currentElementIndex: 0,
+      optionsClassDuration: '--open-options-animation-duration',
+      throwClassDuration: '--throw-up-animation-duration',
+      goThrowDown: false,
 
       isOptionsOpen: {
         'jump-name': false,
@@ -290,6 +311,16 @@ export default {
       this.currentElementIndex = elementIndex;
       this.currentOptionsName = optionsName;
       this.isOptionsOpen[optionsName] = true;
+      this.goThrowDown = false;
+    },
+
+    onOptionsIsOpened(optionsName) {
+      this.addClickListenerOnDocument(optionsName);
+    },
+
+    onOptionsIsClosed(optionsName) {
+      this.goThrowDown = true;
+      console.log(optionsName, 'closed');
     },
 
     onAddJump() {

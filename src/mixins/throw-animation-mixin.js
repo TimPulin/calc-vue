@@ -9,6 +9,15 @@ const ThrowAnimationMixin = {
     benchmark: {
       require: true,
     },
+    goThrowDown: {
+      require: true,
+    },
+  },
+
+  watch: {
+    goThrowDown() {
+      this.throwDown(this.previousButtonCaller);
+    },
   },
 
   data() {
@@ -16,6 +25,7 @@ const ThrowAnimationMixin = {
       classThrowUp: 'options-element-caller--throw-up',
       classMoveDown: 'options-element-caller--move-down',
       currentButtonCaller: null,
+      previousButtonCaller: null,
       currentOptionsName: '',
     };
   },
@@ -28,7 +38,13 @@ const ThrowAnimationMixin = {
 
   methods: {
     callOptions(event, optionsName) {
-      this.currentButtonCaller = event.target;
+      if (this.currentButtonCaller) {
+        this.previousButtonCaller = this.currentButtonCaller;
+        this.currentButtonCaller = event.target;
+      } else {
+        this.currentButtonCaller = event.target;
+        this.previousButtonCaller = this.currentButtonCaller;
+      }
       this.currentOptionsName = optionsName;
       this.throwUp(this.currentButtonCaller);
     },

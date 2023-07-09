@@ -21,6 +21,7 @@
       </tr>
     </thead>
     <tbody class="tbody">
+      <!-- TODO убрать  TableJumpRow и поставить его содержимое сюда-->
       <TableJumpRow
         v-for="(name, index) in nameList"
         :key="index"

@@ -27,7 +27,7 @@ const optionsAnimationsMixin = {
 
   watch: {
     panelOptionsOpen() {
-      if (this.panelOptionsOpen) this.openOptions();
+      this.panelOptionsOpen ? this.openOptions() : this.closeOptions();
     },
   },
 
@@ -61,10 +61,7 @@ const optionsAnimationsMixin = {
         this.optionsOpen = true;
         this.optionsOpening = false;
         this.optionsVisible = false;
-        document.addEventListener('click', this.handleClickOnDocument, {
-          once: true,
-          capture: true,
-        });
+        this.$emit('optionsIsOpened', this.name);
       }, animationDelay);
     },
 
@@ -74,17 +71,7 @@ const optionsAnimationsMixin = {
       setTimeout(() => {
         this.optionsOpen = false;
         this.optionsClosing = false;
-        this.$emit('update:panelOptionsOpen', false);
-      }, animationDelay);
-    },
-
-    handleClickOnDocument(event) {
-      event.stopPropagation();
-
-      const animationDelay = getAnimationDelay(this.optionsClassDuration);
-      this.closeOptions();
-      setTimeout(() => {
-        event.target.dispatchEvent(new Event(event.type));
+        this.$emit('optionsIsClosed', this.name);
       }, animationDelay);
     },
   },
