@@ -35,6 +35,7 @@
             elementIndex: index,
           })
         "
+        :go-throw-down="goThrowDown"
       />
     </tbody>
   </table>
@@ -53,6 +54,9 @@ export default {
       require: true,
     },
     benchmark: {
+      require: true,
+    },
+    goThrowDown: {
       require: true,
     },
   },

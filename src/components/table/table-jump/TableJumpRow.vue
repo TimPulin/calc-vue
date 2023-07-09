@@ -64,7 +64,7 @@ export default {
       require: true,
     },
   },
-  emits: ['open-optons', 'add-jump', 'delete-jump'],
+  emits: ['open-options', 'add-jump', 'delete-jump'],
 
   methods: {
     addJump() {
