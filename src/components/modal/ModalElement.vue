@@ -321,8 +321,8 @@ export default {
     },
 
     onOptionsIsClosed(optionsName) {
+      console.log(optionsName);
       this.goThrowDown = true;
-      console.log(optionsName, 'closed');
     },
 
     onAddJump() {

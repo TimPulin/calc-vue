@@ -16,7 +16,13 @@ const ThrowAnimationMixin = {
 
   watch: {
     goThrowDown() {
-      this.throwDown(this.previousButtonCaller);
+      if (this.goThrowDown) this.throwDown(this.previousButtonCaller);
+    },
+    name: {
+      deep: true,
+      handler: function () {
+        this.currentButtonCaller = null;
+      },
     },
   },
 
@@ -79,10 +85,6 @@ const ThrowAnimationMixin = {
     handleAnimationsBackwardEnd(button) {
       const animationDelay = getAnimationDelay('--throw-up-animation-duration');
       this.removeAnimationClass(button, this.classMoveDown, animationDelay);
-      setTimeout(() => {
-        if (this.functionOnAnimationsEnd)
-          this.functionOnAnimationsEnd(this.currentOptionsName);
-      }, animationDelay - this.delayCorrectionForNextAnimation);
     },
 
     getCoords(button) {
