@@ -55,7 +55,7 @@ const ThrowAnimationMixin = {
 
       this.setCoords(button, coordsBenchmark, coords);
       button.classList.add(this.classThrowUp);
-      this.handleAnimationsBackwardEnd(button);
+      this.handleAnimationsForwardEnd(button);
     },
 
     throwDown(button) {
@@ -64,12 +64,21 @@ const ThrowAnimationMixin = {
 
       this.setCoords(button, coordsBenchmark, coords);
       button.classList.add(this.classMoveDown);
-      this.removeAnimationClass(button, this.classMoveDown);
+      this.handleAnimationsBackwardEnd(button);
+    },
+
+    handleAnimationsForwardEnd(button) {
+      const animationDelay = getAnimationDelay('--throw-up-animation-duration');
+      this.removeAnimationClass(button, this.classThrowUp, animationDelay);
+      setTimeout(() => {
+        if (this.functionOnAnimationsEnd)
+          this.functionOnAnimationsEnd(this.currentOptionsName);
+      }, animationDelay - this.delayCorrectionForNextAnimation);
     },
 
     handleAnimationsBackwardEnd(button) {
       const animationDelay = getAnimationDelay('--throw-up-animation-duration');
-      this.removeAnimationClass(button, this.classThrowUp, animationDelay);
+      this.removeAnimationClass(button, this.classMoveDown, animationDelay);
       setTimeout(() => {
         if (this.functionOnAnimationsEnd)
           this.functionOnAnimationsEnd(this.currentOptionsName);

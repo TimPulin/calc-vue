@@ -137,6 +137,7 @@
               v-if="isShow('jump')"
               :name-list="element.name"
               :benchmark="benchmarkOptionsElement"
+              :go-throw-down="goThrowDown"
               @open-options="onOpenOptions"
               @add-jump="onAddJump"
               @delete-jump="onDeleteJump"
@@ -149,6 +150,7 @@
               @update:fly="updateEditingElementProperty($event, 'fly')"
               @update:change="updateEditingElementProperty($event, 'change')"
               @update:v="updateEditingElementProperty($event, 'v')"
+              :go-throw-down="goThrowDown"
               @open-options="onOpenOptions({ optionsName: $event })"
             />
 
