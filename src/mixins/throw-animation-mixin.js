@@ -12,18 +12,25 @@ const ThrowAnimationMixin = {
     goThrowDown: {
       require: true,
     },
+    isDependedPanelsOpen: {
+      type: Array,
+    },
   },
 
   watch: {
-    goThrowDown() {
-      if (this.goThrowDown) this.throwDown(this.previousButtonCaller);
-    },
-    name: {
+    isDependedPanelsOpen: {
       deep: true,
-      handler: function () {
-        this.currentButtonCaller = null;
+      handler: function (value) {
+        const temporaryNumArr = value.map((item) => {
+          return Number(item);
+        });
+        this.isPanelOpen = Math.max(...temporaryNumArr);
       },
     },
+    // TODO подумать, как сделать правильную отработку throwDown
+    // goThrowDown() {
+    //   if (this.goThrowDown) this.throwDown(this.previousButtonCaller);
+    // },
   },
 
   data() {
@@ -33,26 +40,24 @@ const ThrowAnimationMixin = {
       currentButtonCaller: null,
       previousButtonCaller: null,
       currentOptionsName: '',
+      isPanelOpen: false,
     };
   },
 
   computed: {
     animationClassesObj() {
+      // TODO  проверить нужна ли эта функция
       return {};
     },
   },
 
   methods: {
     callOptions(event, optionsName) {
-      if (this.currentButtonCaller) {
-        this.previousButtonCaller = this.currentButtonCaller;
+      if (!this.isPanelOpen) {
         this.currentButtonCaller = event.target;
-      } else {
-        this.currentButtonCaller = event.target;
-        this.previousButtonCaller = this.currentButtonCaller;
+        this.currentOptionsName = optionsName;
+        this.throwUp(this.currentButtonCaller);
       }
-      this.currentOptionsName = optionsName;
-      this.throwUp(this.currentButtonCaller);
     },
 
     throwUp(button) {

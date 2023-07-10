@@ -19,7 +19,6 @@ const clickListenerOnDocumentMixin = {
 
     handleClickOnDocument(event, optionsName) {
       event.stopPropagation();
-      console.log(optionsName, 'documentListener');
       const animationDelay = getAnimationDelay(this.optionsClassDuration);
       this.isOptionsOpen[optionsName] = false;
 

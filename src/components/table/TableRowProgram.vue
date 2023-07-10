@@ -6,7 +6,7 @@
         @click="openPanelType"
       />
 
-      <!-- TODO заменть обработчик для openModal на что-то другое -->
+      <!-- TODO заменить обработчик для openModal на что-то другое -->
       <OptionsPanelType
         options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"

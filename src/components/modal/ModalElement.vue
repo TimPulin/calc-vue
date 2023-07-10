@@ -158,6 +158,10 @@
               v-if="isShow('step')"
               :name-list="element.name"
               :benchmark="benchmarkOptionsElement"
+              :is-depended-panels-open="[
+                isOptionsOpen['step-name'],
+                isOptionsOpen['level'],
+              ]"
               :go-throw-down="goThrowDown"
               @open-options="onOpenOptions({ optionsName: $event })"
             />
@@ -320,8 +324,7 @@ export default {
       this.addClickListenerOnDocument(optionsName);
     },
 
-    onOptionsIsClosed(optionsName) {
-      console.log(optionsName);
+    onOptionsIsClosed() {
       this.goThrowDown = true;
     },
 
