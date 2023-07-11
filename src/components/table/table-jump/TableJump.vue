@@ -25,7 +25,7 @@
       <TableJumpRow
         v-for="(name, index) in nameList"
         :key="index"
-        :name="name"
+        :name-list="name"
         :benchmark="benchmark"
         @add-jump="$emit('add-jump')"
         @delete-jump="$emit('delete-jump')"

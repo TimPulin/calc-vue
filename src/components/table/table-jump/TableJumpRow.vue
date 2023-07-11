@@ -56,15 +56,23 @@ export default {
     ButtonOptionsMinus,
     ButtonOptionsPlus,
   },
+
   mixins: [modalElementTableMixin],
 
   props: {
-    name: {
+    nameList: {
       type: Object,
       require: true,
     },
   },
+
   emits: ['open-options', 'add-jump', 'delete-jump'],
+
+  computed: {
+    name() {
+      return this.nameList;
+    },
+  },
 
   methods: {
     addJump() {
