@@ -3,7 +3,7 @@
     <td class="tr__section tr__section--edit">
       <ButtonOptionsEdit
         :index="programElement.index + 1"
-        @click="openPanelType"
+        @click="openPanelType($event)"
       />
 
       <!-- TODO заменить обработчик для openModal на что-то другое -->
@@ -26,7 +26,7 @@
     </td>
 
     <td class="tr__section tr__section--goe">
-      <ButtonOptions @click="openPanelGoe">
+      <ButtonOptions @click="openPanelGoe($event)">
         {{ programElement.goe }}</ButtonOptions
       >
 
@@ -104,14 +104,14 @@ export default {
       });
     },
 
-    openPanelType() {
+    openPanelType(event) {
       this.isOptionsOpen.panelTypeOpen = true;
-      this.addClickListenerOnDocument('panelTypeOpen');
+      this.addClickListenerOnDocument('panelTypeOpen', event.target);
     },
 
-    openPanelGoe() {
+    openPanelGoe(event) {
       this.isOptionsOpen.panelGoeOpen = true;
-      this.addClickListenerOnDocument('panelGoeOpen');
+      this.addClickListenerOnDocument('panelGoeOpen', event.target);
     },
 
     openModal(value) {

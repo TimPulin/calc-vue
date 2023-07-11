@@ -151,19 +151,15 @@
               @update:change="updateEditingElementProperty($event, 'change')"
               @update:v="updateEditingElementProperty($event, 'v')"
               :go-throw-down="goThrowDown"
-              @open-options="onOpenOptions({ optionsName: $event })"
+              @open-options="onOpenOptions"
             />
 
             <TableStep
               v-if="isShow('step')"
               :name-list="element.name"
               :benchmark="benchmarkOptionsElement"
-              :is-depended-panels-open="[
-                isOptionsOpen['step-name'],
-                isOptionsOpen['level'],
-              ]"
               :go-throw-down="goThrowDown"
-              @open-options="onOpenOptions({ optionsName: $event })"
+              @open-options="onOpenOptions"
             />
           </div>
           <!-- wrap-table -->
@@ -207,6 +203,7 @@ export default {
   data() {
     return {
       currentOptionsName: '',
+      currentOptionsCaller: null,
       currentElementIndex: 0,
       optionsClassDuration: '--open-options-animation-duration',
       throwClassDuration: '--throw-up-animation-duration',
@@ -313,15 +310,17 @@ export default {
       return this.element.type === currentType;
     },
 
-    onOpenOptions({ optionsName, elementIndex = 0 }) {
-      this.currentElementIndex = elementIndex;
+    onOpenOptions({ optionsName, currentOptionsCaller, elementIndex = 0 }) {
       this.currentOptionsName = optionsName;
+      this.currentOptionsCaller = currentOptionsCaller;
+      this.currentElementIndex = elementIndex;
+
       this.isOptionsOpen[optionsName] = true;
       this.goThrowDown = false;
     },
 
     onOptionsIsOpened(optionsName) {
-      this.addClickListenerOnDocument(optionsName);
+      this.addClickListenerOnDocument(optionsName, this.currentOptionsCaller);
     },
 
     onOptionsIsClosed() {

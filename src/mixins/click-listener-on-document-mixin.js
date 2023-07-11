@@ -4,11 +4,11 @@ import getAnimationDelay from '@/utils/get-animation-delay';
 
 const clickListenerOnDocumentMixin = {
   methods: {
-    addClickListenerOnDocument(optionsName) {
+    addClickListenerOnDocument(optionsName, currentButton) {
       document.addEventListener(
         'click',
         (event) => {
-          this.handleClickOnDocument(event, optionsName);
+          this.handleClickOnDocument(event, optionsName, currentButton);
         },
         {
           once: true,
@@ -17,14 +17,15 @@ const clickListenerOnDocumentMixin = {
       );
     },
 
-    handleClickOnDocument(event, optionsName) {
+    handleClickOnDocument(event, optionsName, currentButton) {
       event.stopPropagation();
       const animationDelay = getAnimationDelay(this.optionsClassDuration);
       this.isOptionsOpen[optionsName] = false;
-
-      setTimeout(() => {
-        event.target.dispatchEvent(new Event(event.type));
-      }, animationDelay);
+      if (event.target != currentButton) {
+        setTimeout(() => {
+          event.target.dispatchEvent(new Event(event.type));
+        }, animationDelay);
+      }
     },
   },
 };

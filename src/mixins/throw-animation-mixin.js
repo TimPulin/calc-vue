@@ -12,9 +12,6 @@ const ThrowAnimationMixin = {
     goThrowDown: {
       require: true,
     },
-    isDependedPanelsOpen: {
-      type: Array,
-    },
   },
 
   watch: {
@@ -24,7 +21,8 @@ const ThrowAnimationMixin = {
         const temporaryNumArr = value.map((item) => {
           return Number(item);
         });
-        this.isPanelOpen = Math.max(...temporaryNumArr);
+        this.isPanelOpen = Boolean(Math.max(...temporaryNumArr));
+        // console.log(this.isPanelOpen);
       },
     },
     // TODO подумать, как сделать правильную отработку throwDown
@@ -40,7 +38,6 @@ const ThrowAnimationMixin = {
       currentButtonCaller: null,
       previousButtonCaller: null,
       currentOptionsName: '',
-      isPanelOpen: false,
     };
   },
 
@@ -53,11 +50,9 @@ const ThrowAnimationMixin = {
 
   methods: {
     callOptions(event, optionsName) {
-      if (!this.isPanelOpen) {
-        this.currentButtonCaller = event.target;
-        this.currentOptionsName = optionsName;
-        this.throwUp(this.currentButtonCaller);
-      }
+      this.currentButtonCaller = event.target;
+      this.currentOptionsName = optionsName;
+      this.throwUp(this.currentButtonCaller);
     },
 
     throwUp(button) {
@@ -83,7 +78,7 @@ const ThrowAnimationMixin = {
       this.removeAnimationClass(button, this.classThrowUp, animationDelay);
       setTimeout(() => {
         if (this.functionOnAnimationsEnd)
-          this.functionOnAnimationsEnd(this.currentOptionsName);
+          this.functionOnAnimationsEnd(this.currentOptionsName, button);
       }, animationDelay - this.delayCorrectionForNextAnimation);
     },
 

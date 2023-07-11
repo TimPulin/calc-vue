@@ -31,7 +31,7 @@
         @delete-jump="$emit('delete-jump')"
         @open-options="
           $emit('open-options', {
-            optionsName: $event,
+            ...$event,
             elementIndex: index,
           })
         "
