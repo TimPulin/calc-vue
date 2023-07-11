@@ -10,7 +10,7 @@
       <OptionsPanelType
         options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"
-        v-model:panel-options-open="panelTypeOpen"
+        v-model:panel-options-open="isOptionsOpen.panelTypeOpen"
         :model-value="programElement.type"
         @update:modelValue="openModal($event, 'type')"
       />
@@ -34,7 +34,7 @@
         class="options--goe"
         options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"
-        v-model:panel-options-open="panelGoeOpen"
+        v-model:panel-options-open="isOptionsOpen.panelGoeOpen"
         :name="`goe-${programElement.index}`"
         :listRadio="[-1, -2, -3, -4, -5, 0, 1, 2, 3, 4, 5]"
         :model-value="programElement.goe"
@@ -53,6 +53,8 @@
 <script>
 import formatScores from '@/utils/format-scores';
 
+import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
+
 import ButtonOptions from '@/components/buttons/ButtonOptions.vue';
 import ButtonOptionsEdit from '@/components/buttons/ButtonOptionsEdit.vue';
 import CheckboxSecondPart from '@/components/checkbox/CheckboxPart2.vue';
@@ -70,12 +72,16 @@ export default {
     OptionsPanelNumber,
   },
 
+  mixins: [clickListenerOnDocumentMixin],
+
   props: ['programElement'],
 
   data() {
     return {
-      panelTypeOpen: false,
-      panelGoeOpen: false,
+      isOptionsOpen: {
+        panelTypeOpen: false,
+        panelGoeOpen: false,
+      },
     };
   },
 
@@ -99,11 +105,13 @@ export default {
     },
 
     openPanelType() {
-      this.panelTypeOpen = true;
+      this.isOptionsOpen.panelTypeOpen = true;
+      this.addClickListenerOnDocument('panelTypeOpen');
     },
 
     openPanelGoe() {
-      this.panelGoeOpen = true;
+      this.isOptionsOpen.panelGoeOpen = true;
+      this.addClickListenerOnDocument('panelGoeOpen');
     },
 
     openModal(value) {
