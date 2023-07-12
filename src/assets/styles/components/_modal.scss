@@ -42,3 +42,8 @@
 .modal__wrap-table {
   padding: 0 15px;
 }
+
+.modal.modal-static {
+  transform: $modal-scale-transform;
+  transition: scale .3s ease;
+}

@@ -1,11 +1,11 @@
 <template>
-  <ModalElement />
+  <div class="overlay" id="overlayBody" ref="overlayBody"></div>
+  <ModalElement @update:overlay-modal="updateOverlayModal" />
 
   <SiteHeader />
 
   <main>
     <div class="container">
-      <div class="overlay" id="overlay"></div>
       <router-view />
     </div>
   </main>
@@ -13,12 +13,27 @@
 
 <script>
 import { Modal } from 'bootstrap';
+import { computed } from 'vue';
 
 import ModalElement from '@/components/modal/ModalElement.vue';
 import SiteHeader from './components/site/SiteHeader.vue';
 
 export default {
   components: { ModalElement, SiteHeader },
+
+  provide() {
+    return {
+      overlayBody: computed(() => this.overlayBody),
+      overlayModal: computed(() => this.overlayModal),
+    };
+  },
+
+  data() {
+    return {
+      overlayBody: null,
+      overlayModal: null,
+    };
+  },
 
   created() {
     this.$store.dispatch('createProgram', {});
@@ -27,10 +42,17 @@ export default {
   },
 
   mounted() {
-    const modalElement = new Modal('#modal-element');
+    const modalElement = new Modal('#modal-element', {
+      backdrop: 'static',
+    });
     this.$store.commit('setModalElement', modalElement);
+    this.overlayBody = this.$refs.overlayBody;
   },
 
-  methods: {},
+  methods: {
+    updateOverlayModal(value) {
+      this.overlayModal = value;
+    },
+  },
 };
 </script>

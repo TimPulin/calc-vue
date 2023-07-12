@@ -12,7 +12,7 @@
         options-class-duration="--open-options-animation-duration"
         v-model:panel-options-open="isOptionsOpen.panelTypeOpen"
         :model-value="programElement.type"
-        @update:modelValue="openModal($event, 'type')"
+        @update:modelValue="handleOpenModal($event, 'type')"
       />
     </td>
 
@@ -53,13 +53,14 @@
 <script>
 import formatScores from '@/utils/format-scores';
 
-import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
-
 import ButtonOptions from '@/components/buttons/ButtonOptions.vue';
 import ButtonOptionsEdit from '@/components/buttons/ButtonOptionsEdit.vue';
 import CheckboxSecondPart from '@/components/checkbox/CheckboxPart2.vue';
 import OptionsPanelType from '@/components/options/OptionsPanelType.vue';
 import OptionsPanelNumber from '../options/OptionsPanelNumber.vue';
+
+import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
+import openModalAnimationMixin from '@/mixins/open&close-modal-animation/open-modal-animation-mixin';
 
 import { mapState } from 'vuex';
 
@@ -72,7 +73,7 @@ export default {
     OptionsPanelNumber,
   },
 
-  mixins: [clickListenerOnDocumentMixin],
+  mixins: [clickListenerOnDocumentMixin, openModalAnimationMixin],
 
   props: ['programElement'],
 
@@ -114,14 +115,14 @@ export default {
       this.addClickListenerOnDocument('panelGoeOpen', event.target);
     },
 
-    openModal(value) {
+    handleOpenModal(value) {
       if (value !== undefined) {
         this.updateElementProperty(value, 'type');
         this.$store.commit(
           'copyProgramElementForEditing',
           this.programElement.index
         );
-        this.modalElement.show();
+        this.openModal();
       }
     },
   },

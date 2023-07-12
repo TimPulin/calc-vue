@@ -4,7 +4,10 @@
     id="modal-element"
     tabindex="-1"
     aria-labelledby="modalLabel"
+    data-bs-keyboard="false"
     aria-hidden="true"
+    ref="overlayModal"
+    @click="callToCloseModal($event)"
   >
     <div class="modal-dialog">
       <div class="modal-content">
@@ -13,8 +16,8 @@
           <button
             type="button"
             class="btn-close"
-            data-bs-dismiss="modal"
             aria-label="Close"
+            @click="closeModal"
           ></button>
         </div>
         <div
@@ -186,7 +189,9 @@ import TableSpin from '@/components/table/table-spin/TableSpin.vue';
 import TableStep from '@/components/table/table-step/TableStep.vue';
 import OptionsPanelBase from '@/components/options/OptionsPanelBase.vue';
 import OptionRadioThombUp from '@/components/options/OptionRadioThombUp.vue';
+
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
+import closeModalAnimationMixin from '@/mixins/open&close-modal-animation/close-modal-animation-mixin';
 import { mapState, mapMutations } from 'vuex';
 
 export default {
@@ -198,7 +203,9 @@ export default {
     OptionRadioThombUp,
   },
 
-  mixins: [clickListenerOnDocumentMixin],
+  mixins: [clickListenerOnDocumentMixin, closeModalAnimationMixin],
+
+  emits: ['update:overlayModal'],
 
   data() {
     return {
@@ -225,6 +232,12 @@ export default {
     ...mapState({
       element: 'editingElement',
     }),
+
+    localOverlayModal: {
+      set(value) {
+        this.$emit('update:overlayModal', value);
+      },
+    },
 
     benchmarkOptionsElement() {
       const benchmark = this.$refs['benchmark-options-element'];
@@ -299,6 +312,10 @@ export default {
         this.updateEditingElementProperty(value, 'level');
       },
     },
+  },
+
+  mounted() {
+    this.localOverlayModal = this.$refs.overlayModal;
   },
 
   methods: {

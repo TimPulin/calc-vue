@@ -2,19 +2,8 @@
   @include wrap-absolute;
   display: none;
   z-index: 10;
-}
-
-.body__overlay {
-  display: none;
   background-color: $color-black;
   opacity: 0;
-  z-index: 1000;
-  transition: opacity .3s ease;
-
-}
-
-.body__overlay--open {
-  opacity: .5;
 }
 
 .overlay--visible {
