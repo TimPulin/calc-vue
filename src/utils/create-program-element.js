@@ -1,7 +1,7 @@
 class ProgramElement {
   constructor(index) {
     this._index = index;
-    this._type = '';
+    this._type = ' ';
     this._name = [];
     this.scores = 0;
     this.goe = 0;
