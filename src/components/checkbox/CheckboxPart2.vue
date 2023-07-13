@@ -1,5 +1,6 @@
 <template>
   <CheckboxBase
+    :name="checkboxName"
     class-extended="checkbox--content"
     :disabled="isDisabled"
     :local-value="true"
@@ -12,7 +13,7 @@
 import CheckboxBase from '@/components/checkbox/CheckboxBase.vue';
 export default {
   components: { CheckboxBase },
-  props: ['modelValue'],
+  props: ['modelValue', 'checkboxName'],
   computed: {
     isDisabled() {
       return this.modelValue === 'disabled';

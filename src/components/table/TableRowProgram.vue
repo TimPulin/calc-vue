@@ -20,6 +20,7 @@
 
     <td class="tr__section tr__section--bonus">
       <CheckboxSecondPart
+        :checkbox-name="`second-part${index}`"
         :model-value="programElement.secondPart"
         @update:modelValue="updateElementProperty($event, 'secondPart')"
       />
@@ -75,7 +76,7 @@ export default {
 
   mixins: [clickListenerOnDocumentMixin, openModalAnimationMixin],
 
-  props: ['programElement'],
+  props: ['programElement', 'index'],
 
   data() {
     return {

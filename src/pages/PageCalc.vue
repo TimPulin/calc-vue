@@ -15,6 +15,7 @@
         <TableRowProgram
           v-for="(programElement, index) in localProgram"
           :key="index"
+          :index="index"
           :program-element="programElement"
         />
       </tbody>
