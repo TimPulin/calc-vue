@@ -12,7 +12,7 @@
         options-class-duration="--open-options-animation-duration"
         v-model:panel-options-open="isOptionsOpen.panelTypeOpen"
         :model-value="programElement.type"
-        @update:modelValue="handleOpenModal($event, 'type')"
+        @call-open-modal-element="handleOpenModal($event, 'type')"
       />
     </td>
 
@@ -116,6 +116,7 @@ export default {
     },
 
     handleOpenModal(value) {
+      console.log(value);
       if (value !== undefined) {
         this.updateElementProperty(value, 'type');
         this.$store.commit(

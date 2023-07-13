@@ -4,6 +4,7 @@
       name="element-type"
       local-value="jump"
       v-model="localValue"
+      @click="callOpenModalElement('jump')"
     >
       <IconJump />
       Прыжок
@@ -13,6 +14,7 @@
       name="element-type"
       local-value="spin"
       v-model="localValue"
+      @click="callOpenModalElement('spin')"
     >
       <IconSpin />
       Вращение
@@ -22,6 +24,7 @@
       name="element-type"
       local-value="step"
       v-model="localValue"
+      @click="callOpenModalElement('step')"
     >
       <IconStep />
       Дорожка
@@ -45,6 +48,8 @@ export default {
   // TODO заменить props и localValue на mixin localValueMixin, хотя не уверен
   props: ['modelValue'],
 
+  emits: ['callOpenModalElement'],
+
   computed: {
     localValue: {
       get() {
@@ -53,6 +58,11 @@ export default {
       set(value) {
         this.$emit('update:modelValue', value);
       },
+    },
+  },
+  methods: {
+    callOpenModalElement(value) {
+      this.$emit('callOpenModalElement', value);
     },
   },
 };
