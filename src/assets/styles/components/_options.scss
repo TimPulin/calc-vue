@@ -26,6 +26,16 @@
       height: 36px;
       fill: $color-option;
     }
+
+    &:hover,
+    &:active {
+      background-color: $color-option;
+      color: #fff;
+
+      .svg {
+        fill: #fff;
+      }
+    }
   }
 
   .checkbox--checked {
@@ -40,6 +50,8 @@
     }
   }
 }
+
+// options
 
 .options--element {
   --display: flex;

@@ -27,6 +27,7 @@
   height: 39px;
 
   &::before {
+    content: '';
     background: url('../images/icons/check-mark-outline-colored.svg') no-repeat center / 20px;
     border-color: $color-option;
   }
@@ -51,18 +52,45 @@
   background-image: url('../images/icons/check-mark-outline-white.svg');
 }
 
-.checkbox:hover,
-.checkbox:active {
-  color: #fff;
-  background-color: $color-primary_light;
-  border-color: $color-primary_light;
+.checkbox--disabled {
+  pointer-events: none;
+
+  &::before {
+    border-color: $color-md_grey;
+    background-image: url('../images/icons/check-mark-outline-grey.svg');
+  }
 }
 
-.checkbox--content:hover::before {
-  background: url("../images/icons/check-mark-outline-white.svg") no-repeat center/20px;
-}
 
-.checkbox:hover svg,
-.checkbox:active svg {
-  fill: #fff;
+
+// .checkbox:hover,
+// .checkbox:active {
+//   color: #fff;
+//   background-color: $color-primary_light;
+//   border-color: $color-primary_light;
+
+// &::before {
+//   content: "";
+//   // background-color: red;
+// }
+// }
+
+@media (min-width: 1200px) {
+
+  .checkbox:hover,
+  .checkbox:active {
+    color: #fff;
+    background-color: $color-primary_light;
+    border-color: $color-primary_light;
+  }
+
+  .checkbox--content:hover::before {
+    content: "";
+    background: url("../images/icons/check-mark-outline-white.svg") no-repeat center/20px;
+  }
+
+  .checkbox:hover svg,
+  .checkbox:active svg {
+    fill: #fff;
+  }
 }

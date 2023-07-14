@@ -32,14 +32,14 @@
 
   z-index: 10;
 
-  .checkbox {
-    background-color: #fff;
-  }
-
   .checkbox--checked {
     background-color: $color-option;
     border-color: $color-option;
   }
+}
+
+:where(.table-calc-options--open) .checkbox {
+  background-color: #fff;
 }
 
 .table-calc-options--closing {
