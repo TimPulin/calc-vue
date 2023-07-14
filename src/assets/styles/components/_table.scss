@@ -157,11 +157,6 @@
     min-width: 38px;
   }
 
-  .button--editing {
-    border-color: transparent;
-    box-shadow: 0 0 10px $color-primary;
-  }
-
   .button--freeze {
     filter: opacity(.5);
     cursor: not-allowed;

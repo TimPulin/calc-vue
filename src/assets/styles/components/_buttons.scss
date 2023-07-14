@@ -20,16 +20,20 @@
   padding: 5px 8px;
   border-color: $color-primary;
   color: $color-primary;
-  transition-property: color, background-color, background-image;
+  transition-property: color, background-color, background-image, box-shadow;
+}
 
-  &:focus-visible {
-    box-shadow: 0 0 10px $color-primary_light;
-  }
+@media (min-width: 1200px) {
+  .button {
+    &:focus-visible {
+      box-shadow: 0 0 10px $color-primary_light;
+    }
 
-  &:hover,
-  &:active {
-    color: #fff;
-    background-color: $color-primary_light;
+    &:hover,
+    &:active {
+      color: #fff;
+      background-color: $color-primary_light;
+    }
   }
 }
 
@@ -114,4 +118,16 @@
 .button-option--active {
   background-color: $color-option;
   color: #fff;
+}
+
+.options-element-caller:focus {
+  border-color: transparent;
+  box-shadow: 0 0 10px $color-primary;
+}
+
+@media (min-width: 1200px) {
+  .options-element-caller:focus {
+    border-color: transparent;
+    box-shadow: 0 0 10px $color-primary;
+  }
 }
