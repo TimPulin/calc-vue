@@ -22,22 +22,24 @@
     </thead>
     <tbody class="tbody">
       <!-- TODO убрать  TableJumpRow и поставить его содержимое сюда-->
-      <TableJumpRow
-        v-for="(name, index) in nameList"
-        :key="index"
-        :name-list="name"
-        :index="index"
-        :benchmark="benchmark"
-        @add-jump="$emit('add-jump')"
-        @delete-jump="$emit('delete-jump')"
-        @open-options="
-          $emit('open-options', {
-            ...$event,
-            elementIndex: index,
-          })
-        "
-        :go-throw-down="goThrowDown"
-      />
+      <transition-group name="list">
+        <TableJumpRow
+          v-for="(name, index) in nameList"
+          :key="index"
+          :name-list="name"
+          :index="index"
+          :benchmark="benchmark"
+          @add-jump="$emit('add-jump')"
+          @delete-jump="$emit('delete-jump')"
+          @open-options="
+            $emit('open-options', {
+              ...$event,
+              elementIndex: index,
+            })
+          "
+          :go-throw-down="goThrowDown"
+        />
+      </transition-group>
     </tbody>
   </table>
 </template>
@@ -65,3 +67,14 @@ export default {
   emits: ['add-jump', 'delete-jump', 'open-options'],
 };
 </script>
+
+<style>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+}
+</style>

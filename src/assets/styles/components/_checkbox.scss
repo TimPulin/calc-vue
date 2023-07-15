@@ -53,12 +53,7 @@
 }
 
 .checkbox--disabled {
-  pointer-events: none;
-
-  &::before {
-    border-color: $color-disabled;
-    background-image: url('../images/icons/check-mark-outline-grey.svg');
-  }
+  @include element-disabled;
 }
 
 @media (min-width: 1200px) {

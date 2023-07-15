@@ -1,18 +1,13 @@
 <template>
-  <tr class="tr">
+  <tr class="tr tr--element">
     <td class="tr__section tr__section--options">
-      <transition name="fade">
-        <div class="tr__wrapper">
-          <ButtonOptionsMinus
-            @click="deleteJump"
-            v-if="index === 1 || index == 2"
-          />
-          <ButtonOptionsPlus
-            @click="addJump"
-            v-if="index === 0 || index == 1"
-          />
-        </div>
-      </transition>
+      <div class="tr__wrapper">
+        <ButtonOptionsMinus
+          @click="deleteJump"
+          v-if="index === 1 || index == 2"
+        />
+        <ButtonOptionsPlus @click="addJump" v-if="index === 0 || index == 1" />
+      </div>
     </td>
     <td class="tr__section">
       <button
@@ -94,15 +89,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

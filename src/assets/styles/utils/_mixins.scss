@@ -205,6 +205,11 @@
   z-index: 10;
 }
 
+@mixin element-disabled {
+  pointer-events: none;
+  filter: opacity(.3) grayscale(50%);
+}
+
 @mixin placeholder-color {
   $color-placeholder: $color-grey_4;
 
