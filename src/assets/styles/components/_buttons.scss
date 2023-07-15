@@ -120,6 +120,12 @@
   color: #fff;
 }
 
+.button-options--disabled {
+  border-color: $color-disabled;
+  color: $color-disabled;
+  pointer-events: none;
+}
+
 .options-element-caller:focus {
   border-color: transparent;
   box-shadow: 0 0 10px $color-primary;

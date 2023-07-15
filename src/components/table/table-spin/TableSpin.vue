@@ -21,8 +21,8 @@
             <CheckboxBase
               class="checkbox--option"
               name="fly"
-              local-value="f"
-              model-value="name.fly"
+              :local-value="true"
+              :model-value="name.fly"
               @update:model-value="$emit('update:fly', $event)"
             >
               F
@@ -35,8 +35,8 @@
             <CheckboxBase
               class="checkbox--option"
               name="change"
-              local-value="f"
-              model-value="name.change"
+              :local-value="true"
+              :model-value="name.change"
               @update:model-value="$emit('update:change', $event)"
             >
               C
@@ -71,8 +71,8 @@
             <CheckboxBase
               class="checkbox--option"
               name="v-error"
-              local-value="v"
-              model-value="name.fly"
+              :local-value="true"
+              :model-value="name.v"
               @update:model-value="$emit('update:v', $event)"
             >
               V
@@ -94,6 +94,12 @@ export default {
   },
 
   mixins: [modalElementTableMixin],
-  emits: ['open-options', 'update:fly', 'update:change', 'update:v'],
+  emits: [
+    'open-options',
+    'update:modelValue',
+    'update:fly',
+    'update:change',
+    'update:v',
+  ],
 };
 </script>

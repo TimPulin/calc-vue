@@ -41,6 +41,8 @@ export default {
     },
   },
 
+  emits: ['update: modelValue'],
+
   computed: {
     currentValue: {
       get() {

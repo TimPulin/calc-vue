@@ -117,7 +117,6 @@ export default {
     },
 
     handleOpenModal(value) {
-      console.log(value);
       if (value !== undefined) {
         this.updateElementProperty(value, 'type');
         this.$store.commit(

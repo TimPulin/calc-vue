@@ -56,24 +56,10 @@
   pointer-events: none;
 
   &::before {
-    border-color: $color-md_grey;
+    border-color: $color-disabled;
     background-image: url('../images/icons/check-mark-outline-grey.svg');
   }
 }
-
-
-
-// .checkbox:hover,
-// .checkbox:active {
-//   color: #fff;
-//   background-color: $color-primary_light;
-//   border-color: $color-primary_light;
-
-// &::before {
-//   content: "";
-//   // background-color: red;
-// }
-// }
 
 @media (min-width: 1200px) {
 

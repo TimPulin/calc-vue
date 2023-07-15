@@ -26,6 +26,7 @@
         v-for="(name, index) in nameList"
         :key="index"
         :name-list="name"
+        :index="index"
         :benchmark="benchmark"
         @add-jump="$emit('add-jump')"
         @delete-jump="$emit('delete-jump')"

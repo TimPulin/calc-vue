@@ -83,7 +83,7 @@ class ProgramElement {
       this._name.push(newSpin);
     } else {
       throw new WrongDataRange(
-        'Превышена длина каскада. Допустимая длина - 1 вращение'
+        'Превышена длина. Допустимая длина - 1 вращение'
       );
     }
   }
@@ -93,9 +93,7 @@ class ProgramElement {
     if (this._name.length < 1) {
       this._name.push(newStep);
     } else {
-      throw new WrongDataRange(
-        'Превышена длина каскада. Допустимая длина - 1 дорожка'
-      );
+      throw new WrongDataRange('Превышена длина. Допустимая длина - 1 дорожка');
     }
   }
 }
@@ -112,11 +110,11 @@ class Jump {
 
 class Spin {
   constructor() {
-    this.fly = '';
-    this.change = '';
+    this.fly = false;
+    this.change = false;
     this.name = '';
     this.level = '';
-    this.v = '';
+    this.v = false;
   }
 }
 

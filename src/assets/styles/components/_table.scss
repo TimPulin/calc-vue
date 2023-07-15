@@ -72,7 +72,7 @@
   }
 }
 
-/* calc */
+/* end calc */
 
 .table--element {
 
@@ -162,7 +162,19 @@
     cursor: not-allowed;
     pointer-events: none;
   }
+
+  .checkbox--checked {
+
+    background-color: $color-option;
+    color: #fff;
+
+    &::before {
+      content: none;
+    }
+  }
 }
+
+// end table-element
 
 @media (max-width: 410px) {
   .table--element {
