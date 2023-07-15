@@ -16,7 +16,9 @@
       />
     </td>
 
-    <td class="tr__section tr__section--name">{{ programElement.name }}</td>
+    <td class="tr__section tr__section--name">
+      {{ programElement.elementName }}
+    </td>
 
     <td class="tr__section tr__section--bonus">
       <CheckboxSecondPart
@@ -83,6 +85,7 @@ export default {
       isOptionsOpen: {
         panelTypeOpen: false,
         panelGoeOpen: false,
+        programElement: {},
       },
     };
   },

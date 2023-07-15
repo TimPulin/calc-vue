@@ -1,8 +1,14 @@
+import {
+  createNewJump,
+  createNewSpin,
+  createNewStep,
+} from './create-new-element';
+
 class ProgramElement {
   constructor(index) {
     this._index = index;
     this._type = ' ';
-    this._name = [];
+    this._elementName = [];
     this.scores = 0;
     this.goe = 0;
     this.secondPart = 'disabled';
@@ -19,15 +25,15 @@ class ProgramElement {
     const typeOld = this._type;
     this._type = value;
     this._setSecondPart(value);
-    if (typeOld !== this._type) this._setNameConfig(value);
+    if (typeOld !== this._type) this._setElementNameConfig(value);
   }
 
-  get name() {
-    return this._name;
+  get elementName() {
+    return this._elementName;
   }
-  set name(value) {
+  set elementName(value) {
     // TODO  проверить нужно ли это присваивание (сам set точно нужен)
-    this._name = value;
+    this._elementName = value;
   }
 
   _setSecondPart(value) {
@@ -38,8 +44,8 @@ class ProgramElement {
     }
   }
 
-  _setNameConfig(value) {
-    this._cleanUpName();
+  _setElementNameConfig(value) {
+    this._cleanUpElementName();
     switch (value) {
       case 'jump':
         this.addNewJump();
@@ -52,14 +58,14 @@ class ProgramElement {
     }
   }
 
-  _cleanUpName() {
-    this._name.splice(0, this._name.length);
+  _cleanUpElementName() {
+    this._elementName.splice(0, this._elementName.length);
   }
 
   addNewJump() {
-    const newJump = new Jump();
-    if (this._name.length < 3) {
-      this._name.push(newJump);
+    const newJump = createNewJump();
+    if (this._elementName.length < 3) {
+      this._elementName.push(newJump);
     } else {
       throw new WrongDataRange(
         'Превышена длина каскада. Допустимая длина - 3 прыжка'
@@ -68,8 +74,11 @@ class ProgramElement {
   }
 
   deleteJump() {
-    if (this._name.length > 1) {
-      this._name.splice(this._name.length - 1, this._name.length);
+    if (this._elementName.length > 1) {
+      this._elementName.splice(
+        this._elementName.length - 1,
+        this._elementName.length
+      );
     } else {
       throw new WrongDataRange(
         'Нельзя удалить единственный прыжок в прыжковом элементе'
@@ -78,9 +87,9 @@ class ProgramElement {
   }
 
   addNewSpin() {
-    const newSpin = new Spin();
-    if (this._name.length < 1) {
-      this._name.push(newSpin);
+    const newSpin = createNewSpin();
+    if (this._elementName.length < 1) {
+      this._elementName.push(newSpin);
     } else {
       throw new WrongDataRange(
         'Превышена длина. Допустимая длина - 1 вращение'
@@ -89,39 +98,12 @@ class ProgramElement {
   }
 
   addNewStep() {
-    const newStep = new Step();
-    if (this._name.length < 1) {
-      this._name.push(newStep);
+    const newStep = createNewStep();
+    if (this._elementName.length < 1) {
+      this._elementName.push(newStep);
     } else {
       throw new WrongDataRange('Превышена длина. Допустимая длина - 1 дорожка');
     }
-  }
-}
-
-class Jump {
-  constructor() {
-    this.name = '';
-    this.rotations = '';
-    // TODO проверку на null
-    this.underrotate = '';
-    this.edge = '';
-  }
-}
-
-class Spin {
-  constructor() {
-    this.fly = false;
-    this.change = false;
-    this.name = '';
-    this.level = '';
-    this.v = false;
-  }
-}
-
-class Step {
-  constructor() {
-    this.name = '';
-    this.level = '';
   }
 }
 

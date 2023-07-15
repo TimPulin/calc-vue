@@ -138,7 +138,7 @@
           <div class="modal__wrap-table">
             <TableJump
               v-if="isShow('jump')"
-              :name-list="element.name"
+              :name-list="element.elementName"
               :benchmark="benchmarkOptionsElement"
               :go-throw-down="goThrowDown"
               @open-options="onOpenOptions"
@@ -148,7 +148,7 @@
 
             <TableSpin
               v-if="isShow('spin')"
-              :name-list="element.name"
+              :name-list="element.elementName"
               :benchmark="benchmarkOptionsElement"
               @update:fly="updateEditingElementProperty($event, 'fly')"
               @update:change="updateEditingElementProperty($event, 'change')"
@@ -159,7 +159,7 @@
 
             <TableStep
               v-if="isShow('step')"
-              :name-list="element.name"
+              :name-list="element.elementName"
               :benchmark="benchmarkOptionsElement"
               :go-throw-down="goThrowDown"
               @open-options="onOpenOptions"
@@ -250,8 +250,8 @@ export default {
 
     localRotations: {
       get() {
-        if (this.element.name.length > 0) {
-          return this.element.name[this.currentElementIndex].rotations;
+        if (this.element.elementName.length > 0) {
+          return this.element.elementName[this.currentElementIndex].rotations;
         } else {
           return '';
         }
@@ -263,8 +263,8 @@ export default {
 
     localName: {
       get() {
-        if (this.element.name.length > 0) {
-          return this.element.name[this.currentElementIndex].name;
+        if (this.element.elementName.length > 0) {
+          return this.element.elementName[this.currentElementIndex].name;
         } else {
           return '';
         }
@@ -276,8 +276,8 @@ export default {
 
     localUnderrotate: {
       get() {
-        if (this.element.name.length > 0) {
-          return this.element.name[this.currentElementIndex].underrotate;
+        if (this.element.elementName.length > 0) {
+          return this.element.elementName[this.currentElementIndex].underrotate;
         } else {
           return '';
         }
@@ -289,8 +289,8 @@ export default {
 
     localEdge: {
       get() {
-        if (this.element.name.length > 0) {
-          return this.element.name[this.currentElementIndex].edge;
+        if (this.element.elementName.length > 0) {
+          return this.element.elementName[this.currentElementIndex].edge;
         } else {
           return '';
         }
@@ -302,8 +302,8 @@ export default {
 
     localLevel: {
       get() {
-        if (this.element.name.length > 0) {
-          return this.element.name[this.currentElementIndex].level;
+        if (this.element.elementName.length > 0) {
+          return this.element.elementName[this.currentElementIndex].level;
         } else {
           return '';
         }

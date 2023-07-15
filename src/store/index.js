@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import createProgramElement from '@/utils/create-program-element';
+import createProgramElement from '@/utils/create-program-element/create-program-element';
 import deepCopy from '@/utils/deep-copy';
 
 export default createStore({
@@ -52,7 +52,7 @@ export default createStore({
 
     updateEditingElementSingleProperty(state, { index, programElement }) {
       const { propertyName, propertyValue } = programElement;
-      state.editingElement.name[index][propertyName] = propertyValue;
+      state.editingElement.elementName[index][propertyName] = propertyValue;
     },
   },
 
