@@ -324,7 +324,6 @@ export default {
     }),
 
     isShow(currentType) {
-      console.log(this.element.type === currentType);
       return this.element.type === currentType;
     },
 

@@ -7,16 +7,22 @@ import {
 class ProgramElement {
   constructor(index, type = 'empty') {
     this._index = index;
-    this.type = type;
+    this._type = type;
 
     this._elementName = [];
     this.scores = 0;
     this.goe = 0;
     this.secondPart = 'disabled';
+
+    this._setElementNameConfig(type);
   }
 
   get index() {
     return this._index;
+  }
+
+  get type() {
+    return this._type;
   }
 
   get elementName() {
@@ -36,6 +42,7 @@ class ProgramElement {
   }
 
   _setElementNameConfig(value) {
+    console.log(value);
     this._cleanUpElementName();
     switch (value) {
       case 'jump':
