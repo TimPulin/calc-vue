@@ -12,7 +12,7 @@
         options-class-duration="--open-options-animation-duration"
         v-model:panel-options-open="isOptionsOpen.panelTypeOpen"
         :model-value="programElement.type"
-        @call-open-modal-element="handleOpenModal($event, 'type')"
+        @call-open-modal-element="handleOpenModal($event)"
       />
     </td>
 
@@ -99,16 +99,6 @@ export default {
   },
 
   methods: {
-    updateElementProperty(value, propertyName) {
-      this.$store.commit('updateProgramElementSingleProperty', {
-        index: this.programElement.index,
-        programElement: {
-          propertyName: propertyName,
-          propertyValue: value,
-        },
-      });
-    },
-
     openPanelType(event) {
       this.isOptionsOpen.panelTypeOpen = true;
       this.addClickListenerOnDocument('panelTypeOpen', event.target);
@@ -121,13 +111,24 @@ export default {
 
     handleOpenModal(value) {
       if (value !== undefined) {
-        this.updateElementProperty(value, 'type');
-        this.$store.commit(
-          'copyProgramElementForEditing',
-          this.programElement.index
-        );
+        if (this.programElement.type !== value) {
+          this.$store.dispatch('createEditingElement', {
+            index: this.programElement.index,
+            type: value,
+          });
+        } else {
+          this.$store.commit(
+            'copyProgramElementForEditing',
+            this.programElement.index
+          );
+        }
         this.openModal();
       }
+    },
+
+    updateElementProperty(value) {
+      // TODO сделать обработку
+      console.log(value);
     },
   },
 };

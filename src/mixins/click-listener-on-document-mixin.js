@@ -16,6 +16,8 @@ const clickListenerOnDocumentMixin = {
         }
       );
     },
+    // TODO для TableRowProgram сделать чтобы реагировал один раз (пока что modal вызывается дважды:
+    // (первый раз при клике на кнопку вызова modal, второй - при обработке клика на документе)
 
     handleClickOnDocument(event, optionsName, currentButton) {
       event.stopPropagation();

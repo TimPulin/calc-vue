@@ -5,9 +5,10 @@ import {
 } from './create-new-element';
 
 class ProgramElement {
-  constructor(index) {
+  constructor(index, type = 'empty') {
     this._index = index;
-    this._type = ' ';
+    this.type = type;
+
     this._elementName = [];
     this.scores = 0;
     this.goe = 0;
@@ -16,16 +17,6 @@ class ProgramElement {
 
   get index() {
     return this._index;
-  }
-
-  get type() {
-    return this._type;
-  }
-  set type(value) {
-    const typeOld = this._type;
-    this._type = value;
-    this._setSecondPart(value);
-    if (typeOld !== this._type) this._setElementNameConfig(value);
   }
 
   get elementName() {
@@ -114,6 +105,6 @@ class WrongDataRange extends RangeError {
   }
 }
 
-export default function createProgramElement(index) {
-  return new ProgramElement(index);
+export default function createProgramElement(index, type) {
+  return new ProgramElement(index, type);
 }

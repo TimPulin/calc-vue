@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
 import createProgramElement from '@/utils/create-program-element/create-program-element';
-import deepCopy from '@/utils/deep-copy';
+import { cloneDeep } from 'lodash';
 
 export default createStore({
   state: {
@@ -46,8 +46,7 @@ export default createStore({
     },
 
     copyProgramElementForEditing(state, index) {
-      state.editingElement.name = deepCopy(state.program[index].name);
-      state.editingElement.type = state.program[index].type;
+      state.editingElement = cloneDeep(state.program[index]);
     },
 
     updateEditingElementSingleProperty(state, { index, programElement }) {
@@ -66,8 +65,8 @@ export default createStore({
       }
     },
 
-    createEditingElement(context) {
-      const element = createProgramElement();
+    createEditingElement(context, { index, type }) {
+      const element = createProgramElement(index, type);
       context.commit('setEditingElement', element);
     },
   },

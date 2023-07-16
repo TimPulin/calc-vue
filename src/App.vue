@@ -37,8 +37,6 @@ export default {
 
   created() {
     this.$store.dispatch('createProgram', {});
-    // TODO убрать если не понадобится
-    this.$store.dispatch('createEditingElement');
   },
 
   mounted() {
