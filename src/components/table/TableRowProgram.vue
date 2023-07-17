@@ -29,8 +29,8 @@
 
     <td class="tr__section tr__section--goe">
       <ButtonOptions @click="openPanelGoe($event)">
-        {{ programElement.goe }}</ButtonOptions
-      >
+        {{ programElement.goe }}
+      </ButtonOptions>
 
       <OptionsPanelNumber
         class="options--goe"
@@ -102,7 +102,6 @@ export default {
 
   methods: {
     openPanelType(event) {
-      console.log(event.target.parentElement);
       this.isOptionsOpen.panelTypeOpen = true;
       this.localAddClickListenerOnDocument(
         'panelTypeOpen',
@@ -110,7 +109,7 @@ export default {
       );
     },
 
-    // понадобился локальный вариант, потому что в общем modal вызывался дважды
+    // понадобился локальный вариант, потому что в миксине modal вызывался дважды
     localAddClickListenerOnDocument(optionsName, parent) {
       document.addEventListener(
         'click',
@@ -158,9 +157,14 @@ export default {
       }
     },
 
-    updateElementProperty(value) {
-      // TODO сделать обработку
-      console.log(value);
+    updateElementProperty(value, propertyName) {
+      this.$store.commit('updateProgramElementSingleProperty', {
+        index: this.programElement.index,
+        programElement: {
+          propertyName: propertyName,
+          propertyValue: value,
+        },
+      });
     },
   },
 };
