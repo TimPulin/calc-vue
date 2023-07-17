@@ -2,17 +2,10 @@ export class ProgramElement {
   constructor(index) {
     this._index = index;
     this._type = 'empty';
-
     this._elementName = [];
-    // this.elementName = [];
-
     this.scores = 0;
     this.goe = 0;
     this.secondPart = 'disabled';
-    // this.fullElementName = '';
-
-    // this._setElementNameConfig(type);
-    // this._setSecondPart(type);
   }
 
   get index() {
@@ -27,18 +20,16 @@ export class ProgramElement {
     return this._elementName;
   }
 
-  // set elementName(value) {
-  //   // TODO  проверить нужно ли это присваивание (сам set точно нужен)
-  //   this._elementName = value;
-  // }
-
   getFullElementName() {
     let fullName = '';
 
-    this.elementName.forEach((item) => {
-      fullName += item.getFullName();
-    });
-
+    for (let i = 0; i < this._elementName.length; i++) {
+      if (i > 0) {
+        fullName += `+${this._elementName[i].getFullName()}`;
+      } else {
+        fullName += `${this._elementName[i].getFullName()}`;
+      }
+    }
     return fullName;
   }
 
