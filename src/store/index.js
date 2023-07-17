@@ -53,6 +53,11 @@ export default createStore({
       const { propertyName, propertyValue } = programElement;
       state.editingElement.elementName[index][propertyName] = propertyValue;
     },
+
+    copyEditingElementToProgramElement(state) {
+      const index = state.editingElement.index;
+      state.program[index] = cloneDeep(state.editingElement);
+    },
   },
 
   actions: {

@@ -176,7 +176,13 @@
             Закрыть
           </button>
 
-          <button type="button" class="button button-fill">Сохранить</button>
+          <button
+            type="button"
+            class="button button-fill"
+            @click="handleSaveElement($event)"
+          >
+            Сохранить
+          </button>
         </div>
       </div>
     </div>
@@ -321,6 +327,7 @@ export default {
   methods: {
     ...mapMutations({
       updateElementPropert: 'updateEditingElementSingleProperty',
+      saveElement: 'copyEditingElementToProgramElement',
     }),
 
     isShow(currentType) {
@@ -360,6 +367,11 @@ export default {
           propertyValue: value,
         },
       });
+    },
+
+    handleSaveElement(event) {
+      this.saveElement();
+      this.callToCloseModal(event);
     },
   },
 };

@@ -1,15 +1,20 @@
 function getName(element) {
   let name = '';
 
-  for (let i = 0; i < element.length; i++) {
-    name += element[i];
-  }
+  element.forEach((item) => {
+    if (item === '') {
+      // console.log(item);
+      name += '';
+    } else {
+      name += item;
+    }
+  });
 
   return name;
 }
 
 function createNewJump() {
-  return {
+  const element = {
     name: '',
     rotations: '',
     // TODO: проверку на null
@@ -20,6 +25,8 @@ function createNewJump() {
       return getName([this.rotations, this.name, this.underrotate, this.edge]);
     },
   };
+
+  return element;
 }
 
 function createNewSpin() {

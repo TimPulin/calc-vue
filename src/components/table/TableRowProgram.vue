@@ -6,7 +6,6 @@
         @click="openPanelType($event)"
       />
 
-      <!-- TODO заменить обработчик для openModal на что-то другое -->
       <OptionsPanelType
         options-class-animation="table-calc-options"
         options-class-duration="--open-options-animation-duration"
@@ -17,7 +16,7 @@
     </td>
 
     <td class="tr__section tr__section--name">
-      {{ programElement.elementName }}
+      {{ fullElementName }}
     </td>
 
     <td class="tr__section tr__section--bonus">
@@ -85,7 +84,6 @@ export default {
       isOptionsOpen: {
         panelTypeOpen: false,
         panelGoeOpen: false,
-        programElement: {},
       },
     };
   },
@@ -96,15 +94,49 @@ export default {
     formatedScores() {
       return formatScores(this.programElement.scores);
     },
+
+    fullElementName() {
+      return this.programElement.getFullElementName();
+    },
   },
 
   methods: {
     openPanelType(event) {
+      console.log(event.target.parentElement);
       this.isOptionsOpen.panelTypeOpen = true;
-      this.addClickListenerOnDocument('panelTypeOpen', event.target);
+      this.localAddClickListenerOnDocument(
+        'panelTypeOpen',
+        event.target.parentElement
+      );
+    },
+
+    // понадобился локальный вариант, потому что в общем modal вызывался дважды
+    localAddClickListenerOnDocument(optionsName, parent) {
+      document.addEventListener(
+        'click',
+        (event) => {
+          this.localHandleClickOnDocument(event, optionsName, parent);
+        },
+        {
+          once: true,
+          capture: true,
+        }
+      );
+    },
+
+    localHandleClickOnDocument(event, optionsName, parent) {
+      event.stopPropagation();
+      const currentParent = event.target.parentElement.parentElement;
+      this.isOptionsOpen[optionsName] = false;
+      if (currentParent != parent) {
+        setTimeout(() => {
+          event.target.dispatchEvent(new Event(event.type));
+        }, 300);
+      }
     },
 
     openPanelGoe(event) {
+      console.log(this.programElement);
       this.isOptionsOpen.panelGoeOpen = true;
       this.addClickListenerOnDocument('panelGoeOpen', event.target);
     },
