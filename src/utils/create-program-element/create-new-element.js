@@ -38,7 +38,7 @@ function createNewSpin() {
     v: false,
 
     convertPropertyToString(property, value) {
-      property ? value : '';
+      return property ? value : '';
     },
 
     getFullName() {

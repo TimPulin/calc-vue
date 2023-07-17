@@ -3,8 +3,8 @@ export class ProgramElement {
     this._index = index;
     this._type = 'empty';
 
-    // this._elementName = [];
-    this.elementName = [];
+    this._elementName = [];
+    // this.elementName = [];
 
     this.scores = 0;
     this.goe = 0;
@@ -23,9 +23,9 @@ export class ProgramElement {
     return this._type;
   }
 
-  // get elementName() {
-  //   return this._elementName;
-  // }
+  get elementName() {
+    return this._elementName;
+  }
 
   // set elementName(value) {
   //   // TODO  проверить нужно ли это присваивание (сам set точно нужен)

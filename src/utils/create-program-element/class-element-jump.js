@@ -5,8 +5,8 @@ export class ElementJump extends ProgramElement {
   constructor(index) {
     super(index);
     this._type = 'jump';
-    // this._elementName.push(createNewJump());
-    this.elementName.push(createNewJump());
+    this._elementName.push(createNewJump());
+    // this.elementName.push(createNewJump());
 
     this.secondPart = false;
   }
