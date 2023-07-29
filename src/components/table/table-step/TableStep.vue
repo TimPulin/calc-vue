@@ -31,7 +31,7 @@
           </button>
         </td>
 
-        <td class="tr__section">1.99</td>
+        <td class="tr__section">{{ formatedScores }}</td>
       </tr>
     </tbody>
   </table>

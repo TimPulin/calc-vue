@@ -79,7 +79,7 @@
             </CheckboxBase>
           </div>
         </td>
-        <td class="tr__section">1.99</td>
+        <td class="tr__section">{{ formatedScores }}</td>
       </tr>
     </tbody>
   </table>
@@ -88,6 +88,7 @@
 <script>
 import CheckboxBase from '@/components/checkbox/CheckboxBase.vue';
 import modalElementTableMixin from '@/mixins/modal-element-table-mixin';
+
 export default {
   components: {
     CheckboxBase,

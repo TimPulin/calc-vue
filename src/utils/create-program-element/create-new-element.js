@@ -1,75 +1,92 @@
 import { elementsValueList } from '../elements-value-list';
 
-function getName(element) {
-  let name = '';
+class NewElement {
+  getName(element) {
+    let name = '';
+    element.forEach((item) => {
+      if (item === '') {
+        name += '';
+      } else {
+        name += item;
+      }
+    });
+    return name;
+  }
 
-  element.forEach((item) => {
-    if (item === '') {
-      // console.log(item);
-      name += '';
-    } else {
-      name += item;
-    }
-  });
+  getScores() {
+    const name = this.getFullName();
+    const scores = elementsValueList[name.toLowerCase()];
+    return scores;
+  }
+}
 
-  return name;
+class NewElementJump extends NewElement {
+  constructor() {
+    super();
+    this.name = '';
+    this.rotations = '';
+    // TODO = проверку на nul;
+    this.underrotate = '';
+    this.edge = '';
+  }
+
+  getFullName() {
+    return this.getName([
+      this.rotations,
+      this.name,
+      this.underrotate,
+      this.edge,
+    ]);
+  }
+}
+
+class NewElementSpin extends NewElement {
+  constructor() {
+    super();
+    this.fly = false;
+    this.change = false;
+    this.name = '';
+    this.level = '';
+    this.v = false;
+  }
+
+  convertPropertyToString(property, value) {
+    return property ? value : '';
+  }
+
+  getFullName() {
+    return this.getName([
+      this.convertPropertyToString(this.fly, 'F'),
+      this.convertPropertyToString(this.change, 'C'),
+      this.name,
+      this.level,
+      this.convertPropertyToString(this.v, 'V'),
+    ]);
+  }
+}
+
+class NewElementStep extends NewElement {
+  constructor() {
+    super();
+    this.name = '';
+    this.level = '';
+  }
+
+  getFullName() {
+    return this.getName([this.name, this.level]);
+  }
 }
 
 function createNewJump() {
-  const element = {
-    name: '',
-    rotations: '',
-    // TODO: проверку на null
-    underrotate: '',
-    edge: '',
-
-    getFullName() {
-      return getName([this.rotations, this.name, this.underrotate, this.edge]);
-    },
-
-    getScores() {
-      const name = this.getFullName();
-      const scores = elementsValueList[name.toLowerCase()];
-      return scores;
-    },
-  };
-
-  return element;
+  return new NewElementJump();
 }
 
 function createNewSpin() {
-  return {
-    fly: false,
-    change: false,
-    name: '',
-    level: '',
-    v: false,
-
-    convertPropertyToString(property, value) {
-      return property ? value : '';
-    },
-
-    getFullName() {
-      return getName([
-        this.convertPropertyToString(this.fly, 'F'),
-        this.convertPropertyToString(this.change, 'C'),
-        this.name,
-        this.level,
-        this.convertPropertyToString(this.v, 'V'),
-      ]);
-    },
-  };
+  return new NewElementSpin();
 }
 
 function createNewStep() {
-  return {
-    name: '',
-    level: '',
-
-    getFullName() {
-      return getName([this.name, this.level]);
-    },
-  };
+  return new NewElementStep();
 }
 
 export { createNewJump, createNewSpin, createNewStep };
