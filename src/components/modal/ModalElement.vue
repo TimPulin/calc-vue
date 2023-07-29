@@ -25,121 +25,13 @@
           id="benchmark-options-element"
           ref="benchmark-options-element"
         >
-          <div class="modal__display">
-            <div class="modal__element-name">3T+2a+2Lo></div>
-            <div class="modal__scores">12.03</div>
-          </div>
+          <ModalDisplay :element="element" />
 
           <BlockOptionsPanel
             :element="element"
             :is-options-open="isOptionsOpen"
             :current-element-index="currentElementIndex"
             v-model:go-throw-down="goThrowDown"
-          />
-
-          <OptionsPanelBase
-            v-if="isShow('jump')"
-            class="options--element"
-            :listRadio="[1, 2, 3, 4]"
-            name="rotations"
-            v-model="localRotations"
-            options-class-animation="options-element"
-            :options-class-duration="optionsClassDuration"
-            :panel-options-open="isOptionsOpen['rotations']"
-            @options-is-opened="onOptionsIsOpened"
-            @options-is-closed="onOptionsIsClosed"
-          />
-
-          <OptionsPanelBase
-            v-if="isShow('jump')"
-            class="options--element"
-            :listRadio="['A', 'T', 'S', 'Lo', 'F', 'Lz', 'Eu']"
-            name="jump-name"
-            v-model="localName"
-            options-class-animation="options-element"
-            :options-class-duration="optionsClassDuration"
-            :panel-options-open="isOptionsOpen['jump-name']"
-            @options-is-opened="onOptionsIsOpened"
-            @options-is-closed="onOptionsIsClosed"
-          />
-
-          <OptionsPanelBase
-            v-if="isShow('jump')"
-            class="options--element space-evenly"
-            :listRadio="['<<', '<', 'q']"
-            name="underrotate"
-            v-model="localUnderrotate"
-            options-class-animation="options-element"
-            :options-class-duration="optionsClassDuration"
-            :panel-options-open="isOptionsOpen['underrotate']"
-            @options-is-opened="onOptionsIsOpened"
-            @options-is-closed="onOptionsIsClosed"
-          >
-            <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
-            <OptionRadioThombUp
-              name="underrotate"
-              :local-value="''"
-              v-model="localUnderrotate"
-            />
-          </OptionsPanelBase>
-
-          <OptionsPanelBase
-            v-if="isShow('jump')"
-            class="options--element space-evenly"
-            :listRadio="['e', '!']"
-            name="edge"
-            v-model="localEdge"
-            options-class-animation="options-element"
-            :options-class-duration="optionsClassDuration"
-            :panel-options-open="isOptionsOpen['edge']"
-            @options-is-opened="onOptionsIsOpened"
-            @options-is-closed="onOptionsIsClosed"
-          >
-            <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
-            <OptionRadioThombUp
-              name="jump-edge"
-              :local-value="''"
-              v-model="localEdge"
-            />
-          </OptionsPanelBase>
-
-          <OptionsPanelBase
-            v-if="isShow('spin')"
-            class="options--element"
-            :listRadio="['USp', 'SSp', 'CSp', 'CoSp', 'LSp']"
-            name="spin-name"
-            v-model="localName"
-            options-class-animation="options-element"
-            :options-class-duration="optionsClassDuration"
-            :panel-options-open="isOptionsOpen['spin-name']"
-            @options-is-opened="onOptionsIsOpened"
-            @options-is-closed="onOptionsIsClosed"
-          />
-
-          <OptionsPanelBase
-            v-if="isShow('spin') || isShow('step')"
-            class="options--element"
-            :listRadio="['B', '1', '2', '3', '4']"
-            name="level"
-            v-model="localLevel"
-            options-class-animation="options-element"
-            :options-class-duration="optionsClassDuration"
-            :panel-options-open="isOptionsOpen['level']"
-            @options-is-opened="onOptionsIsOpened"
-            @options-is-closed="onOptionsIsClosed"
-          />
-
-          <OptionsPanelBase
-            v-if="isShow('step')"
-            class="options--element space-evenly"
-            :listRadio="['StSq', 'ChSq']"
-            name="step-name"
-            v-model="localName"
-            options-class-animation="options-element"
-            :options-class-duration="optionsClassDuration"
-            :panel-options-open="isOptionsOpen['step-name']"
-            @options-is-opened="onOptionsIsOpened"
-            @options-is-closed="onOptionsIsClosed"
           />
 
           <div class="modal__wrap-table">
@@ -197,30 +89,32 @@
 </template>
 
 <script>
+import ModalDisplay from './ModalDisplay.vue';
 import TableJump from '@/components/table/table-jump/TableJump.vue';
 import TableSpin from '@/components/table/table-spin/TableSpin.vue';
 import TableStep from '@/components/table/table-step/TableStep.vue';
-import OptionsPanelBase from '@/components/options/OptionsPanelBase.vue';
-import OptionRadioThombUp from '@/components/options/OptionRadioThombUp.vue';
 
 import BlockOptionsPanel from '../options/BlockOptionsPanel.vue';
 
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
 import closeModalAnimationMixin from '@/mixins/open&close-modal-animation/close-modal-animation-mixin';
+import updateEditingElementProperty from '@/mixins/update-editing-element-property-mixin';
 import { mapState, mapMutations } from 'vuex';
 
 export default {
   components: {
+    ModalDisplay,
     TableJump,
     TableSpin,
     TableStep,
-    OptionsPanelBase,
-    OptionRadioThombUp,
-
     BlockOptionsPanel,
   },
 
-  mixins: [clickListenerOnDocumentMixin, closeModalAnimationMixin],
+  mixins: [
+    clickListenerOnDocumentMixin,
+    closeModalAnimationMixin,
+    updateEditingElementProperty,
+  ],
 
   emits: ['update:overlayModal'],
 
@@ -228,15 +122,10 @@ export default {
     return {
       currentOptionsName: '',
       currentOptionsCaller: null,
-      // send
       currentElementIndex: 0,
-      // copied
-      optionsClassDuration: '--open-options-animation-duration',
       throwClassDuration: '--throw-up-animation-duration',
-      // send
       goThrowDown: false,
 
-      // send
       isOptionsOpen: {
         'jump-name': false,
         rotations: false,
@@ -268,72 +157,6 @@ export default {
         return benchmark;
       }
     },
-
-    // all local copied
-    localRotations: {
-      get() {
-        if (this.element.elementName.length > 0) {
-          return this.element.elementName[this.currentElementIndex].rotations;
-        } else {
-          return '';
-        }
-      },
-      set(value) {
-        this.updateEditingElementProperty(value, 'rotations');
-      },
-    },
-
-    localName: {
-      get() {
-        if (this.element.elementName.length > 0) {
-          return this.element.elementName[this.currentElementIndex].name;
-        } else {
-          return '';
-        }
-      },
-      set(value) {
-        this.updateEditingElementProperty(value, 'name');
-      },
-    },
-
-    localUnderrotate: {
-      get() {
-        if (this.element.elementName.length > 0) {
-          return this.element.elementName[this.currentElementIndex].underrotate;
-        } else {
-          return '';
-        }
-      },
-      set(value) {
-        this.updateEditingElementProperty(value, 'underrotate');
-      },
-    },
-
-    localEdge: {
-      get() {
-        if (this.element.elementName.length > 0) {
-          return this.element.elementName[this.currentElementIndex].edge;
-        } else {
-          return '';
-        }
-      },
-      set(value) {
-        this.updateEditingElementProperty(value, 'edge');
-      },
-    },
-
-    localLevel: {
-      get() {
-        if (this.element.elementName.length > 0) {
-          return this.element.elementName[this.currentElementIndex].level;
-        } else {
-          return '';
-        }
-      },
-      set(value) {
-        this.updateEditingElementProperty(value, 'level');
-      },
-    },
   },
 
   mounted() {
@@ -346,7 +169,6 @@ export default {
       saveElement: 'copyEditingElementToProgramElement',
     }),
 
-    // copied
     isShow(currentType) {
       return this.element.type === currentType;
     },
@@ -354,22 +176,10 @@ export default {
     onOpenOptions({ optionsName, currentOptionsCaller, elementIndex = 0 }) {
       this.currentOptionsName = optionsName;
       this.currentOptionsCaller = currentOptionsCaller;
-      //send
       this.currentElementIndex = elementIndex;
 
       this.isOptionsOpen[optionsName] = true;
       this.goThrowDown = false;
-    },
-
-    // copied
-    onOptionsIsOpened(optionsName) {
-      this.addClickListenerOnDocument(optionsName, this.currentOptionsCaller);
-    },
-
-    // copied
-    onOptionsIsClosed() {
-      // send
-      this.goThrowDown = true;
     },
 
     onAddJump() {
@@ -378,17 +188,6 @@ export default {
 
     onDeleteJump() {
       this.element.deleteJump();
-    },
-
-    // copied возможно надо сделать миксин, так нужен здесь и в BlockOptionsPanel
-    updateEditingElementProperty(value, propertyName) {
-      this.$store.commit('updateEditingElementSingleProperty', {
-        index: this.currentElementIndex,
-        programElement: {
-          propertyName: propertyName,
-          propertyValue: value,
-        },
-      });
     },
 
     handleSaveElement(event) {
