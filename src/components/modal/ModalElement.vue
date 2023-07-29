@@ -30,6 +30,13 @@
             <div class="modal__scores">12.03</div>
           </div>
 
+          <BlockOptionsPanel
+            :element="element"
+            :is-options-open="isOptionsOpen"
+            :current-element-index="currentElementIndex"
+            v-model:go-throw-down="goThrowDown"
+          />
+
           <OptionsPanelBase
             v-if="isShow('jump')"
             class="options--element"
@@ -196,6 +203,8 @@ import TableStep from '@/components/table/table-step/TableStep.vue';
 import OptionsPanelBase from '@/components/options/OptionsPanelBase.vue';
 import OptionRadioThombUp from '@/components/options/OptionRadioThombUp.vue';
 
+import BlockOptionsPanel from '../options/BlockOptionsPanel.vue';
+
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
 import closeModalAnimationMixin from '@/mixins/open&close-modal-animation/close-modal-animation-mixin';
 import { mapState, mapMutations } from 'vuex';
@@ -207,6 +216,8 @@ export default {
     TableStep,
     OptionsPanelBase,
     OptionRadioThombUp,
+
+    BlockOptionsPanel,
   },
 
   mixins: [clickListenerOnDocumentMixin, closeModalAnimationMixin],
@@ -217,11 +228,15 @@ export default {
     return {
       currentOptionsName: '',
       currentOptionsCaller: null,
+      // send
       currentElementIndex: 0,
+      // copied
       optionsClassDuration: '--open-options-animation-duration',
       throwClassDuration: '--throw-up-animation-duration',
+      // send
       goThrowDown: false,
 
+      // send
       isOptionsOpen: {
         'jump-name': false,
         rotations: false,
@@ -254,6 +269,7 @@ export default {
       }
     },
 
+    // all local copied
     localRotations: {
       get() {
         if (this.element.elementName.length > 0) {
@@ -330,6 +346,7 @@ export default {
       saveElement: 'copyEditingElementToProgramElement',
     }),
 
+    // copied
     isShow(currentType) {
       return this.element.type === currentType;
     },
@@ -337,17 +354,21 @@ export default {
     onOpenOptions({ optionsName, currentOptionsCaller, elementIndex = 0 }) {
       this.currentOptionsName = optionsName;
       this.currentOptionsCaller = currentOptionsCaller;
+      //send
       this.currentElementIndex = elementIndex;
 
       this.isOptionsOpen[optionsName] = true;
       this.goThrowDown = false;
     },
 
+    // copied
     onOptionsIsOpened(optionsName) {
       this.addClickListenerOnDocument(optionsName, this.currentOptionsCaller);
     },
 
+    // copied
     onOptionsIsClosed() {
+      // send
       this.goThrowDown = true;
     },
 
@@ -359,6 +380,7 @@ export default {
       this.element.deleteJump();
     },
 
+    // copied возможно надо сделать миксин, так нужен здесь и в BlockOptionsPanel
     updateEditingElementProperty(value, propertyName) {
       this.$store.commit('updateEditingElementSingleProperty', {
         index: this.currentElementIndex,
