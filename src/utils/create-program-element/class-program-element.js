@@ -3,7 +3,6 @@ export class ProgramElement {
     this._index = index;
     this._type = 'empty';
     this._elementName = [];
-    this.scores = 0;
     this.goe = 0;
     this.secondPart = 'disabled';
   }
@@ -20,14 +19,26 @@ export class ProgramElement {
     return this._elementName;
   }
 
-  getFullElementName() {
+  get fullElementName() {
+    return this._getFullElementName();
+  }
+
+  get fullElementScores() {
+    return this._getFullElementScores();
+  }
+
+  get fullElementBaseScores() {
+    return this._getBaseScores();
+  }
+
+  _getFullElementName() {
     let fullName = '';
 
     for (let i = 0; i < this._elementName.length; i++) {
-      if (i > 0 && this._elementName[i].getFullName().length > 0) {
-        fullName += `+${this._elementName[i].getFullName()}`;
+      if (i > 0 && this._elementName[i].fullName.length > 0) {
+        fullName += `+${this._elementName[i].fullName}`;
       } else {
-        fullName += `${this._elementName[i].getFullName()}`;
+        fullName += `${this._elementName[i].fullName}`;
       }
     }
     return fullName;
@@ -41,11 +52,11 @@ export class ProgramElement {
     }
   }
 
-  getFullElementScores() {
+  _getFullElementScores() {
     if (this._elementName.length > 0) {
-      const baseScores = this.getBaseScores();
-      const goeBonus = this.getGoeBonus();
-      const secondPartRatio = this.getSecondPartRatio();
+      const baseScores = this._getBaseScores();
+      const goeBonus = this._getGoeBonus();
+      const secondPartRatio = this._getSecondPartRatio();
 
       return baseScores * secondPartRatio + goeBonus;
     } else {
@@ -53,22 +64,22 @@ export class ProgramElement {
     }
   }
 
-  getBaseScores() {
+  _getBaseScores() {
     return this._elementName.reduce((sumScores, element) => {
       return sumScores + element.getScores();
     }, 0);
   }
 
-  getSecondPartRatio() {
+  _getSecondPartRatio() {
     return this.secondPart ? 1.1 : 1;
   }
 
-  getGoeBonus() {
+  _getGoeBonus() {
     Array.prototype.max = function () {
       return Math.max.apply(null, this);
     };
 
-    if (this.getFullElementName() === 'ChSq1') {
+    if (this._getFullElementName() === 'ChSq1') {
       return 0.5 * this.goe;
     } else {
       const arrScores = this._elementName.map((element) => element.getScores());

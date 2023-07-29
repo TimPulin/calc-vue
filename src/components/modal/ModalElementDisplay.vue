@@ -3,21 +3,27 @@
     <div class="modal__element-name">
       {{ fullElementName }}
     </div>
-    <div class="modal__scores">12.03</div>
+    <div class="modal__scores">{{ scores }}</div>
   </div>
 </template>
 
 <script>
+import formatScores from '@/utils/format-scores';
+
 export default {
   props: ['element'],
 
   computed: {
     fullElementName() {
-      if (this.element.getFullElementName) {
-        return this.element.getFullElementName();
+      if (this.element.fullElementName) {
+        return this.element.fullElementName;
       } else {
         return '';
       }
+    },
+
+    scores() {
+      return formatScores(this.element.fullElementBaseScores);
     },
   },
 };

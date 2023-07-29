@@ -44,7 +44,7 @@
       />
     </td>
 
-    <td class="tr__section tr__section--scores">{{ formatedScores }}</td>
+    <td class="tr__section tr__section--scores">{{ scores }}</td>
   </tr>
 
   <tr class="tr--empty">
@@ -91,13 +91,13 @@ export default {
   computed: {
     ...mapState(['modalElement']),
 
-    formatedScores() {
-      return formatScores(this.programElement.getFullElementScores());
+    scores() {
+      return formatScores(this.programElement.fullElementScores);
     },
 
     fullElementName() {
-      if (this.programElement.getFullElementName) {
-        return this.programElement.getFullElementName();
+      if (this.programElement.fullElementName) {
+        return this.programElement.fullElementName;
       } else {
         return '';
       }

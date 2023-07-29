@@ -5,7 +5,15 @@ class NewElement {
     this.name = '';
   }
 
-  getName(element) {
+  get fullName() {
+    return this._getFullName();
+  }
+
+  _getFullName() {
+    return '';
+  }
+
+  _getName(element) {
     let name = '';
     element.forEach((item) => {
       if (item === '') {
@@ -18,7 +26,7 @@ class NewElement {
   }
 
   getScores() {
-    const name = this.getFullName().toLowerCase();
+    const name = this.fullName.toLowerCase();
 
     if (elementsValueList[name]) {
       return elementsValueList[name];
@@ -37,8 +45,8 @@ class NewElementJump extends NewElement {
     this.edge = '';
   }
 
-  getFullName() {
-    return this.getName([
+  _getFullName() {
+    return this._getName([
       this.rotations,
       this.name,
       this.underrotate,
@@ -60,8 +68,8 @@ class NewElementSpin extends NewElement {
     return property ? value : '';
   }
 
-  getFullName() {
-    return this.getName([
+  _getFullName() {
+    return this._getName([
       this.convertPropertyToString(this.fly, 'F'),
       this.convertPropertyToString(this.change, 'C'),
       this.name,
@@ -77,8 +85,8 @@ class NewElementStep extends NewElement {
     this.level = '';
   }
 
-  getFullName() {
-    return this.getName([this.name, this.level]);
+  _getFullName() {
+    return this._getName([this.name, this.level]);
   }
 }
 
