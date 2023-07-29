@@ -29,11 +29,10 @@ export default createStore({
     //   }
     // },
 
-    // TODO проверить и удалить (закомичено 29.07.2023)
-    // updateProgramElementSingleProperty(state, { index, programElement }) {
-    //   const { propertyName, propertyValue } = programElement;
-    //   state.program[index][propertyName] = propertyValue;
-    // },
+    updateProgramElementSingleProperty(state, { index, programElement }) {
+      const { propertyName, propertyValue } = programElement;
+      state.program[index][propertyName] = propertyValue;
+    },
 
     // MODAL OPERATIONS
 

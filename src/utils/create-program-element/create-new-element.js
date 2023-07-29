@@ -1,6 +1,10 @@
 import { elementsValueList } from '../elements-value-list';
 
 class NewElement {
+  constructor() {
+    this.name = '';
+  }
+
   getName(element) {
     let name = '';
     element.forEach((item) => {
@@ -14,16 +18,19 @@ class NewElement {
   }
 
   getScores() {
-    const name = this.getFullName();
-    const scores = elementsValueList[name.toLowerCase()];
-    return scores;
+    const name = this.getFullName().toLowerCase();
+
+    if (elementsValueList[name]) {
+      return elementsValueList[name];
+    } else {
+      return 0;
+    }
   }
 }
 
 class NewElementJump extends NewElement {
   constructor() {
     super();
-    this.name = '';
     this.rotations = '';
     // TODO = проверку на nul;
     this.underrotate = '';
@@ -45,7 +52,6 @@ class NewElementSpin extends NewElement {
     super();
     this.fly = false;
     this.change = false;
-    this.name = '';
     this.level = '';
     this.v = false;
   }
@@ -68,7 +74,6 @@ class NewElementSpin extends NewElement {
 class NewElementStep extends NewElement {
   constructor() {
     super();
-    this.name = '';
     this.level = '';
   }
 

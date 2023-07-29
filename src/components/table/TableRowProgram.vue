@@ -92,7 +92,7 @@ export default {
     ...mapState(['modalElement']),
 
     formatedScores() {
-      return formatScores(this.programElement.scores);
+      return formatScores(this.programElement.getFullElementScores());
     },
 
     fullElementName() {
