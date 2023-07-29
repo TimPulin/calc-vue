@@ -18,20 +18,22 @@ export default createStore({
       state.program[index] = programElement;
     },
 
-    updateProgramElementProperties(state, { index, programElement }) {
-      for (let key in programElement) {
-        if (typeof programElement[key] === 'object') {
-          state.program[index][key] = Object.assign({}, programElement[key]);
-        } else {
-          state.program[index][key] = programElement[key];
-        }
-      }
-    },
+    // TODO проверить и удалить (закомичено 29.07.2023)
+    // updateProgramElementProperties(state, { index, programElement }) {
+    //   for (let key in programElement) {
+    //     if (typeof programElement[key] === 'object') {
+    //       state.program[index][key] = Object.assign({}, programElement[key]);
+    //     } else {
+    //       state.program[index][key] = programElement[key];
+    //     }
+    //   }
+    // },
 
-    updateProgramElementSingleProperty(state, { index, programElement }) {
-      const { propertyName, propertyValue } = programElement;
-      state.program[index][propertyName] = propertyValue;
-    },
+    // TODO проверить и удалить (закомичено 29.07.2023)
+    // updateProgramElementSingleProperty(state, { index, programElement }) {
+    //   const { propertyName, propertyValue } = programElement;
+    //   state.program[index][propertyName] = propertyValue;
+    // },
 
     // MODAL OPERATIONS
 
