@@ -44,7 +44,7 @@ export default createStore({
     // EDITING_ELEMENT OPERATIONS
 
     setEditingElement(state, element) {
-      state.editingElement = element;
+      state.editingElement = cloneDeep(element);
     },
 
     copyProgramElementForEditing(state, index) {

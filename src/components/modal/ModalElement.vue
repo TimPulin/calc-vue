@@ -25,7 +25,7 @@
           id="benchmark-options-element"
           ref="benchmark-options-element"
         >
-          <ModalDisplay :element="element" />
+          <ModalElementDisplay :element="element" />
 
           <BlockOptionsPanel
             :element="element"
@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import ModalDisplay from './ModalDisplay.vue';
+import ModalElementDisplay from './ModalElementDisplay.vue';
 import TableJump from '@/components/table/table-jump/TableJump.vue';
 import TableSpin from '@/components/table/table-spin/TableSpin.vue';
 import TableStep from '@/components/table/table-step/TableStep.vue';
@@ -103,7 +103,7 @@ import { mapState, mapMutations } from 'vuex';
 
 export default {
   components: {
-    ModalDisplay,
+    ModalElementDisplay,
     TableJump,
     TableSpin,
     TableStep,

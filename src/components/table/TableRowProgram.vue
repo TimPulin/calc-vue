@@ -96,7 +96,11 @@ export default {
     },
 
     fullElementName() {
-      return this.programElement.getFullElementName();
+      if (this.programElement.getFullElementName) {
+        return this.programElement.getFullElementName();
+      } else {
+        return '';
+      }
     },
   },
 
@@ -143,11 +147,9 @@ export default {
     handleOpenModal(value) {
       if (value !== undefined) {
         if (this.programElement.type !== value) {
-          this.$store.dispatch('createEditingElement', {
-            index: this.programElement.index,
-            type: value,
-          });
+          this.createEditingElement(value);
         } else {
+          this.createEditingElement(value);
           this.$store.commit(
             'copyProgramElementForEditing',
             this.programElement.index
@@ -155,6 +157,13 @@ export default {
         }
         this.openModal();
       }
+    },
+
+    createEditingElement(value) {
+      this.$store.dispatch('createEditingElement', {
+        index: this.programElement.index,
+        type: value,
+      });
     },
 
     updateElementProperty(value, propertyName) {
