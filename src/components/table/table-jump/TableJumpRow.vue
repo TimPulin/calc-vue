@@ -45,11 +45,12 @@
       </button>
     </td>
 
-    <td class="tr__section">1.99</td>
+    <td class="tr__section">{{ formatedScores }}</td>
   </tr>
 </template>
 
 <script>
+import formatScores from '@/utils/format-scores';
 import ButtonOptionsMinus from '@/components/buttons/ButtonOptionsMinus.vue';
 import ButtonOptionsPlus from '@/components/buttons/ButtonOptionsPlus.vue';
 import modalElementTableMixin from '@/mixins/modal-element-table-mixin';
@@ -75,6 +76,14 @@ export default {
   computed: {
     name() {
       return this.nameList;
+    },
+
+    formatedScores() {
+      if (this.name.getScores()) {
+        return formatScores(this.name.getScores());
+      } else {
+        return formatScores(0);
+      }
     },
   },
 

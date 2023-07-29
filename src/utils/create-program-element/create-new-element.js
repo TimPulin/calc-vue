@@ -1,3 +1,5 @@
+import { elementsValueList } from '../elements-value-list';
+
 function getName(element) {
   let name = '';
 
@@ -23,6 +25,12 @@ function createNewJump() {
 
     getFullName() {
       return getName([this.rotations, this.name, this.underrotate, this.edge]);
+    },
+
+    getScores() {
+      const name = this.getFullName();
+      const scores = elementsValueList[name.toLowerCase()];
+      return scores;
     },
   };
 

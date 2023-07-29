@@ -22,6 +22,7 @@ export class ProgramElement {
 
   getFullElementName() {
     let fullName = '';
+    // TODO сделать проверку на наличие содержания в _elementName в случае отсутствия возвращать ''
 
     for (let i = 0; i < this._elementName.length; i++) {
       if (i > 0) {
