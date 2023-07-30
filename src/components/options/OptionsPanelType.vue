@@ -38,7 +38,7 @@ import IconJump from '@/components/icons/IconJump.vue';
 import IconSpin from '@/components/icons/IconSpin.vue';
 import IconStep from '@/components/icons/IconStep.vue';
 
-import optionsAnimationsMixin from '@/mixins/options-animation-mixin';
+import optionsAnimationsMixin from '@/mixins/animations/options-animation-mixin';
 
 export default {
   components: { OptionsRadioBase, IconJump, IconSpin, IconStep },

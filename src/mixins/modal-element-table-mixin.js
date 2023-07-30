@@ -1,5 +1,5 @@
-import eventOpenOptionsMixin from '@/mixins/event-open-options-mixin';
-import ThrowAnimationMixin from '@/mixins/throw-animation-mixin';
+import eventOpenOptionsMixin from '@/mixins/animations/event-open-options-mixin';
+import ThrowAnimationMixin from '@/mixins/animations/throw-animation-mixin';
 import formatedScoresMixin from '@/mixins/formated-scores-mixin';
 
 const modalElementTableMixin = {
