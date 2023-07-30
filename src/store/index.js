@@ -10,12 +10,10 @@ export default createStore({
   },
 
   getters: {
-    editingElementIndex: (state) => {
-      if (state.editingElement.index) {
-        return state.editingElement.index;
-      } else {
-        return 0;
-      }
+    programTotalScores(state) {
+      return state.program.reduce((sumScores, programElement) => {
+        return sumScores + programElement.fullElementScores;
+      }, 0);
     },
   },
 

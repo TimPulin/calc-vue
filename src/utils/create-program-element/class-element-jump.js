@@ -8,7 +8,14 @@ export class ElementJump extends ProgramElement {
     this._elementName.push(createNewJump());
 
     this.secondPart = false;
+
+    this.lockEdge = true;
+    this.lockEu = true;
   }
+
+  // getJumpIndex() {
+  //   console.log(createNewJump.prototype);
+  // }
 
   addNewJump() {
     const newJump = createNewJump();

@@ -71,7 +71,8 @@ export class ProgramElement {
   }
 
   _getSecondPartRatio() {
-    return this.secondPart ? 1.1 : 1;
+    // проверка именно на true - обязательна!!!
+    return this.secondPart === true ? 1.1 : 1;
   }
 
   _getGoeBonus() {
