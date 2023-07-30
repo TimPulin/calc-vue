@@ -40,16 +40,20 @@ export default {
   },
 
   mounted() {
-    const modalElement = new Modal('#modal-element', {
-      backdrop: 'static',
-    });
-    this.$store.commit('setModalElement', modalElement);
+    this.createNewModal();
     this.overlayBody = this.$refs.overlayBody;
   },
 
   methods: {
     updateOverlayModal(value) {
       this.overlayModal = value;
+    },
+
+    createNewModal() {
+      const modalElement = new Modal('#modal-element', {
+        backdrop: 'static',
+      });
+      this.$store.commit('setModalElement', modalElement);
     },
   },
 };

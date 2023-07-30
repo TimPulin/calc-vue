@@ -116,7 +116,7 @@ export default {
     updateEditingElementProperty,
   ],
 
-  emits: ['update:overlayModal'],
+  emits: ['update:overlay-modal'],
 
   data() {
     return {
@@ -140,13 +140,18 @@ export default {
 
   computed: {
     ...mapState({
-      element: 'editingElement',
+      editingElement: 'editingElement',
+      modal: 'modalElement',
     }),
 
     localOverlayModal: {
       set(value) {
-        this.$emit('update:overlayModal', value);
+        this.$emit('update:overlay-modal', value);
       },
+    },
+
+    element() {
+      return this.editingElement;
     },
 
     benchmarkOptionsElement() {
@@ -167,6 +172,7 @@ export default {
     ...mapMutations({
       updateElementPropert: 'updateEditingElementSingleProperty',
       saveElement: 'copyEditingElementToProgramElement',
+      cleanUpElement: 'setEditingElement',
     }),
 
     isShow(currentType) {
@@ -192,6 +198,7 @@ export default {
 
     handleSaveElement(event) {
       this.saveElement();
+      this.currentElementIndex = 0;
       this.callToCloseModal(event);
     },
   },

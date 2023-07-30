@@ -9,6 +9,16 @@ export default createStore({
     editingElement: {},
   },
 
+  getters: {
+    editingElementIndex: (state) => {
+      if (state.editingElement.index) {
+        return state.editingElement.index;
+      } else {
+        return 0;
+      }
+    },
+  },
+
   mutations: {
     cleanupProgram(state) {
       state.program.splice(0, state.program.length);

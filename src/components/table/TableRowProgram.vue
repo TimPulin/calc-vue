@@ -64,8 +64,6 @@ import OptionsPanelNumber from '../options/OptionsPanelNumber.vue';
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
 import openModalAnimationMixin from '@/mixins/open&close-modal-animation/open-modal-animation-mixin';
 
-import { mapState } from 'vuex';
-
 export default {
   components: {
     ButtonOptions,
@@ -89,8 +87,6 @@ export default {
   },
 
   computed: {
-    ...mapState(['modalElement']),
-
     scores() {
       return formatScores(this.programElement.fullElementScores);
     },
@@ -139,7 +135,6 @@ export default {
     },
 
     openPanelGoe(event) {
-      console.log(this.programElement);
       this.isOptionsOpen.panelGoeOpen = true;
       this.addClickListenerOnDocument('panelGoeOpen', event.target);
     },

@@ -21,11 +21,10 @@
       </tr>
     </thead>
     <tbody class="tbody">
-      <!-- TODO убрать  TableJumpRow и поставить его содержимое сюда-->
       <transition-group name="list">
         <TableJumpRow
           v-for="(name, index) in nameList"
-          :key="index"
+          :key="index + componentIndex"
           :name-list="name"
           :index="index"
           :benchmark="benchmark"
@@ -65,6 +64,12 @@ export default {
   },
 
   emits: ['add-jump', 'delete-jump', 'open-options'],
+
+  computed: {
+    componentIndex() {
+      return Math.random().toString();
+    },
+  },
 };
 </script>
 
