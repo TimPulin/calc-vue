@@ -36,7 +36,7 @@ class NewElement {
   }
 }
 
-class NewElementJump extends NewElement {
+export class NewElementJump extends NewElement {
   constructor() {
     super();
     this.rotations = '';

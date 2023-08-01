@@ -151,9 +151,6 @@ export default {
     },
 
     element() {
-      // if (this.editingElement.getJumpIndex) {
-      //   console.log(this.editingElement.getJumpIndex());
-      // }
       return this.editingElement;
     },
 

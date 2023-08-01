@@ -5,17 +5,13 @@ export class ElementJump extends ProgramElement {
   constructor(index) {
     super(index);
     this._type = 'jump';
-    this._elementName.push(createNewJump());
+    this.addNewJump();
 
     this.secondPart = false;
 
     this.lockEdge = true;
     this.lockEu = true;
   }
-
-  // getJumpIndex() {
-  //   console.log(createNewJump.prototype);
-  // }
 
   addNewJump() {
     const newJump = createNewJump();
