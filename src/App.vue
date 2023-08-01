@@ -2,7 +2,7 @@
   <div class="overlay" id="overlayBody" ref="overlayBody"></div>
   <ModalElement @update:overlay-modal="updateOverlayModal" />
 
-  <SiteHeader />
+  <h1 class="page-title">Калькулятор программ фигурного катания</h1>
 
   <main>
     <div class="container">
@@ -16,10 +16,9 @@ import { Modal } from 'bootstrap';
 import { computed } from 'vue';
 
 import ModalElement from '@/components/modal/ModalElement.vue';
-import SiteHeader from './components/site/SiteHeader.vue';
 
 export default {
-  components: { ModalElement, SiteHeader },
+  components: { ModalElement },
 
   provide() {
     return {
