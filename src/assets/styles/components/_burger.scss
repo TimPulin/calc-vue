@@ -7,6 +7,7 @@
     position: relative;
     width: 40px;
     height: 23px;
+    z-index: 1200;
 
     &:hover {
       .burger__line {
@@ -24,6 +25,7 @@
     height: 4px;
     border-radius: 5px;
     background-color: $color-primary;
+    box-shadow: 1px 1px 1px 1px $color-primary_light;
 
     &:nth-child(1) {
       top: 0;

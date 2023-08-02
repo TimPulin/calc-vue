@@ -11,18 +11,26 @@
     left: 0;
 
     display: flex;
-    padding: 15px;
+    flex-direction: column;
+    row-gap: 20px;
+    padding-top: 50px;
+    padding-inline: 15px;
     width: 50%;
     max-width: 420px;
     min-width: 250px;
     height: 100vh;
 
     background-color: #fff;
+    box-shadow: 0 1px 10px 1px $color-grey;
     overflow-y: auto;
     visibility: hidden;
     transform: translateX(-120%);
     transition: visibility .3s ease, transform .3s ease;
     z-index: 1100;
+
+    .svg {
+      fill: #333;
+    }
   }
 
   &__panel--open {
@@ -35,14 +43,14 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    row-gap: 10px
+    row-gap: 10px;
+    padding-left: 10px;
   }
 
   &__link {
     @include link-reset;
     @include background;
     background-size: 16px;
-    padding-left: 20px;
     font-size: 18px;
     line-height: 100%;
     color: $color-black;
@@ -50,22 +58,38 @@
 
     &:focus-visible {
       color: $color-primary_shade;
+
+      .svg {
+        fill: $color-primary_shade;
+      }
     }
 
     &:hover {
       color: $color-primary;
       background-color: inherit;
+
+      .svg {
+        fill: $color-primary;
+      }
     }
 
     &:active {
       color: $color-primary_shade;
       background-color: inherit;
+
+      .svg {
+        fill: $color-primary_shade;
+      }
     }
   }
 
   &__link--calc {
     background-image: url('../images/icons/calculator.svg');
+  }
 
+  &__link--donate {
+    padding-left: 22px;
+    background-image: url('../images/icons/pink-donut.png');
   }
 
   &__title {

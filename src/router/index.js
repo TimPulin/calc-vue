@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import PageCalc from '@/pages/PageCalc';
 import PageGuideValue from '@/pages/PageGuideValue';
+import PageDonate from '@/pages/PageDonate';
 import PageNotFound from '@/pages/PageNotFound';
 
 const routes = [
@@ -13,6 +14,11 @@ const routes = [
     path: '/guide-value',
     name: 'guide-value',
     component: PageGuideValue,
+  },
+  {
+    path: '/donation',
+    name: 'donation',
+    component: PageDonate,
   },
   {
     path: '/:pathMatch(.*)*',
