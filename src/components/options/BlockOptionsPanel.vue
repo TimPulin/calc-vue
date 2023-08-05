@@ -38,7 +38,7 @@
     @options-is-closed="onOptionsIsClosed"
   >
     <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
-    <OptionRadioThombUp
+    <RadioThombUp
       name="underrotate"
       :local-value="''"
       v-model="localUnderrotate"
@@ -58,11 +58,7 @@
     @options-is-closed="onOptionsIsClosed"
   >
     <!-- TODO приствоить local-value = null, сделать проверку на null в  class Jump-->
-    <OptionRadioThombUp
-      name="jump-edge"
-      :local-value="''"
-      v-model="localEdge"
-    />
+    <RadioThombUp name="jump-edge" :local-value="''" v-model="localEdge" />
   </OptionsPanelBase>
 
   <OptionsPanelBase
@@ -107,7 +103,7 @@
 
 <script>
 import OptionsPanelBase from '@/components/options/base/OptionsPanelBase.vue';
-import OptionRadioThombUp from '@/components/options/OptionRadioThombUp.vue';
+import RadioThombUp from '@/components/checkbox/RadioThombUp.vue';
 
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
 import updateEditingElementProperty from '@/mixins/update-editing-element-property-mixin';
@@ -115,7 +111,7 @@ import updateEditingElementProperty from '@/mixins/update-editing-element-proper
 export default {
   components: {
     OptionsPanelBase,
-    OptionRadioThombUp,
+    RadioThombUp,
   },
 
   mixins: [clickListenerOnDocumentMixin, updateEditingElementProperty],

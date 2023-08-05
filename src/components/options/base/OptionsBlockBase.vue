@@ -1,17 +1,18 @@
 <template>
   <div class="wrapper-modal-panel">
     <ButtonOptions @click="openPanel($event)">
-      {{ elementProperty }}
+      {{ modelValue }}
     </ButtonOptions>
 
     <OptionsPanelNumber
       class="options--modal-panel"
+      :class="classExtended"
       options-class-animation="table-calc-options"
       options-class-duration="--open-options-animation-duration"
       :panel-options-open="isOptionsOpen.panelOptionsOpen"
       :name="optionsPanelName"
       :listRadio="listRadio"
-      :model-value="elementProperty"
+      :model-value="modelValue"
       @update:model-value="$emit('update:model-value', $event)"
     />
   </div>
@@ -26,7 +27,12 @@ export default {
   components: { OptionsPanelNumber, ButtonOptions },
   mixins: [clickListenerOnDocumentMixin],
 
-  props: ['listRadio', 'elementProperty', 'optionsPanelName'],
+  props: {
+    listRadio: Array,
+    modelValue: [String, Number],
+    optionsPanelName: String,
+    classExtended: { type: String },
+  },
 
   data() {
     return {

@@ -2,34 +2,18 @@
   <tr>
     <td>{{ elementInitProperties.legend }}</td>
 
-    <OptionsBlockBase
-      :options-panel-name="optionsPanelName"
-      :list-radio="listRadioGoe"
-      :element-property="elementProperty"
-      @update:model-value="updateElementGoe($event)"
-    />
-
-    <td>
-      <ButtonOptions @click="openPanelLevel($event)">
-        {{ element.elementName[0].level }}
-      </ButtonOptions>
-
-      <OptionsPanelNumber
-        class="options--goe"
-        options-class-animation="table-calc-options"
-        options-class-duration="--open-options-animation-duration"
-        v-model:panel-options-open="isOptionsOpen.panelLevelOpen"
-        :name="`level-${index}`"
-        :list-radio="['B', 1, 2, 3, 4]"
+    <td class="tr__section">
+      <OptionsBlockLevel
+        :index="element.index"
         :model-value="element.elementName[0].level"
         @update:model-value="updateElementProperty($event, 'level')"
       />
     </td>
+
     <td class="tr__section">
-      <OptionsBlockBase
-        :options-panel-name="optionsPanelName"
-        :list-radio="listRadioGoe"
-        :element-property="elementProperty"
+      <OptionsBlockGoe
+        :index="element.index"
+        :model-value="element.goe"
         @update:model-value="updateElementGoe($event)"
       />
     </td>
@@ -40,12 +24,14 @@
 import createProgramElement from '@/utils/create-program-element/create-program-element.js';
 
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
-import OptionsBlockBase from '@/components/options/base/OptionsBlockBase.vue';
-import ButtonOptions from '@/components/buttons/ButtonOptions.vue';
-import OptionsPanelNumber from '../options/OptionsPanelNumber.vue';
+import OptionsBlockLevel from '@/components/options/OptionsBlockLevel.vue';
+import OptionsBlockGoe from '@/components/options/OptionsBlockGoe.vue';
 
 export default {
-  components: { OptionsBlockBase, ButtonOptions, OptionsPanelNumber },
+  components: {
+    OptionsBlockLevel,
+    OptionsBlockGoe,
+  },
 
   mixins: [clickListenerOnDocumentMixin],
 
@@ -64,20 +50,12 @@ export default {
       },
 
       element: {},
-
-      listRadioLevel: ['B', 1, 2, 3, 4],
-
-      listRadioGoe: [-1, -2, -3, -4, -5, 0, 1, 2, 3, 4, 5],
     };
   },
 
   computed: {
     optionsPanelName() {
       return `goe-${this.element.index}`;
-    },
-
-    elementProperty() {
-      return this.element.goe;
     },
   },
 
@@ -87,6 +65,7 @@ export default {
       this.elementInitProperties.type,
       this.elementInitProperties.name
     );
+
     this.element.elementName[0].level = 'B';
   },
 

@@ -110,15 +110,9 @@
   display: inline-block;
 }
 
-.options--modal-panel {
-  top: 0;
+@mixin options--modal-panel {
+  top: 0px;
   right: 0;
-  grid-template-columns: repeat(5, 32px);
-  grid-template-rows: repeat(3, 32px);
-  flex-direction: row;
-  gap: 10px;
-  width: 39px;
-  height: 0;
 
   .checkbox {
     display: flex;
@@ -126,12 +120,31 @@
     height: 32px;
     width: 32px;
   }
+}
+
+.options--modal-panel {
+  @include options--modal-panel;
+
+  gap: 10px;
+  width: 39px;
+  height: 0;
+}
+
+.options--modal-panel-goe {
+  grid-template-columns: repeat(5, 32px);
+  grid-template-rows: repeat(3, 32px);
+  // flex-direction: row;
 
   .checkbox:nth-child(6) {
     grid-column: 1 / span 5;
     grid-row: 2/ 3;
     justify-self: center;
   }
+}
+
+.options--modal-panel-level {
+  grid-template-columns: repeat(5, 32px);
+  align-items: center;
 }
 
 .options--visible {

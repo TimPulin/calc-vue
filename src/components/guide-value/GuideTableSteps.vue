@@ -10,7 +10,7 @@
     </thead>
 
     <tbody>
-      <GuideTableRow
+      <GuideRowStep
         v-for="(elementInitProperties, index) in elementInitPropertiesList"
         :key="index"
         :index="index"
@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import GuideTableRow from '@/components/guide-value/GuideTableRow.vue';
+import GuideRowStep from '@/components/guide-value/GuideRowStep.vue';
 export default {
-  components: { GuideTableRow },
+  components: { GuideRowStep },
 
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
         {
           type: 'step',
           abbreviation: 'StSq',
-          name: 'Дорожка',
+          legend: 'Дорожка',
         },
         {
           type: 'step',
