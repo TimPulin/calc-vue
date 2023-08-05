@@ -1,8 +1,8 @@
 import { elementsValueList } from '../elements-value-list';
 
 class NewElement {
-  constructor() {
-    this.name = '';
+  constructor(name = '') {
+    this.name = name;
   }
 
   get fullName() {
@@ -37,8 +37,8 @@ class NewElement {
 }
 
 export class NewElementJump extends NewElement {
-  constructor() {
-    super();
+  constructor(name = '') {
+    super(name);
     this.rotations = '';
     // TODO = проверку на nul;
     this.underrotate = '';
@@ -55,9 +55,9 @@ export class NewElementJump extends NewElement {
   }
 }
 
-class NewElementSpin extends NewElement {
-  constructor() {
-    super();
+export class NewElementSpin extends NewElement {
+  constructor(name = '') {
+    super(name);
     this.fly = false;
     this.change = false;
     this.level = '';
@@ -79,9 +79,9 @@ class NewElementSpin extends NewElement {
   }
 }
 
-class NewElementStep extends NewElement {
-  constructor() {
-    super();
+export class NewElementStep extends NewElement {
+  constructor(name = '') {
+    super(name);
     this.level = '';
   }
 

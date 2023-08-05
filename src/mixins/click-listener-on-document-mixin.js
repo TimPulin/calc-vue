@@ -1,6 +1,6 @@
 import getAnimationDelay from '@/utils/get-animation-delay';
 
-//  УСТАНОВТЬ В КОМПОНЕНТЕ optionsClassDuration
+//  УСТАНОВИТЬ В КОМПОНЕНТЕ optionsClassDuration
 
 const clickListenerOnDocumentMixin = {
   methods: {

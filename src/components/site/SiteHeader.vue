@@ -21,21 +21,13 @@
         >
           <ul class="nav__list">
             <li class="nav__item">
-              <router-link
-                class="nav__link"
-                :to="{ path: '/' }"
-                @click="onLinkClick"
-              >
+              <router-link class="nav__link" :to="{ path: '/' }">
                 <IconCalc />
                 Калькулятор
               </router-link>
             </li>
             <li>
-              <router-link
-                class="nav__link"
-                :to="{ path: '/guide-value' }"
-                @click="onLinkClick"
-              >
+              <router-link class="nav__link" :to="{ path: '/guide-value' }">
                 <IconBook />
                 Справочник стоимости элементов
               </router-link>
@@ -44,7 +36,6 @@
               <router-link
                 class="nav__link nav__link--donate"
                 :to="{ path: '/donation' }"
-                @click="onLinkClick"
               >
                 Поблагодарить
               </router-link>
@@ -88,7 +79,6 @@ export default {
       document.addEventListener(
         'click',
         (event) => {
-          console.log(event.target);
           if (event.target !== this.refNavPanel) {
             this.navPanelOpen = false;
           }

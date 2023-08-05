@@ -1,0 +1,38 @@
+.panel-tabs {
+  @include list-reset;
+
+  display: flex;
+  column-gap: 15px;
+
+  .checkbox--checked {
+    background-color: inherit;
+    color: $color-primary;
+  }
+}
+
+.options--panel-tabs {
+
+  .options__checkbox {
+    border: none;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    font-size: 20px;
+    color: black;
+    transition: color .2s ease-in, border-bottom-color .5s ease-in;
+
+    &:hover,
+    &:active {
+      background-color: inherit;
+      color: $color-primary;
+    }
+  }
+
+  .checkbox--checked {
+    border-bottom-color: $color-primary_shade;
+    color: $color-primary_shade;
+
+    &:hover {
+      border-bottom-color: $color-primary;
+    }
+  }
+}

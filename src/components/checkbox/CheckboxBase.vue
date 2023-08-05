@@ -41,7 +41,7 @@ export default {
     },
   },
 
-  emits: ['update: modelValue'],
+  emits: ['update:model-value'],
 
   computed: {
     currentValue: {
@@ -49,7 +49,7 @@ export default {
         return this.modelValue;
       },
       set(localValue) {
-        this.$emit('update:modelValue', localValue);
+        this.$emit('update:model-value', localValue);
       },
     },
     classesObject() {

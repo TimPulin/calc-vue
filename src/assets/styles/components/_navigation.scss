@@ -24,8 +24,9 @@
     box-shadow: 0 1px 10px 1px $color-grey;
     overflow-y: auto;
     visibility: hidden;
+    opacity: 0;
     transform: translateX(-120%);
-    transition: visibility .3s ease, transform .3s ease;
+    transition: visibility .3s ease, transform .3s ease-out, opacity .3s ease;
     z-index: 1100;
 
     .svg {
@@ -35,6 +36,7 @@
 
   &__panel--open {
     visibility: visible;
+    opacity: 1;
     transform: translateX(0)
   }
 
@@ -90,6 +92,10 @@
   &__link--donate {
     padding-left: 22px;
     background-image: url('../images/icons/pink-donut.png');
+
+    &:hover {
+      color: #e16cca;
+    }
   }
 
   &__title {

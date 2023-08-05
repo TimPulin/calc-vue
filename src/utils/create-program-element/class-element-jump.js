@@ -2,10 +2,10 @@ import { ProgramElement } from './class-program-element';
 import { createNewJump } from './create-new-element';
 
 export class ElementJump extends ProgramElement {
-  constructor(index) {
+  constructor(index, name = '') {
     super(index);
     this._type = 'jump';
-    this.addNewJump();
+    this.addNewJump(name);
 
     this.secondPart = false;
 
