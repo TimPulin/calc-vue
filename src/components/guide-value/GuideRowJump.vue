@@ -11,6 +11,22 @@
     </td>
 
     <td class="tr__section">
+      <OptionsBlockUnderrotate
+        :index="element.index"
+        :model-value="name.underrotate"
+        @update:model-value="updateElementProperty($event, 'underrotate')"
+      />
+    </td>
+
+    <td class="tr__section">
+      <OptionsBlockEdge
+        :index="element.index"
+        :model-value="name.edge"
+        @update:model-value="updateElementProperty($event, 'edge')"
+      />
+    </td>
+
+    <td class="tr__section">
       <OptionsBlockGoe
         :index="element.index"
         :model-value="element.goe"
@@ -30,11 +46,15 @@
 import guideRowMixin from '@/mixins/guide-row-mixin';
 
 import OptionsBlockRotation from '@/components/options/OptionsBlockRotation.vue';
+import OptionsBlockUnderrotate from '@/components/options/OptionsBlockUnderrotate.vue';
 import OptionsBlockGoe from '@/components/options/OptionsBlockGoe.vue';
+import OptionsBlockEdge from '@/components/options/OptionsBlockEdge.vue';
 
 export default {
   components: {
     OptionsBlockRotation,
+    OptionsBlockUnderrotate,
+    OptionsBlockEdge,
     OptionsBlockGoe,
   },
 

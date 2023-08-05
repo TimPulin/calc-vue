@@ -3,8 +3,7 @@
     <ButtonOptions @click="openPanel($event)">
       {{ modelValue }}
     </ButtonOptions>
-
-    <OptionsPanelNumber
+    <OptionsPanelBase
       class="options--modal-panel"
       :class="classExtended"
       options-class-animation="table-calc-options"
@@ -14,17 +13,19 @@
       :listRadio="listRadio"
       :model-value="modelValue"
       @update:model-value="$emit('update:model-value', $event)"
-    />
+    >
+      <slot></slot>
+    </OptionsPanelBase>
   </div>
 </template>
 
 <script>
-import OptionsPanelNumber from '@/components/options/OptionsPanelNumber.vue';
+import OptionsPanelBase from '@/components/options/base/OptionsPanelBase.vue';
 import ButtonOptions from '@/components/buttons/ButtonOptions.vue';
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
 
 export default {
-  components: { OptionsPanelNumber, ButtonOptions },
+  components: { OptionsPanelBase, ButtonOptions },
   mixins: [clickListenerOnDocumentMixin],
 
   props: {

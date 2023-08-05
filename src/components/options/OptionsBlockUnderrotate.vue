@@ -6,26 +6,33 @@
     :model-value="modelValue"
     @update:model-value="$emit('update:model-value', $event)"
   >
+    <RadioThombUp
+      :name="optionsPanelName"
+      :local-value="''"
+      :model-value="modelValue"
+      @update:model-value="$emit('update:model-value', $event)"
+    />
   </OptionsBlockBase>
 </template>
 
 <script>
 import OptionsBlockBase from '@/components/options/base/OptionsBlockBase.vue';
+import RadioThombUp from '@/components/checkbox/RadioThombUp.vue';
 
 export default {
-  components: { OptionsBlockBase },
+  components: { OptionsBlockBase, RadioThombUp },
   props: {
     modelValue: [String, Number],
     index: Number,
   },
   data() {
     return {
-      listRadio: [1, 2, 3, 4],
+      listRadio: ['q', '<', '<<'],
     };
   },
   computed: {
     optionsPanelName() {
-      return `rotations-${this.index}`;
+      return `underrotate-${this.index}`;
     },
   },
 };
