@@ -133,7 +133,6 @@
 .options--modal-panel-goe {
   grid-template-columns: repeat(5, 32px);
   grid-template-rows: repeat(3, 32px);
-  // flex-direction: row;
 
   .checkbox:nth-child(6) {
     grid-column: 1 / span 5;
@@ -142,9 +141,10 @@
   }
 }
 
-.options--modal-panel-level {
-  grid-template-columns: repeat(5, 32px);
+.options--modal-panel-auto {
+  grid-template-columns: repeat(auto-fit, minmax(32px, auto));
   align-items: center;
+  justify-content: space-between;
 }
 
 .options--visible {

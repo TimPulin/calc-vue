@@ -13,8 +13,8 @@ export class ElementJump extends ProgramElement {
     this.lockEu = true;
   }
 
-  addNewJump() {
-    const newJump = createNewJump();
+  addNewJump(name = '') {
+    const newJump = createNewJump(name);
     if (this._elementName.length < 3) {
       this._elementName.push(newJump);
     } else {

@@ -3,10 +3,10 @@
     <td>{{ elementInitProperties.legend }}</td>
 
     <td class="tr__section">
-      <OptionsBlockLevel
+      <OptionsBlockRotation
         :index="element.index"
-        :model-value="element.elementName[0].level"
-        @update:model-value="updateElementProperty($event, 'level')"
+        :model-value="name.rotations"
+        @update:model-value="updateElementProperty($event, 'rotations')"
       />
     </td>
 
@@ -29,12 +29,12 @@
 <script>
 import guideRowMixin from '@/mixins/guide-row-mixin';
 
-import OptionsBlockLevel from '@/components/options/OptionsBlockLevel.vue';
+import OptionsBlockRotation from '@/components/options/OptionsBlockRotation.vue';
 import OptionsBlockGoe from '@/components/options/OptionsBlockGoe.vue';
 
 export default {
   components: {
-    OptionsBlockLevel,
+    OptionsBlockRotation,
     OptionsBlockGoe,
   },
 
@@ -42,7 +42,7 @@ export default {
 
   methods: {
     setElementProperties() {
-      this.element.elementName[0].level = 'B';
+      this.element.elementName[0].rotations = 1;
     },
   },
 };

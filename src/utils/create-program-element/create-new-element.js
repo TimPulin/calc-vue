@@ -90,16 +90,16 @@ export class NewElementStep extends NewElement {
   }
 }
 
-function createNewJump() {
-  return new NewElementJump();
+function createNewJump(name = '') {
+  return new NewElementJump(name);
 }
 
-function createNewSpin() {
-  return new NewElementSpin();
+function createNewSpin(name = '') {
+  return new NewElementSpin(name);
 }
 
-function createNewStep() {
-  return new NewElementStep();
+function createNewStep(name = '') {
+  return new NewElementStep(name);
 }
 
 export { createNewJump, createNewSpin, createNewStep };

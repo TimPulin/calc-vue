@@ -30,12 +30,12 @@ export default {
       elementInitPropertiesList: [
         {
           type: 'step',
-          abbreviation: 'StSq',
+          name: 'StSq',
           legend: 'Дорожка',
         },
         {
           type: 'step',
-          abbreviation: 'ChSq',
+          name: 'ChSq',
           legend: 'Хореографическая последовательность',
         },
       ],

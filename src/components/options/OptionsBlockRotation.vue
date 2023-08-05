@@ -19,12 +19,12 @@ export default {
   },
   data() {
     return {
-      listRadio: ['B', 1, 2, 3, 4],
+      listRadio: [1, 2, 3, 4],
     };
   },
   computed: {
     optionsPanelName() {
-      return `level-${this.index}`;
+      return `rotations-${this.index}`;
     },
   },
 };
