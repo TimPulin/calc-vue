@@ -80,6 +80,7 @@
   height: 0;
 }
 
+// TODO заменить везде options--goe на options--modal-panel
 .options--goe {
   top: 5px;
   right: 5px;
@@ -104,9 +105,14 @@
   }
 }
 
+.wrapper-modal-panel {
+  position: relative;
+  display: inline-block;
+}
+
 .options--modal-panel {
-  top: 5px;
-  right: 5px;
+  top: 0;
+  right: 0;
   grid-template-columns: repeat(5, 32px);
   grid-template-rows: repeat(3, 32px);
   flex-direction: row;

@@ -1,5 +1,5 @@
 <template>
-  <td class="tr__section tr__section--goe">
+  <div class="wrapper-modal-panel">
     <ButtonOptions @click="openPanel($event)">
       {{ elementProperty }}
     </ButtonOptions>
@@ -14,7 +14,7 @@
       :model-value="elementProperty"
       @update:model-value="$emit('update:model-value', $event)"
     />
-  </td>
+  </div>
 </template>
 
 <script>

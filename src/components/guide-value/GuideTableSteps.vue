@@ -36,7 +36,7 @@ export default {
         {
           type: 'step',
           abbreviation: 'ChSq',
-          name: 'Хореографическая последовательность',
+          legend: 'Хореографическая последовательность',
         },
       ],
     };

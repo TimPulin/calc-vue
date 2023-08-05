@@ -1,6 +1,14 @@
 <template>
   <tr>
     <td>{{ elementInitProperties.legend }}</td>
+
+    <OptionsBlockBase
+      :options-panel-name="optionsPanelName"
+      :list-radio="listRadioGoe"
+      :element-property="elementProperty"
+      @update:model-value="updateElementGoe($event)"
+    />
+
     <td>
       <ButtonOptions @click="openPanelLevel($event)">
         {{ element.elementName[0].level }}
@@ -17,13 +25,14 @@
         @update:model-value="updateElementProperty($event, 'level')"
       />
     </td>
-
-    <TdPanelBase
-      :options-panel-name="optionsPanelName"
-      :list-radio="listRadio"
-      :element-property="elementProperty"
-      @update:model-value="updateElementGoe($event)"
-    />
+    <td class="tr__section">
+      <OptionsBlockBase
+        :options-panel-name="optionsPanelName"
+        :list-radio="listRadioGoe"
+        :element-property="elementProperty"
+        @update:model-value="updateElementGoe($event)"
+      />
+    </td>
   </tr>
 </template>
 
@@ -31,12 +40,12 @@
 import createProgramElement from '@/utils/create-program-element/create-program-element.js';
 
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';
-import TdPanelBase from '@/components/table/TdPanelBase.vue';
+import OptionsBlockBase from '@/components/options/base/OptionsBlockBase.vue';
 import ButtonOptions from '@/components/buttons/ButtonOptions.vue';
 import OptionsPanelNumber from '../options/OptionsPanelNumber.vue';
 
 export default {
-  components: { TdPanelBase, ButtonOptions, OptionsPanelNumber },
+  components: { OptionsBlockBase, ButtonOptions, OptionsPanelNumber },
 
   mixins: [clickListenerOnDocumentMixin],
 
@@ -56,7 +65,9 @@ export default {
 
       element: {},
 
-      listRadio: [-1, -2, -3, -4, -5, 0, 1, 2, 3, 4, 5],
+      listRadioLevel: ['B', 1, 2, 3, 4],
+
+      listRadioGoe: [-1, -2, -3, -4, -5, 0, 1, 2, 3, 4, 5],
     };
   },
 

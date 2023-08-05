@@ -4,7 +4,14 @@
   --display: flex;
 }
 
+// TODO заменить везде .tr__section--goe на .wrapper-modal-panel
 .tr__section--goe {
+  --width: 200px;
+  --height: 116px;
+  --display: grid;
+}
+
+.wrapper-modal-panel {
   --width: 200px;
   --height: 116px;
   --display: grid;
