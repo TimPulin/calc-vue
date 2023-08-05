@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import OptionsPanelBase from '@/components/options/OptionsPanelBase.vue';
+import OptionsPanelBase from '@/components/options/base/OptionsPanelBase.vue';
 import OptionRadioThombUp from '@/components/options/OptionRadioThombUp.vue';
 
 import clickListenerOnDocumentMixin from '@/mixins/click-listener-on-document-mixin';

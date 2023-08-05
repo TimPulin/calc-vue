@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import RadioBase from '@/components/options/base/RadioBase.vue';
+import RadioBase from '@/components/checkbox/RadioBase.vue';
 
 export default {
   components: { RadioBase },

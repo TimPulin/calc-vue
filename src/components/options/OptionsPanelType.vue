@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import RadioBase from '@/components/options/base/RadioBase.vue';
+import RadioBase from '@/components/checkbox/RadioBase.vue';
 import IconJump from '@/components/icons/IconJump.vue';
 import IconSpin from '@/components/icons/IconSpin.vue';
 import IconStep from '@/components/icons/IconStep.vue';

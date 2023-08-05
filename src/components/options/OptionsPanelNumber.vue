@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import RadioBase from '@/components/options/base/RadioBase.vue';
+import RadioBase from '@/components/checkbox/RadioBase.vue';
 import optionsAnimationsMixin from '@/mixins/animations/options-animation-mixin';
 export default {
   components: { RadioBase },

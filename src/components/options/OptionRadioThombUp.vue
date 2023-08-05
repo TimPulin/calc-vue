@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import RadioBase from '@/components/options/base/RadioBase.vue';
+import RadioBase from '@/components/checkbox/RadioBase.vue';
 import IconsThombUp from '@/components/icons/IconsThombUp.vue';
 
 export default {
