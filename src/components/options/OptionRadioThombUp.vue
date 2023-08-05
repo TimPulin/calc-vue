@@ -1,20 +1,20 @@
 <template>
-  <OptionsRadioBase
+  <RadioBase
     :name="name"
     :local-value="localValue"
     :model-value="modelValue"
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <IconsThombUp />
-  </OptionsRadioBase>
+  </RadioBase>
 </template>
 
 <script>
-import OptionsRadioBase from '@/components/options/OptionsRadioBase.vue';
+import RadioBase from '@/components/options/base/RadioBase.vue';
 import IconsThombUp from '@/components/icons/IconsThombUp.vue';
 
 export default {
-  components: { OptionsRadioBase, IconsThombUp },
+  components: { RadioBase, IconsThombUp },
   props: ['name', 'localValue', 'modelValue'],
 };
 </script>

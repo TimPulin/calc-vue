@@ -1,6 +1,6 @@
 <template>
   <div class="options options--type" :class="[animationClassesObj]">
-    <OptionsRadioBase
+    <RadioBase
       name="element-type"
       local-value="jump"
       v-model="localValue"
@@ -8,9 +8,9 @@
     >
       <IconJump />
       Прыжок
-    </OptionsRadioBase>
+    </RadioBase>
 
-    <OptionsRadioBase
+    <RadioBase
       name="element-type"
       local-value="spin"
       v-model="localValue"
@@ -18,9 +18,9 @@
     >
       <IconSpin />
       Вращение
-    </OptionsRadioBase>
+    </RadioBase>
 
-    <OptionsRadioBase
+    <RadioBase
       name="element-type"
       local-value="step"
       v-model="localValue"
@@ -28,12 +28,12 @@
     >
       <IconStep />
       Дорожка
-    </OptionsRadioBase>
+    </RadioBase>
   </div>
 </template>
 
 <script>
-import OptionsRadioBase from '@/components/options/OptionsRadioBase.vue';
+import RadioBase from '@/components/options/base/RadioBase.vue';
 import IconJump from '@/components/icons/IconJump.vue';
 import IconSpin from '@/components/icons/IconSpin.vue';
 import IconStep from '@/components/icons/IconStep.vue';
@@ -41,7 +41,7 @@ import IconStep from '@/components/icons/IconStep.vue';
 import optionsAnimationsMixin from '@/mixins/animations/options-animation-mixin';
 
 export default {
-  components: { OptionsRadioBase, IconJump, IconSpin, IconStep },
+  components: { RadioBase, IconJump, IconSpin, IconStep },
 
   mixins: [optionsAnimationsMixin],
 

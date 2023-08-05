@@ -1,6 +1,6 @@
 <template>
   <div class="options" :class="animationClassesObj">
-    <OptionsRadioBase
+    <RadioBase
       v-for="(radio, index) in listRadio"
       :key="index"
       :name="name"
@@ -9,15 +9,15 @@
       @update:model-value="$emit('update:modelValue', $event)"
     >
       {{ radio }}
-    </OptionsRadioBase>
+    </RadioBase>
     <slot></slot>
   </div>
 </template>
 <script>
-import OptionsRadioBase from '@/components/options/OptionsRadioBase.vue';
+import RadioBase from '@/components/options/base/RadioBase.vue';
 import optionsAnimationsMixin from '@/mixins/animations/options-animation-mixin';
 export default {
-  components: { OptionsRadioBase },
+  components: { RadioBase },
 
   mixins: [optionsAnimationsMixin],
 

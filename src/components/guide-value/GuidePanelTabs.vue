@@ -1,45 +1,45 @@
 <template>
   <ul class="panel-tabs options--panel-tabs">
     <li class="panel-tabs__item">
-      <OptionsRadioBase
+      <RadioBase
         name="element-type"
         local-value="jump"
         :model-value="activeTab"
         @update:model-value="$emit('update:model-value', $event)"
       >
         Прыжок
-      </OptionsRadioBase>
+      </RadioBase>
     </li>
 
     <li class="panel-tabs__item">
-      <OptionsRadioBase
+      <RadioBase
         name="element-type"
         local-value="spin"
         :model-value="activeTab"
         @update:model-value="$emit('update:model-value', $event)"
       >
         Вращение
-      </OptionsRadioBase>
+      </RadioBase>
     </li>
 
     <li class="panel-tabs__item">
-      <OptionsRadioBase
+      <RadioBase
         name="element-type"
         local-value="step"
         :model-value="activeTab"
         @update:model-value="$emit('update:model-value', $event)"
       >
         Дорожка
-      </OptionsRadioBase>
+      </RadioBase>
     </li>
   </ul>
 </template>
 
 <script>
-import OptionsRadioBase from '@/components/options/OptionsRadioBase.vue';
+import RadioBase from '@/components/options/base/RadioBase.vue';
 
 export default {
-  components: { OptionsRadioBase },
+  components: { RadioBase },
 
   props: ['activeTab'],
 
