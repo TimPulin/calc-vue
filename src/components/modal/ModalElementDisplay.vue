@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import formatScores from '@/utils/format-scores';
-
 export default {
   props: ['element'],
 
@@ -23,7 +21,7 @@ export default {
     },
 
     scores() {
-      return formatScores(this.element.fullElementBaseScores);
+      return this.element.fullElementBaseScores;
     },
   },
 };

@@ -1,6 +1,12 @@
 <template>
   <tr>
-    <td>{{ elementInitProperties.legend }}</td>
+    <td class="table__element-legend" colspan="7">
+      {{ elementInitProperties.legend }}
+    </td>
+  </tr>
+
+  <tr>
+    <td class="tr__section">{{ element.fullElementName }}</td>
 
     <td class="tr__section">
       <OptionsBlockRotation
@@ -35,11 +41,13 @@
       />
     </td>
 
-    <td>
-      <div class="tr__wrapper">
-        {{ element.fullElementScores }}
-      </div>
+    <td class="tr__section">
+      {{ element.fullElementScores }}
     </td>
+  </tr>
+
+  <tr class="tr--empty">
+    <td class="tr__section"></td>
   </tr>
 </template>
 

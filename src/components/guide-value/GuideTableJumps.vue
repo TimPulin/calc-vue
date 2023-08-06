@@ -1,5 +1,5 @@
 <template>
-  <table class="table">
+  <table class="table table--guide-value">
     <thead>
       <tr>
         <th class="tr__section">элемент</th>
@@ -12,6 +12,10 @@
     </thead>
 
     <tbody>
+      <tr class="tr--empty">
+        <td class="tr__section"></td>
+      </tr>
+
       <GuideRowJump
         v-for="(elementInitProperties, index) in elementInitPropertiesList"
         :key="index"

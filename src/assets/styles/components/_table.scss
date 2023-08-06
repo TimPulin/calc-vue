@@ -38,6 +38,14 @@
   }
 }
 
+.tr--empty {
+  box-shadow: unset;
+
+  .tr__section {
+    padding: 5px 0;
+  }
+}
+
 .table--calc {
   .thead {
     text-transform: lowercase;
@@ -47,15 +55,6 @@
     .tr {
       box-shadow: 0 0 4px $color-grey;
     }
-  }
-
-  .tr--empty {
-    box-shadow: unset;
-
-    .tr__section {
-      padding: 5px 0;
-    }
-
   }
 
   .tr__section {
@@ -186,3 +185,13 @@
 }
 
 /* element */
+
+/* guide-value */
+.table--guide-value {
+
+  .table__element-legend {
+    font-weight: 500;
+  }
+}
+
+/* end guide-value */
