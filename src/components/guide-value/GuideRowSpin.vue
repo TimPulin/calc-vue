@@ -42,6 +42,7 @@
       <div class="tr__wrapper">
         <CheckboxBase
           class="checkbox--option"
+          :class="buttonVClasses"
           name="v-error"
           :local-value="true"
           :model-value="name.v"
@@ -83,6 +84,20 @@ export default {
   },
 
   mixins: [guideRowMixin],
+
+  data() {
+    return {
+      isButtonVLocked: false,
+    };
+  },
+
+  computed: {
+    buttonVClasses() {
+      return {
+        'element-disabled': this.isButtonVLocked,
+      };
+    },
+  },
 
   methods: {
     setElementProperties() {

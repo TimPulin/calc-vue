@@ -21,6 +21,7 @@
     <td class="tr__section">
       <OptionsBlockEdge
         :index="element.index"
+        :is-button-options-show="isButtonOptionsEdgeShow"
         :model-value="name.edge"
         @update:model-value="updateElementProperty($event, 'edge')"
       />
@@ -59,6 +60,12 @@ export default {
   },
 
   mixins: [guideRowMixin],
+
+  computed: {
+    isButtonOptionsEdgeShow() {
+      return !this.element.elementName[0].lockEdge;
+    },
+  },
 
   methods: {
     setElementProperties() {

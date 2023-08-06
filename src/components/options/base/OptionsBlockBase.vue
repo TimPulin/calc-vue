@@ -1,8 +1,13 @@
 <template>
   <div class="wrapper-modal-panel">
-    <ButtonOptions @click="openPanel($event)">
+    <ButtonOptions
+      @click="openPanel($event)"
+      :class="classObject"
+      v-if="isButtonOptionsShow"
+    >
       {{ modelValue }}
     </ButtonOptions>
+
     <OptionsPanelBase
       class="options--modal-panel"
       :class="classExtended"
@@ -33,6 +38,14 @@ export default {
     modelValue: [String, Number],
     optionsPanelName: String,
     classExtended: { type: String },
+    isButtonOptionsShow: {
+      type: Boolean,
+      default: true,
+    },
+    isButtonOptionsLocked: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -41,6 +54,14 @@ export default {
         panelOptionsOpen: false,
       },
     };
+  },
+
+  computed: {
+    classObject() {
+      return {
+        'element-disabled': this.isButtonOptionsLocked,
+      };
+    },
   },
 
   methods: {

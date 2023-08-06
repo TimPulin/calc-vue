@@ -9,7 +9,6 @@ export class ElementJump extends ProgramElement {
 
     this.secondPart = false;
 
-    this.lockEdge = true;
     this.lockEu = true;
   }
 

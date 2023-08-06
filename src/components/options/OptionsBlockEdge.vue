@@ -3,6 +3,7 @@
     :options-panel-name="optionsPanelName"
     :list-radio="listRadio"
     class-extended="options--modal-panel-auto"
+    :is-button-options-show="isButtonOptionsShow"
     :model-value="modelValue"
     @update:model-value="$emit('update:model-value', $event)"
   >
@@ -24,6 +25,10 @@ export default {
   props: {
     modelValue: [String, Number],
     index: Number,
+    isButtonOptionsShow: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {

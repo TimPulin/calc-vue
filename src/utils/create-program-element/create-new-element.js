@@ -45,6 +45,14 @@ export class NewElementJump extends NewElement {
     this.edge = '';
   }
 
+  get lockEdge() {
+    if (this.name.toLowerCase() === 'f' || this.name.toLowerCase() === 'lz') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   _getFullName() {
     return this._getName([
       this.rotations,

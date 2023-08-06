@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    classExtention: {
+    classExtension: {
       type: String,
       default: null,
     },
@@ -15,8 +15,8 @@ export default {
 
   computed: {
     classExtended() {
-      return this.classExtention !== null
-        ? `button-options--${this.classExtention}`
+      return this.classExtension !== null
+        ? `button-options--${this.classExtension}`
         : null;
     },
   },

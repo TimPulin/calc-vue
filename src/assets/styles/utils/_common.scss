@@ -220,3 +220,8 @@ body {
 .page-title {
   text-align: center;
 }
+
+.element-disabled {
+  pointer-events: none;
+  filter: opacity(0.3) grayscale(50%);
+}

@@ -1,5 +1,5 @@
 <template>
-  <ButtonOptions classExtention="edit">
+  <ButtonOptions classExtension="edit">
     <span class="button-options__number">{{ index }}</span>
     <IconEdit />
   </ButtonOptions>
