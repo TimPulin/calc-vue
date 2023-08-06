@@ -74,6 +74,8 @@
 
 /* end calc */
 
+
+
 .table--element {
 
   .thead {
@@ -187,10 +189,16 @@
 /* element */
 
 /* guide-value */
+
 .table--guide-value {
 
   .table__element-legend {
     font-weight: 500;
+  }
+
+  .button-options {
+    height: 32px;
+    width: 38px;
   }
 }
 

@@ -1,9 +1,9 @@
 <template>
   <ul class="panel-tabs options--panel-tabs">
-    <li class="panel-tabs__item">
+    <li>
       <RadioBase
         name="element-type"
-        local-value="jump"
+        local-value="jumps"
         :model-value="activeTab"
         @update:model-value="$emit('update:model-value', $event)"
       >
@@ -11,10 +11,10 @@
       </RadioBase>
     </li>
 
-    <li class="panel-tabs__item">
+    <li>
       <RadioBase
         name="element-type"
-        local-value="spin"
+        local-value="spins"
         :model-value="activeTab"
         @update:model-value="$emit('update:model-value', $event)"
       >
@@ -22,10 +22,10 @@
       </RadioBase>
     </li>
 
-    <li class="panel-tabs__item">
+    <li>
       <RadioBase
         name="element-type"
-        local-value="step"
+        local-value="steps"
         :model-value="activeTab"
         @update:model-value="$emit('update:model-value', $event)"
       >

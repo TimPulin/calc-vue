@@ -5,36 +5,71 @@
     :active-tab="activeTab"
     @update:model-value="onUpdateActiveTab"
   />
-
-  <GuideTableJumps />
-  <GuideTableSpins />
-  <GuideTableSteps />
+  <div class="visible" :class="classObject">
+    <router-view />
+  </div>
 </template>
 
 <script>
 import GuidePanelTabs from '@/components/guide-value/GuidePanelTabs.vue';
-import GuideTableJumps from '@/components/guide-value/GuideTableJumps.vue';
-import GuideTableSpins from '@/components/guide-value/GuideTableSpins.vue';
-import GuideTableSteps from '@/components/guide-value/GuideTableSteps.vue';
 
 export default {
   components: {
     GuidePanelTabs,
-    GuideTableJumps,
-    GuideTableSpins,
-    GuideTableSteps,
   },
 
   data() {
     return {
-      activeTab: 'jump',
+      activeTab: 'jumps',
+      visibleOff: false,
     };
+  },
+
+  computed: {
+    classObject() {
+      return {
+        'visible--off': this.visibleOff,
+      };
+    },
+  },
+
+  watch: {
+    $route() {
+      this.setActiveTabName();
+    },
+  },
+
+  created() {
+    this.setActiveTabName();
   },
 
   methods: {
     onUpdateActiveTab(value) {
-      this.activeTab = value;
+      this.visibleOff = true;
+      setTimeout(() => {
+        this.$router.push({ path: `/guide-value/${value}` });
+        this.visibleOff = false;
+      }, 300);
+    },
+
+    setActiveTabName() {
+      const pathArr = window.location.href.split('/');
+      const name = pathArr.slice(-1)[0];
+
+      this.activeTab = name;
+      console.log(this.activeTab);
     },
   },
 };
 </script>
+
+<style>
+.visible {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.visible--off {
+  opacity: 0;
+}
+</style>

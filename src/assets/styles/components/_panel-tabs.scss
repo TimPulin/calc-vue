@@ -3,6 +3,7 @@
 
   display: flex;
   column-gap: 15px;
+  margin-bottom: 30px;
 
   .checkbox--checked {
     background-color: inherit;
@@ -18,7 +19,7 @@
     border-radius: 0;
     font-size: 20px;
     color: black;
-    transition: color .2s ease-in, border-bottom-color .5s ease-in;
+    transition: color .1s ease-in, border-bottom-color .1s ease-in;
 
     &:hover,
     &:active {

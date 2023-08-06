@@ -24,7 +24,7 @@
       />
     </td>
 
-    <td class="tr__section">
+    <td class="tr__section tr__section--edge">
       <OptionsBlockEdge
         :index="element.index"
         :is-button-options-show="isButtonOptionsEdgeShow"

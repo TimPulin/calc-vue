@@ -5,7 +5,7 @@
         <th class="tr__section">элемент</th>
         <th class="tr__section">F</th>
         <th class="tr__section">C</th>
-        <th class="tr__section">уровень</th>
+        <th class="tr__section">level</th>
         <th class="tr__section">V</th>
         <th class="tr__section">GOE</th>
         <th class="tr__section">баллы</th>
