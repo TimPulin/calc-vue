@@ -67,7 +67,7 @@
       />
     </td>
 
-    <td class="tr__section">
+    <td class="tr__section tr__section--scores">
       {{ element.fullElementScores }}
     </td>
   </tr>
@@ -93,17 +93,16 @@ export default {
 
   mixins: [guideRowMixin],
 
-  data() {
-    return {
-      isButtonVLocked: false,
-    };
-  },
-
   computed: {
     buttonVClasses() {
       return {
         'element-disabled': this.isButtonVLocked,
       };
+    },
+
+    isButtonVLocked() {
+      console.log(this.name, this.name.lockV);
+      return this.name.lockV;
     },
   },
 

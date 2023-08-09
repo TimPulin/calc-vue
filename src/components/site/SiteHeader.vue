@@ -23,6 +23,12 @@
             <li class="nav__item">
               <router-link class="nav__link" :to="{ path: '/' }">
                 <IconCalc />
+                Главная
+              </router-link>
+            </li>
+            <li class="nav__item">
+              <router-link class="nav__link" :to="{ path: '/calc' }">
+                <IconCalc />
                 Калькулятор
               </router-link>
             </li>

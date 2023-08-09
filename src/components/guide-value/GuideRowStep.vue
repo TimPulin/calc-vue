@@ -10,7 +10,7 @@
     <td class="tr__section">
       <OptionsBlockLevel
         :index="element.index"
-        :model-value="element.elementName[0].level"
+        :model-value="name.level"
         @update:model-value="updateElementProperty($event, 'level')"
       />
     </td>
@@ -23,7 +23,7 @@
       />
     </td>
 
-    <td class="tr__section">
+    <td class="tr__section tr__section--scores">
       {{ element.fullElementScores }}
     </td>
   </tr>
@@ -47,9 +47,13 @@ export default {
 
   mixins: [guideRowMixin],
 
+  created() {
+    this.name._setLevel();
+  },
+
   methods: {
     setElementProperties() {
-      this.element.elementName[0].level = 'B';
+      this.name.level = 'B';
     },
   },
 };

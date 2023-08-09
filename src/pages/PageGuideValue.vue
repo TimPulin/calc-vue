@@ -57,7 +57,6 @@ export default {
       const name = pathArr.slice(-1)[0];
 
       this.activeTab = name;
-      console.log(this.activeTab);
     },
   },
 };

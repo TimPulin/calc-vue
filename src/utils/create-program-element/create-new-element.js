@@ -39,7 +39,7 @@ class NewElement {
 export class NewElementJump extends NewElement {
   constructor(name = '') {
     super(name);
-    this.rotations = '';
+    this.rotations = 1;
     // TODO = проверку на nul;
     this.underrotate = '';
     this.edge = '';
@@ -67,9 +67,28 @@ export class NewElementSpin extends NewElement {
   constructor(name = '') {
     super(name);
     this.fly = false;
-    this.change = false;
-    this.level = '';
+    this._change = false;
+    this.level = 'B';
     this.v = false;
+  }
+
+  get lockV() {
+    if (this.name.toLowerCase() === 'cosp' || this.change || this.fly) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  get change() {
+    return this._change;
+  }
+  set change(value) {
+    this._change = value;
+
+    if (!value && this.name.toLowerCase() !== 'cosp') {
+      this.v = false;
+    }
   }
 
   convertPropertyToString(property, value) {
@@ -89,8 +108,30 @@ export class NewElementSpin extends NewElement {
 
 export class NewElementStep extends NewElement {
   constructor(name = '') {
-    super(name);
-    this.level = '';
+    super();
+    this._name = '';
+    this.name = name;
+    this.level = 'B';
+    // TODO удалить или исправить ошибку: Exception: TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls
+    // this._setLevel();
+  }
+
+  get lockLevel() {
+    return this.name.toLowerCase() === 'chsq';
+  }
+
+  get name() {
+    return this._name;
+  }
+  set name(value) {
+    this._name = value;
+    this._setLevel();
+  }
+
+  _setLevel() {
+    if (this._name.toLowerCase() === 'chsq') {
+      this.level = 1;
+    }
   }
 
   _getFullName() {

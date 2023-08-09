@@ -37,3 +37,11 @@
     }
   }
 }
+
+@media (max-width: 410px) {
+  .options--panel-tabs {
+    .options__checkbox {
+      font-size: 18px;
+    }
+  }
+}

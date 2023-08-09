@@ -1,0 +1,37 @@
+.card {
+  @include list-reset;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  &__item {
+    width: 50%;
+    border-radius: var(--border-radius-main);
+    background-color: $color-md_grey;
+    transition: box-shadow .3s ease-in-out;
+
+    &:active,
+    &:hover {
+      box-shadow: 0 0 10px 0 $color-primary_light;
+    }
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__link {
+    @include link-reset;
+    color: #000;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    flex-direction: column;
+
+    &__item {
+      width: 100%;
+    }
+  }
+}

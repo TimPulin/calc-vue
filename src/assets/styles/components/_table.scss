@@ -176,16 +176,6 @@
 
 // end table-element
 
-@media (max-width: 410px) {
-  .table--element {
-    .thead {
-      .tr__text {
-        font-size: 12px;
-      }
-    }
-  }
-}
-
 /* element */
 
 /* guide-value */
@@ -200,6 +190,19 @@
     height: 32px;
     width: 38px;
   }
+
+  .tr__section--scores {
+    margin-inline: 5px;
+  }
 }
 
 /* end guide-value */
+
+@media (max-width: 410px) {
+  :is(.table--guide-value, .table--element) thead {
+    .tr__section {
+      font-size: 12px;
+      letter-spacing: -1px;
+    }
+  }
+}

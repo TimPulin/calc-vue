@@ -177,6 +177,7 @@
   --open-options-animation-duration: .3s;
   --options-color-main: #{$color-primary_light};
   --color-opacity: rgba(0, 0, 0, 0);
+  --border-radius-main: 10px;
 }
 
 html {
@@ -221,7 +222,53 @@ body {
   text-align: center;
 }
 
+@media (max-width: 410px) {
+  .page-title {
+    font-size: 25px;
+  }
+}
+
 .element-disabled {
   pointer-events: none;
   filter: opacity(0.3) grayscale(50%);
+}
+
+.img {
+  max-width: 100%;
+}
+
+.link {
+  @include link-reset;
+  @include background;
+  background-size: 16px;
+  font-size: 18px;
+  line-height: 100%;
+  color: $color-secondary;
+  outline: none;
+
+  &:focus-visible {
+    color: $color-secondary_shade;
+
+    .svg {
+      fill: $color-secondary_shade;
+    }
+  }
+
+  &:hover {
+    color: $color-secondary_shade;
+    background-color: inherit;
+
+    .svg {
+      fill: $color-secondary_shade;
+    }
+  }
+
+  &:active {
+    color: $color-secondary_shade;
+    background-color: inherit;
+
+    .svg {
+      fill: $color-secondary_shade;
+    }
+  }
 }

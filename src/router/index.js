@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import PageMain from '@/pages/PageMain';
 import PageCalc from '@/pages/PageCalc';
 import PageGuideValue from '@/pages/PageGuideValue';
 import PageDonate from '@/pages/PageDonate';
@@ -10,6 +11,11 @@ import GuideTableSteps from '@/components/guide-value/GuideTableSteps';
 const routes = [
   {
     path: '/',
+    name: 'main',
+    component: PageMain,
+  },
+  {
+    path: '/calc',
     name: 'calc',
     component: PageCalc,
   },

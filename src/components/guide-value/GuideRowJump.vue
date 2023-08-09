@@ -41,7 +41,7 @@
       />
     </td>
 
-    <td class="tr__section">
+    <td class="tr__section tr__section--scores">
       {{ element.fullElementScores }}
     </td>
   </tr>
