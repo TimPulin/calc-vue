@@ -23,6 +23,32 @@
   transition-property: color, background-color, background-image, box-shadow;
 }
 
+.button--install {
+  align-self: flex-start;
+  border-color: $color-primary;
+  background-color: $color-primary;
+  color: #fff;
+
+  &:hover,
+  &:active {
+    border-color: $color-primary_shade;
+    background-color: $color-primary_shade;
+    color: #fff;
+  }
+}
+
+.button--instal-reject {
+  border-color: $color-grey;
+  background-color: #fff;
+  color: #000;
+
+  &:hover,
+  &:active {
+    background-color: $color-grey;
+    color: #fff;
+  }
+}
+
 @media (min-width: 1200px) {
   .button {
     &:focus-visible {

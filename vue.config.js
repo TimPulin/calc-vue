@@ -5,4 +5,11 @@ module.exports = defineConfig({
   css: {
     sourceMap: true,
   },
+  pwa: {
+    name: 'Figure Skating Calc',
+    short_name: 'FSK8',
+    background_color: '#a65cf0',
+    themeColor: '#a65cf0',
+    lang: 'ru-ru',
+  },
 });
