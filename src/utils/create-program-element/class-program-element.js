@@ -1,5 +1,3 @@
-import formatScores from '../format-scores';
-
 export class ProgramElement {
   constructor(index) {
     this._index = index;
@@ -26,11 +24,11 @@ export class ProgramElement {
   }
 
   get fullElementScores() {
-    return formatScores(this._getFullElementScores());
+    return this._getFullElementScores();
   }
 
   get fullElementBaseScores() {
-    return formatScores(this._getBaseScores());
+    return this._getBaseScores();
   }
 
   _getFullElementName() {

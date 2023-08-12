@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import formatScores from '@/utils/format-scores';
+
 import ButtonOptions from '@/components/buttons/ButtonOptions.vue';
 import ButtonOptionsEdit from '@/components/buttons/ButtonOptionsEdit.vue';
 import CheckboxSecondPart from '@/components/checkbox/CheckboxPart2.vue';
@@ -86,7 +88,7 @@ export default {
 
   computed: {
     scores() {
-      return this.programElement.fullElementScores;
+      return formatScores(this.programElement.fullElementScores);
     },
 
     fullElementName() {
