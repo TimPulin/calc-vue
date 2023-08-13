@@ -48,10 +48,12 @@
                 </router-link>
               </li>
             </ul>
-            <PWAButton v-if="!isSmallScreen">Установить приложение</PWAButton>
+            <PWAButton v-if="isSmallScreen">Установить приложение</PWAButton>
           </div>
         </nav>
-        <PWAButton v-if="!isSmallScreen">Установить приложение</PWAButton>
+        <PWAButton class="button--in-one-line" v-if="!isSmallScreen"
+          >Установить приложение</PWAButton
+        >
       </div>
     </div>
   </header>
@@ -115,5 +117,9 @@ export default {
 <style>
 .header__top {
   display: flex;
+}
+
+.button--in-one-line {
+  white-space: nowrap;
 }
 </style>

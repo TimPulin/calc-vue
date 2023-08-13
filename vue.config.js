@@ -6,6 +6,10 @@ module.exports = defineConfig({
     sourceMap: true,
   },
   pwa: {
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: './src/service-worker.js',
+    },
     name: 'Figure Skating Calc',
     short_name: 'FSK8',
     background_color: '#a65cf0',
