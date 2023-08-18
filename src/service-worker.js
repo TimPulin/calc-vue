@@ -1,16 +1,22 @@
-/* eslint-disable  */
 import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
-workbox.core.setCacheNameDetails({ prefix: 'pwa-test' });
+import { registerRoute } from 'workbox-routing';
+import { CacheFirst } from 'workbox-strategies';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { setCacheNameDetails } from 'workbox-core';
+import { ExpirationPlugin } from 'workbox-expiration';
+
+setCacheNameDetails({ prefix: 'fsk8-pwa' });
 
 precacheAndRoute(self.__WB_MANIFEST);
 
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+precacheAndRoute(self.__precacheManifest, {});
 
 self.addEventListener('message', (event) => {
-    if (event.data && event.data.type === 'SKIP_WAITING') {
-        self.skipWaiting();
-    }
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener('fetch', (event) => {
@@ -25,3 +31,23 @@ self.addEventListener('fetch', (event) => {
       })
   );
 });
+
+// Кешируем изображения с помощью стратегии `Cache First` (сначала кеш)
+registerRoute(
+  // проверяем, что цель запроса - изображение
+  ({ request }) => request.destination === 'image',
+  new CacheFirst({
+    // помещаем файлы в кеш с названием 'images'
+    cacheName: 'images',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      // кешируем до 50 изображений в течение 30 дней
+      new ExpirationPlugin({
+        maxEntries: 100,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+    ],
+  })
+);

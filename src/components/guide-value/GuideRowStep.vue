@@ -24,7 +24,7 @@
     </td>
 
     <td class="tr__section tr__section--scores">
-      {{ element.fullElementScores }}
+      {{ scores }}
     </td>
   </tr>
 

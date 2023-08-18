@@ -33,7 +33,7 @@
                   Калькулятор
                 </router-link>
               </li>
-              <li>
+              <li class="nav__item">
                 <router-link class="nav__link" :to="{ path: '/guide-value' }">
                   <IconBook />
                   Справочник стоимости элементов
@@ -48,12 +48,12 @@
                 </router-link>
               </li>
             </ul>
-            <PWAButton v-if="isSmallScreen">Установить приложение</PWAButton>
+            <PWAButtonInstall v-if="isSmallScreen" />
+            <PWAButtonUpdate v-if="isSmallScreen" />
           </div>
         </nav>
-        <PWAButton class="button--in-one-line" v-if="!isSmallScreen"
-          >Установить приложение</PWAButton
-        >
+        <PWAButtonInstall class="button--in-one-line" v-if="!isSmallScreen" />
+        <PWAButtonUpdate class="button--in-one-line" v-if="!isSmallScreen" />
       </div>
     </div>
   </header>
@@ -62,9 +62,11 @@
 <script>
 import IconBook from '../icons/IconBook.vue';
 import IconCalc from '../icons/IconCalc.vue';
-import PWAButton from '@/components/pwa/PWAButton';
+import PWAButtonInstall from '@/components/pwa/PWAButtonInstall';
+import PWAButtonUpdate from '@/components/pwa/PWAButtonUpdate';
+
 export default {
-  components: { IconBook, IconCalc, PWAButton },
+  components: { IconBook, IconCalc, PWAButtonInstall, PWAButtonUpdate },
 
   data() {
     return {
@@ -75,7 +77,7 @@ export default {
 
   computed: {
     screenWidth() {
-      return window.screen.width;
+      return document.body.clientWidth;
     },
     isSmallScreen() {
       return this.screenWidth < 768;

@@ -42,7 +42,7 @@
     </td>
 
     <td class="tr__section tr__section--scores">
-      {{ element.fullElementScores }}
+      {{ scores }}
     </td>
   </tr>
 
@@ -71,13 +71,13 @@ export default {
 
   computed: {
     isButtonOptionsEdgeShow() {
-      return !this.element.elementName[0].lockEdge;
+      return !this.name.lockEdge;
     },
   },
 
   methods: {
     setElementProperties() {
-      this.element.elementName[0].rotations = 1;
+      this.name.rotations = 1;
     },
   },
 };

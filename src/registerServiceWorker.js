@@ -19,8 +19,15 @@ if (process.env.NODE_ENV === 'production') {
     updatefound() {
       console.log('New content is downloading.');
     },
-    updated() {
-      console.log('New content is available; please refresh.');
+    updated(event) {
+      console.log('New content is available');
+
+      const updateIsReadyEvent = new CustomEvent('update-is-ready', {
+        bubbles: true,
+        detail: { data: event },
+      });
+
+      window.dispatchEvent(updateIsReadyEvent);
     },
     offline() {
       console.log(
