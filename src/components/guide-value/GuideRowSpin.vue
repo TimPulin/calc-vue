@@ -68,7 +68,7 @@
     </td>
 
     <td class="tr__section tr__section--scores">
-      {{ element.fullElementScores }}
+      {{ scores }}
     </td>
   </tr>
 
@@ -101,14 +101,13 @@ export default {
     },
 
     isButtonVLocked() {
-      console.log(this.name, this.name.lockV);
       return this.name.lockV;
     },
   },
 
   methods: {
     setElementProperties() {
-      this.element.elementName[0].level = 'B';
+      this.name.level = 'B';
     },
   },
 };

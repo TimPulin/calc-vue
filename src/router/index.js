@@ -26,6 +26,7 @@ const routes = [
     children: [
       {
         path: '',
+        name: 'empty-guide',
         redirect: {
           name: 'jumps',
         },
@@ -37,13 +38,13 @@ const routes = [
       },
 
       {
-        name: 'spins',
         path: 'spins',
+        name: 'spins',
         component: GuideTableSpins,
       },
       {
-        name: 'steps',
         path: 'steps',
+        name: 'steps',
         component: GuideTableSteps,
       },
     ],

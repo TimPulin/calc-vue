@@ -72,9 +72,11 @@ export default {
 </script>
 
 <style>
-thead {
-  .tr__section {
-    width: calc(100% / 6);
+.table--guide-value {
+  thead {
+    .tr__section {
+      width: calc(100% / 6);
+    }
   }
 }
 </style>

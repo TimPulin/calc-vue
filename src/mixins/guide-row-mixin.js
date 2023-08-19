@@ -1,4 +1,5 @@
 import createProgramElement from '@/utils/create-program-element/create-program-element.js';
+import formatScores from '@/utils/format-scores';
 
 const guideRowMixin = {
   props: {
@@ -18,6 +19,9 @@ const guideRowMixin = {
   computed: {
     name() {
       return this.element.elementName[0];
+    },
+    scores() {
+      return formatScores(this.element.fullElementScores);
     },
   },
 
